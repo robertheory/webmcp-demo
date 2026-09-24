@@ -1,0 +1,128 @@
+/* Slide deck built on top of Bootstrap's Carousel component — each
+   .carousel-item is one full-height slide instead of an image. */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+#deck,
+#deck .carousel-inner,
+#deck .carousel-item {
+  height: 100vh;
+}
+
+.slide {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 6rem;
+  overflow-y: auto;
+}
+
+.slide-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-weight: 600;
+}
+
+.slide h1 {
+  font-size: 4.5rem;
+  font-weight: 800;
+}
+
+.slide h2 {
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.slide .lead {
+  font-size: 1.4rem;
+}
+
+.cover-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Carousel controls: keep them visible on a light theme, out of the way of
+   slide content (content padding is 6rem, controls sit inside that gutter). */
+#deck .carousel-control-prev,
+#deck .carousel-control-next {
+  width: 4rem;
+  opacity: 0.4;
+  filter: invert(1);
+}
+
+#deck .carousel-control-prev:hover,
+#deck .carousel-control-next:hover {
+  opacity: 0.8;
+}
+
+#deck .carousel-indicators {
+  bottom: 1.25rem;
+}
+
+#deck .carousel-indicators [data-bs-target] {
+  background-color: #6c757d;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+#deck .carousel-indicators .active {
+  background-color: #0d6efd;
+}
+
+.slide-counter {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.75rem;
+  z-index: 1060;
+  font-size: 0.85rem;
+  color: #6c757d;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0.25rem 0.6rem;
+  border-radius: 1rem;
+}
+
+.floating-demo-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1070;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.present-mode-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 1070;
+  opacity: 0.6;
+}
+
+.present-mode-btn:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .slide {
+    padding: 2rem;
+  }
+  .slide h1 {
+    font-size: 2.75rem;
+  }
+  .slide h2 {
+    font-size: 1.9rem;
+  }
+}

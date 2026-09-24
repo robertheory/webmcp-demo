@@ -3,127 +3,436 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tech Events — WebMCP Demo</title>
+  <title>WebMCP — Presentation</title>
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/presentation.css" />
 </head>
 <body>
-  <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Tech Events</a>
-      <div class="d-flex align-items-center gap-2 ms-auto">
-        <span class="navbar-text small">WebMCP protocol demo</span>
-        <button
-          type="button"
-          id="tester-toggle"
-          class="btn btn-outline-light btn-sm"
-          aria-label="WebMCP tool tester"
-          title="WebMCP tool tester"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019.528.026.287.445.445.287.026.529L13.5 14l-.427-.026-.325-.421.006-.529.287-.445.431-.287z"/>
-          </svg>
-        </button>
+  <div class="slide-counter" id="slide-counter">1 / 15</div>
+
+  <div id="deck" class="carousel slide" data-bs-touch="true">
+    <div class="carousel-indicators" id="deck-indicators"></div>
+
+    <div class="carousel-inner">
+      <!-- 1. Cover -->
+      <div class="carousel-item active">
+        <div class="slide cover-slide">
+          <h1>WebMCP</h1>
+          <p class="lead text-body-secondary mt-3">
+            Give the web a voice AI agents can act on.
+          </p>
+          <p class="text-muted mt-4 small">A hands-on look at the Web Model Context Protocol</p>
+        </div>
+      </div>
+
+      <!-- 2. Status quo -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">The status quo</div>
+          <h2>How agents browse the web today</h2>
+          <p class="lead text-body-secondary mb-5">
+            The way a human with no other option would: by looking at the rendered page.
+          </p>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="card h-100 border-0 bg-body-tertiary">
+                <div class="card-body">
+                  <div class="fs-1 mb-2">📸</div>
+                  <h5>Screenshots + vision</h5>
+                  <p class="text-muted small mb-0">Slow, and only as good as the model's guess.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 border-0 bg-body-tertiary">
+                <div class="card-body">
+                  <div class="fs-1 mb-2">🎯</div>
+                  <h5>Brittle selectors</h5>
+                  <p class="text-muted small mb-0">One CSS class rename and the automation breaks.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 border-0 bg-body-tertiary">
+                <div class="card-body">
+                  <div class="fs-1 mb-2">🕵️</div>
+                  <h5>Reverse-engineered DOM</h5>
+                  <p class="text-muted small mb-0">Guessing what a button does from its label.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Problem -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">The problem</div>
+          <h2>Why that breaks down</h2>
+          <div class="row row-cols-2 g-4 mt-2">
+            <div class="col">
+              <h4 class="fw-bold">Slow</h4>
+              <p class="text-muted">Every action needs a screenshot-and-guess round trip.</p>
+            </div>
+            <div class="col">
+              <h4 class="fw-bold">Fragile</h4>
+              <p class="text-muted">A redesign silently breaks every automation built on it.</p>
+            </div>
+            <div class="col">
+              <h4 class="fw-bold">Ambiguous</h4>
+              <p class="text-muted">No schema, no contract — just a best guess at intent.</p>
+            </div>
+            <div class="col">
+              <h4 class="fw-bold">No permission model</h4>
+              <p class="text-muted">The page can't tell the agent what's safe to do on its own.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Idea -->
+      <div class="carousel-item">
+        <div class="slide cover-slide">
+          <div class="slide-kicker">The idea</div>
+          <h2 style="font-size: 3.5rem;">What if the page just told the agent<br />what it can do?</h2>
+          <p class="lead text-body-secondary mt-4">
+            WebMCP: a browser API for pages to register callable, typed tools.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5. The shape -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">How it works</div>
+          <h2>Three actors, one API</h2>
+          <flow-diagram state="idle"></flow-diagram>
+          <div class="row text-center mt-4">
+            <div class="col-md-4"><strong>AI Agent</strong><div class="text-muted small">Decides what to do</div></div>
+            <div class="col-md-4"><strong>Browser</strong><div class="text-muted small">Mediates via the WebMCP API</div></div>
+            <div class="col-md-4"><strong>Web Page</strong><div class="text-muted small">Registers the tools it wants to expose</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Registering a tool -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">How it works</div>
+          <h2>The page registers a tool</h2>
+          <div class="row align-items-center g-5">
+            <div class="col-md-6">
+              <flow-diagram state="register"></flow-diagram>
+            </div>
+            <div class="col-md-6">
+              <pre class="bg-dark text-light p-3 rounded small"><code>await document.modelContext.registerTool({
+  name: "favorite_event",
+  description: "Add an event to favorites",
+  inputSchema: {
+    type: "object",
+    properties: { eventId: { type: "string" } }
+  },
+  execute: async ({ eventId }) => { ... }
+});</code></pre>
+            </div>
+          </div>
+          <p class="text-muted mt-3">The page decides what's callable — and exactly how it behaves.</p>
+        </div>
+      </div>
+
+      <!-- 7. Declarative vs Imperative -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">Two ways to register</div>
+          <h2>Declarative vs. imperative</h2>
+
+          <ul class="nav nav-tabs" id="regTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-declarative" type="button">Declarative</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-imperative" type="button">Imperative</button>
+            </li>
+          </ul>
+          <div class="tab-content border border-top-0 p-4 rounded-bottom">
+            <div class="tab-pane fade show active" id="tab-declarative">
+              <pre class="bg-dark text-light p-3 rounded small"><code>&lt;form toolname="search_events"
+      tooldescription="Search events by keyword"
+      toolautosubmit&gt;
+  &lt;input name="query" /&gt;
+  &lt;button type="submit"&gt;Search&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+              <p class="text-muted mb-0">The browser derives the tool from the form. Best for simple, form-shaped actions.</p>
+            </div>
+            <div class="tab-pane fade" id="tab-imperative">
+              <pre class="bg-dark text-light p-3 rounded small"><code>await document.modelContext.registerTool({
+  name: "favorite_event",
+  execute: async ({ eventId }) => { ... }
+});</code></pre>
+              <p class="text-muted mb-0">Full control over schema, execution and side effects. Best for actions that aren't a form submission.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Anatomy -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">Anatomy</div>
+          <h2>Same shape, every tool</h2>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <tool-card
+                name="favorite_event"
+                description="Add a tech event to favorites by its id."
+                schema="eventId: string"
+              ></tool-card>
+            </div>
+            <div class="col-md-4">
+              <tool-card
+                name="get_event_details"
+                description="Get full details for one event."
+                schema="eventId: string"
+                annotations="read-only"
+              ></tool-card>
+            </div>
+            <div class="col-md-4">
+              <tool-card
+                name="sync_favorites_to_cloud"
+                description="A slow tool — cancellable mid-flight."
+                annotations="consequential"
+              ></tool-card>
+            </div>
+          </div>
+          <p class="text-muted mt-4 mb-0">
+            <code>name</code> + <code>description</code> tell the agent what it does.
+            <code>inputSchema</code> tells it what to pass. <code>annotations</code> tell it what's safe.
+          </p>
+        </div>
+      </div>
+
+      <!-- 9. Calling a tool -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">How it works</div>
+          <h2>The agent calls a tool</h2>
+          <flow-diagram state="call"></flow-diagram>
+          <p class="text-muted mt-4">
+            <code>executeTool()</code> runs your <code>execute()</code> callback and returns its
+            result — the exact same path whether it's a real agent calling it, or you testing it by hand.
+          </p>
+        </div>
+      </div>
+
+      <!-- 10. Security risk -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">Security</div>
+          <h2>Agents run inside your session</h2>
+          <p class="lead text-body-secondary mb-4">
+            A tool's definition and its output both become part of what the agent reads and trusts.
+          </p>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card h-100 border-0 bg-body-tertiary">
+                <div class="card-body">
+                  <div class="fs-1 mb-2">🎭</div>
+                  <h5>Malicious manifests</h5>
+                  <p class="text-muted small mb-0">
+                    A tool's name, description or parameters can hide instructions aimed at the agent, not the user.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card h-100 border-0 bg-body-tertiary">
+                <div class="card-body">
+                  <div class="fs-1 mb-2">☣️</div>
+                  <h5>Contaminated output</h5>
+                  <p class="text-muted small mb-0">
+                    A tool from a trusted site can still return untrusted data — user comments, third-party content.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-muted mt-4 mb-0">
+            Both are <strong>indirect prompt injection</strong>: instructions smuggled in as data. Combine
+            private data access, untrusted content and a way to talk back out, and you get the
+            <strong>"lethal trifecta"</strong> — enough to exfiltrate a user's data.
+          </p>
+        </div>
+      </div>
+
+      <!-- 11. Defense in depth -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">Security</div>
+          <h2>Defense in depth</h2>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <tool-card
+                name="get_event_details"
+                description="Read-only — safe to auto-approve."
+                annotations="read-only"
+              ></tool-card>
+            </div>
+            <div class="col-md-4">
+              <tool-card
+                name="book_flight"
+                description="Irreversible — ask the user first."
+                annotations="consequential"
+              ></tool-card>
+            </div>
+            <div class="col-md-4">
+              <tool-card
+                name="get_reviews"
+                description="Returns user-generated text — treat as data, not instructions."
+                annotations="untrusted output"
+              ></tool-card>
+            </div>
+          </div>
+          <p class="text-muted mt-4 mb-2">
+            Scope exposure with <code>exposedTo</code> so only origins you trust can see or call a tool at all.
+          </p>
+          <p class="text-muted mb-0">
+            <strong>Caveat:</strong> annotations are a hint, not a guarantee — an untrusted origin can lie about
+            its own tool. Pair them with real controls: origin scoping, user confirmation, sandboxing.
+          </p>
+        </div>
+      </div>
+
+      <!-- 12. What this unlocks -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">Beyond the basics</div>
+          <h2>What this unlocks</h2>
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <h5 class="fw-bold">Context-aware</h5>
+              <p class="text-muted small">Tools can read the page's live state — no re-sending filters the UI already has.</p>
+            </div>
+            <div class="col">
+              <h5 class="fw-bold">Dynamic</h5>
+              <p class="text-muted small">Tools register and unregister at runtime with an <code>AbortSignal</code>.</p>
+            </div>
+            <div class="col">
+              <h5 class="fw-bold">Cancellable</h5>
+              <p class="text-muted small">A long-running call can be aborted mid-flight.</p>
+            </div>
+            <div class="col">
+              <h5 class="fw-bold">Not just data</h5>
+              <p class="text-muted small">A tool call can navigate the browser, not only read or write.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13. Try it yourself -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">Try it yourself</div>
+          <h2>Turning WebMCP on today</h2>
+          <div class="accordion" id="setupAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#setupCanary">
+                  Option A — Chrome Canary + flag
+                </button>
+              </h2>
+              <div id="setupCanary" class="accordion-collapse collapse show" data-bs-parent="#setupAccordion">
+                <div class="accordion-body">
+                  <ol class="mb-0">
+                    <li>Install Chrome Canary.</li>
+                    <li>Open <code>chrome://flags/#web-machine-learning-model-context</code> and set it to Enabled.</li>
+                    <li>Relaunch the browser.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#setupExtension">
+                  Option B — WebMCP extension
+                </button>
+              </h2>
+              <div id="setupExtension" class="accordion-collapse collapse" data-bs-parent="#setupAccordion">
+                <div class="accordion-body">
+                  <ol class="mb-0">
+                    <li>Install the <a href="https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd" target="_blank" rel="noopener noreferrer">WebMCP - Model Context Tool Inspector</a> from the Chrome Web Store.</li>
+                    <li>Open any WebMCP-enabled page.</li>
+                    <li>Use its panel to inspect and call the page's tools.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14. See it running -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="slide-kicker">Live demo</div>
+          <h2>See it running</h2>
+          <ul class="lead text-body-secondary" style="font-size: 1.15rem;">
+            <li>Search events — that's the <strong>declarative</strong> tool.</li>
+            <li>Favorite one from the tool tester — watch the JSON result come back parsed.</li>
+            <li>Open an event and toggle favorite — watch the wrench icon flash on <code>toolchange</code>.</li>
+            <li>Run <code>sync_favorites_to_cloud</code>, then hit Cancel before it finishes.</li>
+            <li>Check the annotation badges in the tester — <code>readOnlyHint</code>/<code>consequentialHint</code> in action.</li>
+          </ul>
+          <a href="demo/index.html" class="btn btn-primary btn-lg mt-3 align-self-start">Open the demo &rarr;</a>
+        </div>
+      </div>
+
+      <!-- 15. Closing -->
+      <div class="carousel-item">
+        <div class="slide cover-slide">
+          <h2>Thanks!</h2>
+          <div class="text-muted mt-3 small" style="max-width: 640px;">
+            <p class="mb-1"><a href="https://webmachinelearning.github.io/webmcp/" target="_blank" rel="noopener noreferrer">webmachinelearning.github.io/webmcp</a> — the spec</p>
+            <p class="mb-1"><a href="https://developer.chrome.com/docs/ai/webmcp" target="_blank" rel="noopener noreferrer">developer.chrome.com/docs/ai/webmcp</a> — overview</p>
+            <p class="mb-1"><a href="https://developer.chrome.com/docs/ai/webmcp/compare-mcp" target="_blank" rel="noopener noreferrer">developer.chrome.com/docs/ai/webmcp/compare-mcp</a> — WebMCP vs. MCP</p>
+            <p class="mb-1"><a href="https://developer.chrome.com/docs/ai/webmcp/secure-tools" target="_blank" rel="noopener noreferrer">developer.chrome.com/docs/ai/webmcp/secure-tools</a> — securing tools</p>
+            <p class="mb-1"><a href="https://developer.chrome.com/docs/agents/security" target="_blank" rel="noopener noreferrer">developer.chrome.com/docs/agents/security</a> — agent security</p>
+            <p class="mb-1"><a href="https://blog.modelcontextprotocol.io/posts/2026-03-16-tool-annotations/" target="_blank" rel="noopener noreferrer">blog.modelcontextprotocol.io — tool annotations</a></p>
+            <p class="mb-1"><a href="https://developer.chrome.com/blog/webmcp-epp" target="_blank" rel="noopener noreferrer">developer.chrome.com/blog/webmcp-epp</a> — announcement</p>
+            <p class="mb-0"><a href="https://www.webfuse.com/blog/what-is-webmcp-the-practical-guide-to-the-web-model-context-protocol" target="_blank" rel="noopener noreferrer">webfuse.com — practical guide</a></p>
+          </div>
+          <a href="demo/index.html" class="btn btn-outline-primary mt-4">Open the demo &rarr;</a>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <main class="container pb-5">
-    <p class="text-muted">
-      Search and favorite tech events. This page exposes a
-      <strong>declarative</strong> WebMCP tool for search (the form below) and
-      <strong>imperative</strong> tools for favoriting, registered in JavaScript.
-    </p>
+    <button class="carousel-control-prev" type="button" data-bs-target="#deck" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#deck" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
 
-    <div id="support-banner"></div>
+  <button
+    type="button"
+    id="present-mode-toggle"
+    class="btn btn-sm btn-outline-secondary present-mode-btn"
+    title="Toggle fullscreen present mode"
+  >
+    &#x26F6; Present
+  </button>
 
-    <!--
-      Declarative WebMCP tool: the browser derives a "search_events" tool
-      and its input schema directly from this form's attributes and fields.
-      No JavaScript registration needed for the tool itself — we still
-      listen for "submit" so both a human click and an agent-driven
-      submission run the same search logic.
-    -->
-    <form
-      id="search-form"
-      class="row g-2 mb-4"
-      toolname="search_events"
-      tooldescription="Search tech events by keyword and category."
-      toolautosubmit
-    >
-      <div class="col-sm-7">
-        <input
-          type="text"
-          name="query"
-          class="form-control"
-          placeholder="Search by title, location or description..."
-        />
-      </div>
-      <div class="col-sm-3">
-        <select
-          name="category"
-          class="form-select"
-          toolparamtitle="Category"
-          toolparamdescription="Filter events by category"
-        >
-          <option value="">All categories</option>
-          <option value="conference">Conference</option>
-          <option value="meetup">Meetup</option>
-          <option value="hackathon">Hackathon</option>
-        </select>
-      </div>
-      <div class="col-sm-2 d-grid">
-        <button type="submit" class="btn btn-primary">Search</button>
-      </div>
-    </form>
-
-    <div class="form-check mb-4">
-      <input class="form-check-input" type="checkbox" id="favorites-only" />
-      <label class="form-check-label" for="favorites-only">Show only favorites</label>
-    </div>
-
-    <!--
-      Second implementation of the SAME action as the imperative
-      favorite_event/unfavorite_event tools (registered in js/app.js) — this
-      one declarative, so you can compare both approaches side by side.
-    -->
-    <details class="mb-4">
-      <summary class="text-muted small">Declarative favoriting (alt. implementation)</summary>
-      <form
-        id="favorite-form"
-        class="row g-2 mt-1"
-        toolname="favorite_event_declarative"
-        tooldescription="Add a tech event to favorites by its id (declarative form version of favorite_event)."
-        toolautosubmit
-      >
-        <div class="col-sm-8">
-          <input
-            type="text"
-            name="eventId"
-            class="form-control form-control-sm"
-            list="event-id-list"
-            placeholder="Event id, e.g. web-summit-2026"
-            toolparamdescription="The id of the event to favorite"
-          />
-          <datalist id="event-id-list"></datalist>
-        </div>
-        <div class="col-sm-4 d-grid">
-          <button type="submit" class="btn btn-sm btn-outline-danger">Favorite by id</button>
-        </div>
-      </form>
-    </details>
-
-    <div id="event-grid" class="row g-3"></div>
-    <p id="empty-state" class="text-muted mt-3 d-none">No events match your search.</p>
-  </main>
+  <a href="demo/index.html" class="btn btn-danger floating-demo-btn">
+    Try the demo &rarr;
+  </a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/webmcp-tools.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/components/tool-card.js"></script>
+  <script src="js/components/flow-diagram.js"></script>
+  <script src="js/presentation.js"></script>
 </body>
 </html>
