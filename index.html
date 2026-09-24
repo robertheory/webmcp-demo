@@ -85,6 +85,37 @@
       <label class="form-check-label" for="favorites-only">Show only favorites</label>
     </div>
 
+    <!--
+      Second implementation of the SAME action as the imperative
+      favorite_event/unfavorite_event tools (registered in js/app.js) — this
+      one declarative, so you can compare both approaches side by side.
+    -->
+    <details class="mb-4">
+      <summary class="text-muted small">Declarative favoriting (alt. implementation)</summary>
+      <form
+        id="favorite-form"
+        class="row g-2 mt-1"
+        toolname="favorite_event_declarative"
+        tooldescription="Add a tech event to favorites by its id (declarative form version of favorite_event)."
+        toolautosubmit
+      >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            name="eventId"
+            class="form-control form-control-sm"
+            list="event-id-list"
+            placeholder="Event id, e.g. web-summit-2026"
+            toolparamdescription="The id of the event to favorite"
+          />
+          <datalist id="event-id-list"></datalist>
+        </div>
+        <div class="col-sm-4 d-grid">
+          <button type="submit" class="btn btn-sm btn-outline-danger">Favorite by id</button>
+        </div>
+      </form>
+    </details>
+
     <div id="event-grid" class="row g-3"></div>
     <p id="empty-state" class="text-muted mt-3 d-none">No events match your search.</p>
   </main>

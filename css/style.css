@@ -26,3 +26,10 @@
   max-height: 200px;
   overflow-y: auto;
 }
+
+/* Briefly highlights the tester icon when a "toolchange" event fires
+   (a tool got registered/unregistered), since that event has no UI on its own. */
+#tester-toggle.tool-changed-flash {
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.7);
+  transition: box-shadow 0.2s ease-in-out;
+}
