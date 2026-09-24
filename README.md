@@ -48,15 +48,15 @@ Bootstrap's click-triggered popovers don't auto-dismiss on outside clicks.
 
 ## Files
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | Search + event grid + favorites filter |
-| `event.html` | Single event detail page |
-| `js/data.js` | Static sample event dataset |
-| `js/storage.js` | Favorites persisted to `localStorage` |
+| File                 | Purpose                                                         |
+| -------------------- | --------------------------------------------------------------- |
+| `index.html`         | Search + event grid + favorites filter                          |
+| `event.html`         | Single event detail page                                        |
+| `js/data.js`         | Static sample event dataset                                     |
+| `js/storage.js`      | Favorites persisted to `localStorage`                           |
 | `js/webmcp-tools.js` | Imperative tool registration, support detection, tester popover |
-| `js/app.js` | Home page logic |
-| `js/event.js` | Detail page logic |
+| `js/app.js`          | Home page logic                                                 |
+| `js/event.js`        | Detail page logic                                               |
 
 ## References
 
@@ -64,3 +64,4 @@ Bootstrap's click-triggered popovers don't auto-dismiss on outside clicks.
 - https://developer.chrome.com/blog/webmcp-epp
 - https://www.webfuse.com/blog/what-is-webmcp-the-practical-guide-to-the-web-model-context-protocol
 - https://www.conversion.com.br/blog/google-webmcp-protocolo-agentes-ia
+- https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd
