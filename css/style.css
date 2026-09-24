@@ -1,0 +1,28 @@
+/* Minimal overrides on top of Bootstrap — the demo leans on the default theme. */
+
+.event-card .favorite-btn {
+  line-height: 1;
+  font-size: 1.25rem;
+}
+
+.event-card .favorite-btn.active {
+  color: #dc3545;
+}
+
+.webmcp-tester-popover {
+  --bs-popover-max-width: 456px;
+}
+
+.webmcp-tester-popover .popover-body {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Result blocks stay tiny while empty and only grow once a tool returns
+   output; wrap instead of scrolling horizontally. */
+.webmcp-tester-popover pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 200px;
+  overflow-y: auto;
+}

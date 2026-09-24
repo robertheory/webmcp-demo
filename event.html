@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Details — WebMCP Demo</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Tech Events</a>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <span class="navbar-text small">WebMCP protocol demo</span>
+        <button
+          type="button"
+          id="tester-toggle"
+          class="btn btn-outline-light btn-sm"
+          aria-label="WebMCP tool tester"
+          title="WebMCP tool tester"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019.528.026.287.445.445.287.026.529L13.5 14l-.427-.026-.325-.421.006-.529.287-.445.431-.287z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container pb-5">
+    <a href="index.html" class="d-inline-block mb-3">&larr; Back to search</a>
+
+    <div id="support-banner"></div>
+
+    <div id="event-detail"></div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/webmcp-tools.js"></script>
+  <script src="js/event.js"></script>
+</body>
+</html>

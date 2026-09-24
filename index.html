@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Events — WebMCP Demo</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Tech Events</a>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <span class="navbar-text small">WebMCP protocol demo</span>
+        <button
+          type="button"
+          id="tester-toggle"
+          class="btn btn-outline-light btn-sm"
+          aria-label="WebMCP tool tester"
+          title="WebMCP tool tester"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019.528.026.287.445.445.287.026.529L13.5 14l-.427-.026-.325-.421.006-.529.287-.445.431-.287z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container pb-5">
+    <p class="text-muted">
+      Search and favorite tech events. This page exposes a
+      <strong>declarative</strong> WebMCP tool for search (the form below) and
+      <strong>imperative</strong> tools for favoriting, registered in JavaScript.
+    </p>
+
+    <div id="support-banner"></div>
+
+    <!--
+      Declarative WebMCP tool: the browser derives a "search_events" tool
+      and its input schema directly from this form's attributes and fields.
+      No JavaScript registration needed for the tool itself — we still
+      listen for "submit" so both a human click and an agent-driven
+      submission run the same search logic.
+    -->
+    <form
+      id="search-form"
+      class="row g-2 mb-4"
+      toolname="search_events"
+      tooldescription="Search tech events by keyword and category."
+      toolautosubmit
+    >
+      <div class="col-sm-7">
+        <input
+          type="text"
+          name="query"
+          class="form-control"
+          placeholder="Search by title, location or description..."
+        />
+      </div>
+      <div class="col-sm-3">
+        <select
+          name="category"
+          class="form-select"
+          toolparamtitle="Category"
+          toolparamdescription="Filter events by category"
+        >
+          <option value="">All categories</option>
+          <option value="conference">Conference</option>
+          <option value="meetup">Meetup</option>
+          <option value="hackathon">Hackathon</option>
+        </select>
+      </div>
+      <div class="col-sm-2 d-grid">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+
+    <div class="form-check mb-4">
+      <input class="form-check-input" type="checkbox" id="favorites-only" />
+      <label class="form-check-label" for="favorites-only">Show only favorites</label>
+    </div>
+
+    <div id="event-grid" class="row g-3"></div>
+    <p id="empty-state" class="text-muted mt-3 d-none">No events match your search.</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/webmcp-tools.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
