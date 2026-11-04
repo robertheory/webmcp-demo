@@ -126,3 +126,15 @@ body {
     font-size: 1.9rem;
   }
 }
+
+.lang-switch {
+  position: fixed;
+  top: 1rem;
+  left: 1.5rem;
+  z-index: 1070;
+}
+
+.lang-switch svg {
+  vertical-align: -2px;
+  border-radius: 2px;
+}

@@ -28,6 +28,9 @@ class FlowDiagram extends HTMLElement {
     const active = "#0d6efd";
     const idle = "#adb5bd";
 
+    const pt = document.documentElement.lang === "pt-BR";
+    const t = (en, ptText) => (pt ? ptText : en);
+
     const registerOn = state === "register";
     const callOn = state === "call";
 
@@ -44,17 +47,17 @@ class FlowDiagram extends HTMLElement {
 
         <!-- Agent -->
         <rect x="20" y="80" width="180" height="60" rx="10" fill="#fff" stroke="${callOn ? active : idle}" stroke-width="2"/>
-        <text x="110" y="115" text-anchor="middle" font-size="18" font-family="sans-serif">AI Agent</text>
+        <text x="110" y="115" text-anchor="middle" font-size="18" font-family="sans-serif">${t("AI Agent", "Agente de IA")}</text>
 
         <!-- Browser -->
         <rect x="270" y="80" width="180" height="60" rx="10" fill="#fff" stroke="${callOn || registerOn ? active : idle}" stroke-width="2"/>
-        <text x="360" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">Browser</text>
+        <text x="360" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">${t("Browser", "Navegador")}</text>
         <text x="360" y="128" text-anchor="middle" font-size="12" fill="#6c757d" font-family="sans-serif">(WebMCP)</text>
 
         <!-- Page -->
         <rect x="520" y="80" width="180" height="60" rx="10" fill="#fff" stroke="${callOn || registerOn ? active : idle}" stroke-width="2"/>
-        <text x="610" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">Web Page</text>
-        <text x="610" y="128" text-anchor="middle" font-size="12" fill="#6c757d" font-family="sans-serif">(registered tools)</text>
+        <text x="610" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">${t("Web Page", "Página Web")}</text>
+        <text x="610" y="128" text-anchor="middle" font-size="12" fill="#6c757d" font-family="sans-serif">${t("(registered tools)", "(ferramentas registradas)")}</text>
 
         <!-- Agent <-> Browser -->
         <line x1="200" y1="100" x2="266" y2="100" stroke="${callOn ? active : idle}" stroke-width="2" marker-end="url(#${callOn ? "arrow-active" : "arrow-idle"})"/>
@@ -68,7 +71,7 @@ class FlowDiagram extends HTMLElement {
           callOn
             ? `<text x="233" y="65" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">executeTool()</text>
                <text x="485" y="65" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">executeTool()</text>
-               <text x="360" y="150" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">result</text>`
+               <text x="360" y="150" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">${t("result", "resultado")}</text>`
             : ""
         }
         ${
