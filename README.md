@@ -32,6 +32,9 @@ point, and the demo's navbar links back with "← Presentation".
 - **Navigation**: arrow keys, on-screen prev/next controls, click-to-jump
   progress dots (generated from however many slides exist), and a
   "Present" button that toggles fullscreen.
+- **Language switch**: EN / PT-BR toggle (top-left). English is the source
+  text; each translatable element carries its Portuguese in `data-pt`, and
+  `js/i18n.js` swaps them. The choice is remembered in `localStorage`.
 - **Two Web Components** (`js/components/`) illustrate concepts Bootstrap
   alone can't draw:
   - `<flow-diagram state="idle|register|call">` — an SVG diagram of the
