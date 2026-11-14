@@ -325,8 +325,8 @@ code {
   padding: 0;
   margin: 0 0 1.5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.9rem 2rem;
+  grid-template-columns: repeat(2, max-content);
+  gap: 0.9rem 2.5rem;
   font-size: 1.05rem;
 }
 
@@ -1106,6 +1106,14 @@ tool-card {
   margin-right: 0.5rem;
   text-align: center;
   vertical-align: middle;
+}
+
+/* One-line explanation under a status column title. */
+.status-sub {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--graphite);
 }
 
 /* Institutional positions, kept apart from implementation status. */
