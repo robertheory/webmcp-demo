@@ -1,10 +1,9 @@
 // <tool-card> — a native Web Component that renders the anatomy of a
 // WebMCP tool definition as a visual card, for the presentation slides.
 //
-// Deliberately renders into light DOM (no Shadow DOM): the slides already
-// load Bootstrap's CSS, and reusing those classes here keeps this card
-// visually consistent with the rest of the deck without duplicating any
-// stylesheet into a shadow root.
+// Deliberately renders into light DOM (no Shadow DOM), so the deck's brand
+// styles (.tool-card, .tag in css/presentation.css) apply directly instead
+// of being duplicated into a shadow root.
 //
 // Text attributes are Portuguese by default, with *-en variants used when
 // the deck is switched to English (see js/lang.js).
@@ -62,35 +61,36 @@ class ToolCard extends HTMLElement {
       .map((a) => a.trim())
       .filter(Boolean);
 
+    // Brand palette tags: yellow marks the one that needs attention.
     const badges = {
-      "read-only": { cls: "text-bg-success", pt: "somente leitura" },
-      consequential: { cls: "text-bg-danger", pt: "consequencial" },
-      "untrusted output": { cls: "text-bg-warning", pt: "saída não confiável" },
-      debug: { cls: "text-bg-secondary", pt: "debug" },
+      "read-only": { cls: "tag", pt: "somente leitura" },
+      consequential: { cls: "tag tag-ink", pt: "consequencial" },
+      "untrusted output": { cls: "tag tag-yellow", pt: "saída não confiável" },
+      debug: { cls: "tag tag-muted", pt: "debug" },
     };
 
     const schemaBlock = (label, body) => `
-      <div class="border rounded p-2 bg-body-tertiary mt-2">
-        <div class="text-uppercase text-muted small mb-1">${label}</div>
-        <code class="small">{ ${body} }</code>
+      <div class="tool-card-schema">
+        <div class="tool-card-label">${label}</div>
+        <code>{ ${body} }</code>
       </div>`;
 
     this.innerHTML = `
-      <div class="card shadow-sm text-start h-100">
-        <div class="card-body">
-          <div class="d-flex flex-wrap gap-2 justify-content-between align-items-start mb-1">
-            <code class="fs-6">${name}</code>
+      <div class="tool-card">
+        <div>
+          <div class="d-flex flex-wrap gap-2 justify-content-between align-items-start mb-2">
+            <code class="tool-card-name">${name}</code>
             <div class="d-flex gap-1">
               ${annotations
                 .map((a) => {
-                  const badge = badges[a] || { cls: "text-bg-light", pt: a };
-                  return `<span class="badge ${badge.cls}">${tr(badge.pt, a)}</span>`;
+                  const badge = badges[a] || { cls: "tag", pt: a };
+                  return `<span class="${badge.cls}">${tr(badge.pt, a)}</span>`;
                 })
                 .join("")}
             </div>
           </div>
           ${title ? `<div class="small fw-semibold mb-1">${title}</div>` : ""}
-          <p class="mb-0 text-body-secondary">${description}</p>
+          <p class="tool-card-description">${description}</p>
           ${schema ? schemaBlock("inputSchema", schema) : ""}
           ${output ? schemaBlock("outputSchema", output) : ""}
         </div>

@@ -1,6 +1,26 @@
 /* Slide deck built on top of Bootstrap's Carousel component — each
    .carousel-item is one full-height slide instead of an image. Designed to
-   be run with a slide clicker: nothing on a slide needs a click. */
+   be run with a slide clicker: nothing on a slide needs a click.
+
+   Visual direction: the robertheory Brand Book v1.0 ("teoria → prática").
+   Paper (60%) · ink (30%) · highlighter yellow (≤10%), Space Grotesk for
+   the voice, JetBrains Mono for annotations, 2px ink outlines, no shadows,
+   no gradients, line icons, and yellow never used as text on paper. */
+
+:root {
+  --paper: #f3efe4;
+  --ink: #141414;
+  --highlight: #ffd23f;
+  --graphite: #5e584c;
+  --text-secondary: #3a362e;
+  --line: #cfc8b6;
+  --grid-line: #e2dccb;
+  --white: #ffffff;
+  --border-ink: 2px solid var(--ink);
+  --font-display: "Space Grotesk", system-ui, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+  --mark: linear-gradient(transparent 55%, var(--highlight) 55%, var(--highlight) 92%, transparent 92%);
+}
 
 html,
 body {
@@ -16,6 +36,36 @@ html {
 
 body {
   overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 450;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--highlight);
+  color: var(--ink);
+}
+
+a {
+  color: var(--ink);
+}
+
+code,
+pre,
+.font-monospace {
+  font-family: var(--font-mono) !important;
+}
+
+code {
+  color: inherit;
+  font-size: 0.9em;
+}
+
+.text-muted,
+.text-body-secondary {
+  color: var(--graphite) !important;
 }
 
 #deck,
@@ -24,11 +74,32 @@ body {
   height: 100vh;
 }
 
+/* Paper with a 1px grid is the default background ("teoria"). */
+#deck .carousel-item {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+}
+
+/* Ink for impact slides (hooks, demo, closing) — about 1 in 5 here. */
+#deck .carousel-item.theme-ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Yellow announces the talk: the cover only. */
+#deck .carousel-item.theme-yellow {
+  background: var(--highlight);
+  color: var(--ink);
+}
+
 /* Scoped to direct children of a slide item: #deck itself carries Bootstrap's
    "slide" class (carousel transition), and must not get this layout.
    presentation.js moves the content into .slide-body and appends the source
    footer after it, so the footer sits at the bottom in normal flow. The
-   bottom padding clears the progress dots and the action bar. */
+   bottom padding clears the progress dots, the signature and the action bar. */
 .carousel-item > .slide {
   height: 100vh;
   display: flex;
@@ -49,64 +120,298 @@ body {
   justify-content: flex-start;
 }
 
+/* Brand rule: left-aligned, even on cover-like slides. */
 .cover-slide .slide-body {
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
 }
 
-.slide-kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-size: 0.85rem;
-  color: #6c757d;
-  font-weight: 600;
+/* --- Type --------------------------------------------------------------------- */
+
+.slide h1,
+.slide h2,
+.slide h4,
+.slide h5 {
+  font-family: var(--font-display);
+  color: inherit;
 }
 
 .slide h1 {
   font-size: 4.5rem;
-  font-weight: 800;
+  font-weight: 700;
+  letter-spacing: -0.04em;
 }
 
 .slide h2 {
   font-size: 2.75rem;
   font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   margin-bottom: 1.75rem;
+  max-width: 34em;
+  text-wrap: balance;
+}
+
+.slide h4,
+.slide h5 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .slide .lead {
   font-size: 1.4rem;
+  font-weight: 450;
 }
 
+/* Highlighter: the lower half of 1–3 words. */
+.mark {
+  background: var(--mark);
+  padding: 0 0.08em;
+  color: inherit;
+}
+
+/* On ink, emphasis is yellow text (12.8:1). */
+.accent {
+  color: var(--highlight);
+}
+
+/* Section label, top-left: outline "// teoria" or filled "> prática". */
+.slide-kicker {
+  align-self: flex-start;
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  border: var(--border-ink);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.15rem 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.slide-kicker::before {
+  content: "// ";
+}
+
+.slide-kicker.is-practice {
+  background: var(--highlight);
+}
+
+.slide-kicker.is-practice::before {
+  content: "> ";
+}
+
+.theme-ink .slide-kicker {
+  background: transparent;
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+.theme-ink .slide-kicker.is-practice {
+  background: var(--highlight);
+  border-color: var(--highlight);
+  color: var(--ink);
+}
+
+.theme-yellow .slide-kicker {
+  background: transparent;
+}
+
+/* --- Cover --------------------------------------------------------------------- */
+
 .cover-title {
-  font-size: 6rem !important;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
+  font-size: 8rem !important;
+  line-height: 0.95;
+  letter-spacing: -0.05em !important;
+  margin-bottom: 1rem;
 }
 
 .cover-subtitle {
-  font-size: 2rem;
-  font-weight: 300;
-  color: #495057;
-  max-width: 900px;
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 28em;
+  text-wrap: balance;
   margin: 0;
 }
 
+.cover-signature {
+  margin-top: 4rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+
+.cover-meta {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+/* Wordmark: "rober" + "theory", per background. */
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-size: 1.6rem;
+  color: var(--ink);
+}
+
+.wordmark-theory {
+  background: var(--mark);
+  padding: 0 0.08em;
+}
+
+.theme-yellow .wordmark-theory,
+.on-yellow .brand-signature .wordmark-theory {
+  background: var(--ink);
+  color: var(--highlight);
+}
+
+.theme-ink .wordmark,
+.on-ink .brand-signature .wordmark {
+  color: var(--paper);
+}
+
+.theme-ink .wordmark-theory,
+.on-ink .brand-signature .wordmark-theory {
+  background: var(--highlight);
+  color: var(--ink);
+}
+
+/* --- About ----------------------------------------------------------------------- */
+
+/* Person cut out over the yellow circle: the brand's portrait signature. */
+.portrait {
+  position: relative;
+  width: 100%;
+  max-width: 19rem;
+  aspect-ratio: 1 / 1.12;
+  margin: 0 auto;
+}
+
+.portrait-circle {
+  position: absolute;
+  inset: auto 0 0 0;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--highlight);
+  border: 3px solid var(--ink);
+}
+
+.portrait-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 0 0 999px 999px;
+}
+
+.about-name {
+  font-size: 3.6rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.about-role {
+  font-size: 1.35rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.about-facts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem 2rem;
+  font-size: 1.05rem;
+}
+
+.about-facts li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.about-facts .icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.about-tagline {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.about-handle {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--graphite);
+}
+
+/* Short lines under diagrams and cards: bold and large enough for the back row. */
+.diagram-captions,
+.slide-note {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* --- Hooks and impact slides ---------------------------------------------------------- */
+
 .hook-slide h2 {
-  font-size: 4rem;
-  line-height: 1.15;
-  max-width: 1100px;
+  font-size: 4.25rem;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  max-width: 16em;
   margin-bottom: 0;
 }
 
-/* --- Slide chrome ------------------------------------------------------------ */
+.theme-ink .lead,
+.theme-ink .text-muted,
+.theme-ink .text-body-secondary {
+  color: rgba(243, 239, 228, 0.75) !important;
+}
 
-/* Carousel controls: visible on a light theme, out of the way of the
-   content (content padding is 6rem, controls sit inside that gutter). */
+.closing-tagline {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0.25rem 0 1.25rem;
+}
+
+.theme-ink a {
+  color: var(--paper);
+}
+
+.slide .demo-icon {
+  width: 5rem;
+  height: 5rem;
+  color: var(--highlight);
+  margin-bottom: 0.5rem;
+}
+
+/* --- Slide chrome ------------------------------------------------------------------- */
+
 #deck .carousel-control-prev,
 #deck .carousel-control-next {
   width: 4rem;
   opacity: 0.25;
   filter: invert(1);
+}
+
+.on-ink #deck .carousel-control-prev,
+.on-ink #deck .carousel-control-next {
+  filter: none;
 }
 
 #deck .carousel-control-prev:hover,
@@ -120,14 +425,27 @@ body {
 }
 
 #deck .carousel-indicators [data-bs-target] {
-  background-color: #6c757d;
+  background-color: var(--ink);
+  opacity: 0.3;
   width: 7px;
   height: 7px;
+  border: 0;
   border-radius: 50%;
 }
 
 #deck .carousel-indicators .active {
-  background-color: #0d6efd;
+  opacity: 1;
+  background-color: var(--highlight);
+  outline: 2px solid var(--ink);
+}
+
+.on-ink #deck .carousel-indicators [data-bs-target] {
+  background-color: var(--paper);
+}
+
+.on-ink #deck .carousel-indicators .active {
+  background-color: var(--highlight);
+  outline-color: var(--highlight);
 }
 
 .slide-counter {
@@ -135,8 +453,47 @@ body {
   top: 1.25rem;
   right: 1.75rem;
   z-index: 1060;
-  font-size: 0.85rem;
-  color: #6c757d;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--graphite);
+}
+
+.on-ink .slide-counter {
+  color: rgba(243, 239, 228, 0.7);
+}
+
+/* Brand signature, bottom-left; the cover carries its own. */
+.brand-signature {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.1rem;
+  z-index: 1060;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.brand-signature .wordmark {
+  font-size: 1rem;
+}
+
+.brand-signature .sig-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.sig-icon-ink,
+.on-ink .sig-icon-paper {
+  display: none;
+}
+
+.on-ink .sig-icon-ink {
+  display: block;
+}
+
+.on-yellow .brand-signature {
+  display: none;
 }
 
 /* Icon-only operator controls, bottom-right, faded until hovered. */
@@ -147,7 +504,7 @@ body {
   z-index: 1070;
   display: flex;
   gap: 0.35rem;
-  opacity: 0.45;
+  opacity: 0.5;
   transition: opacity 0.2s;
 }
 
@@ -163,17 +520,59 @@ body {
   min-width: 2rem;
   height: 2rem;
   padding: 0 0.5rem;
-  background: rgba(255, 255, 255, 0.85);
+  border: var(--border-ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.action-bar .btn:hover,
+.action-bar .btn.show {
+  background: var(--highlight);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.on-ink .action-bar .btn {
+  background: var(--ink);
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+.on-ink .action-bar .btn:hover,
+.on-ink .action-bar .btn.show {
+  background: var(--highlight);
+  border-color: var(--highlight);
+  color: var(--ink);
 }
 
 .action-bar .lang-current {
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-weight: 700;
   font-size: 0.75rem;
-  letter-spacing: 0.05em;
 }
 
 .action-bar .lang-current::after {
   display: none;
+}
+
+.action-bar .dropdown-menu {
+  border: var(--border-ink);
+  border-radius: 0;
+  padding: 0;
+  min-width: auto;
+  background: var(--paper);
+}
+
+.action-bar .dropdown-item {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.action-bar .dropdown-item:hover {
+  background: var(--highlight);
+  color: var(--ink);
 }
 
 #fullscreen-toggle .icon-exit,
@@ -185,29 +584,44 @@ body {
   display: inline;
 }
 
-/* --- Citations ---------------------------------------------------------------- */
+/* --- Citations -------------------------------------------------------------------- */
 
 sup.cite {
-  font-size: 0.55em;
+  font-family: var(--font-mono);
+  font-size: 0.5em;
   margin-left: 0.1em;
 }
 
 sup.cite a {
+  color: var(--graphite);
   text-decoration: none;
+  font-weight: 700;
+}
+
+.theme-ink sup.cite a {
+  color: var(--highlight);
 }
 
 /* In flow under .slide-body: wraps onto as many lines as it needs. */
 .slide-refs {
   flex: 0 0 auto;
   margin-top: 1rem;
-  font-size: 0.7rem;
-  line-height: 1.6;
-  color: #6c757d;
-  border-top: 1px solid #dee2e6;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  line-height: 1.7;
+  color: var(--graphite);
+  border-top: 1px solid var(--line);
   padding-top: 0.4rem;
 }
 
+.theme-ink .slide-refs {
+  color: rgba(243, 239, 228, 0.6);
+  border-top-color: rgba(243, 239, 228, 0.25);
+}
+
+/* inline-block gives the footer a break point between sources. */
 .slide-ref {
+  display: inline-block;
   margin-right: 0.9rem;
   white-space: nowrap;
 }
@@ -244,7 +658,10 @@ sup.cite a {
   flex: 0 0 1.9rem;
   height: 1.9rem;
   border-radius: 50%;
-  background: #e9ecef;
+  background: var(--highlight);
+  border: var(--border-ink);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -253,13 +670,14 @@ sup.cite a {
 
 .index-title {
   display: block;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .index-refs {
   display: block;
-  color: #6c757d;
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--graphite);
+  font-size: 0.68rem;
 }
 
 .index-refs .slide-ref {
@@ -270,15 +688,72 @@ sup.cite a {
   color: inherit;
 }
 
-/* --- Slide components ------------------------------------------------------------ */
+/* --- Slide components ----------------------------------------------------------------- */
 
+.icon {
+  display: inline-flex;
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: -0.2em;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* <tool-card> (js/components/tool-card.js). */
+tool-card {
+  display: block;
+  height: 100%;
+}
+
+.tool-card {
+  height: 100%;
+  background: var(--white);
+  border: var(--border-ink);
+  padding: 1.1rem 1.25rem;
+}
+
+.tool-card-name {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.tool-card-description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+.tool-card-schema {
+  margin-top: 0.75rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 0.5rem 0.7rem;
+}
+
+.tool-card-schema code {
+  font-size: 0.8rem;
+}
+
+.tool-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--graphite);
+  margin-bottom: 0.2rem;
+}
+
+/* Rectangles with a 2px ink outline, no radius, no shadow. */
 .icon-card,
 .compare-card,
 .step-card,
 .path-card {
+  position: relative;
   height: 100%;
-  border-radius: 1rem;
-  background: #f8f9fa;
+  background: var(--white);
+  border: var(--border-ink);
   padding: 1.5rem;
 }
 
@@ -290,27 +765,32 @@ sup.cite a {
 
 .icon-card p {
   margin-bottom: 0;
-  color: #6c757d;
+  color: var(--text-secondary);
   font-size: 1.05rem;
 }
 
-.icon-card-emoji {
-  font-size: 2.6rem;
-  line-height: 1;
-  margin-bottom: 0.75rem;
+.icon-card-icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-bottom: 0.9rem;
 }
 
-.compare-card {
-  border: 2px solid transparent;
-}
-
-.compare-card-highlight {
-  background: #fff;
-  border-color: #0d6efd;
+/* Tape: holds the highlighted card, yellow at 85%, tilted 5°. */
+.compare-card-highlight::before {
+  content: "";
+  position: absolute;
+  top: -0.7rem;
+  left: 50%;
+  width: 6rem;
+  height: 1.4rem;
+  transform: translateX(-50%) rotate(-5deg);
+  background: rgba(255, 210, 63, 0.85);
 }
 
 .compare-card-muted {
-  opacity: 0.85;
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--graphite);
 }
 
 .compare-card ol {
@@ -321,20 +801,31 @@ sup.cite a {
 
 .compare-label {
   display: block;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: #6c757d;
+  color: var(--graphite);
   margin-bottom: 0.75rem;
 }
 
 .code-block {
-  background: #212529;
-  color: #f8f9fa;
+  background: var(--ink);
+  color: var(--paper);
   padding: 1rem 1.25rem;
-  border-radius: 0.75rem;
+  border-radius: 0;
   font-size: 0.95rem;
+}
+
+.code-block-lg {
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+.flow-vertical {
+  display: block;
+  width: 100%;
+  max-width: 24rem;
 }
 
 .code-inline {
@@ -349,19 +840,61 @@ sup.cite a {
 }
 
 .chip {
-  border: 1px solid #ced4da;
+  border: var(--border-ink);
   border-radius: 999px;
-  padding: 0.35rem 0.9rem;
+  padding: 0.3rem 0.9rem;
   font-size: 1rem;
-  color: #495057;
-  background: #fff;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.theme-ink .chip {
+  background: transparent;
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+/* Tags, in the palette only. */
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  line-height: 1.5;
+  padding: 0.1rem 0.5rem;
+  border: var(--border-ink);
+  background: var(--white);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.tag-yellow {
+  background: var(--highlight);
+}
+
+.tag-ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tag-dashed {
+  border-style: dashed;
+}
+
+.tag-muted {
+  border-color: var(--graphite);
+  color: var(--graphite);
+  background: transparent;
 }
 
 .callout {
-  border-left: 4px solid #ffc107;
-  background: #fff8e1;
+  border: var(--border-ink);
+  border-left-width: 0.5rem;
+  border-left-color: var(--highlight);
+  background: var(--white);
   padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
   font-size: 1.1rem;
 }
 
@@ -369,8 +902,9 @@ sup.cite a {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: #0d6efd;
-  color: #fff;
+  background: var(--ink);
+  color: var(--highlight);
+  font-family: var(--font-mono);
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -378,43 +912,39 @@ sup.cite a {
   margin-bottom: 0.9rem;
 }
 
-/* Lethal trifecta: three overlapping circles. */
+/* Lethal trifecta: three overlapping circles, palette tints only. */
 .trifecta {
   width: 100%;
   max-height: 52vh;
 }
 
 .trifecta circle {
-  fill-opacity: 0.18;
+  stroke: var(--ink);
   stroke-width: 2;
 }
 
 .trifecta-a {
-  fill: #0d6efd;
-  stroke: #0d6efd;
+  fill: rgba(255, 210, 63, 0.55);
 }
 
 .trifecta-b {
-  fill: #fd7e14;
-  stroke: #fd7e14;
+  fill: rgba(94, 88, 76, 0.16);
 }
 
 .trifecta-c {
-  fill: #dc3545;
-  stroke: #dc3545;
+  fill: rgba(20, 20, 20, 0.07);
 }
 
 .trifecta text {
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: 17px;
-  font-weight: 600;
-  fill: #343a40;
+  font-weight: 700;
+  fill: var(--ink);
 }
 
 .trifecta .trifecta-center {
-  font-size: 19px;
-  font-weight: 800;
-  fill: #dc3545;
+  font-family: var(--font-mono);
+  font-size: 17px;
   text-transform: uppercase;
 }
 
@@ -425,6 +955,13 @@ sup.cite a {
   margin-bottom: 1.5rem;
 }
 
+.vector .icon {
+  flex: 0 0 auto;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin: 0.2rem 0 0;
+}
+
 .vector h5 {
   font-weight: 700;
   margin-bottom: 0.25rem;
@@ -432,17 +969,20 @@ sup.cite a {
 
 .vector p {
   margin: 0;
-  color: #6c757d;
+  color: var(--text-secondary);
   font-size: 1.1rem;
 }
 
-/* Horizontal timeline. */
+/* Horizontal timeline, alternating above and below the line: neighbors sit
+   on opposite sides, so each label can be about twice as wide as its slot. */
 .htimeline {
+  --track: 7rem; /* distance from the top of the list to the line */
   list-style: none;
   padding: 0;
-  margin: 2rem 0 0;
+  margin: 1rem 0 0;
   display: flex;
   position: relative;
+  height: calc(var(--track) * 2);
 }
 
 .htimeline::before {
@@ -450,51 +990,92 @@ sup.cite a {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0.45rem;
-  border-top: 2px solid #0d6efd;
+  top: var(--track);
+  border-top: var(--border-ink);
 }
 
 .htimeline li {
   flex: 1 1 0;
   position: relative;
-  padding: 1.75rem 0.4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+}
+
+/* Odd: above the line, date closest to it. */
+.htimeline li:nth-child(odd) {
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  padding-bottom: calc(var(--track) + 1.1rem);
+}
+
+/* Even: below the line. */
+.htimeline li:nth-child(even) {
+  justify-content: flex-start;
+  padding-top: calc(var(--track) + 1.1rem);
+}
+
+.htimeline li > span {
+  width: 190%;
+  flex: 0 0 auto;
+}
+
+/* Tick from the dot toward the label. */
+.htimeline li::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 0;
+  height: 0.7rem;
+  border-left: 2px solid var(--ink);
+}
+
+.htimeline li:nth-child(odd)::after {
+  top: calc(var(--track) - 0.7rem);
+}
+
+.htimeline li:nth-child(even)::after {
+  top: var(--track);
 }
 
 .htimeline li::before {
   content: "";
   position: absolute;
-  top: 0;
+  z-index: 1;
+  top: calc(var(--track) - 0.45rem);
   left: 50%;
   transform: translateX(-50%);
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background: #0d6efd;
-  border: 3px solid #fff;
+  background: var(--ink);
+  border: 3px solid var(--paper);
+  outline: 2px solid var(--ink);
 }
 
 .htimeline-future::before {
-  background: #fff !important;
-  border: 2px solid #0d6efd !important;
+  background: var(--highlight) !important;
 }
 
 .htimeline-date {
   display: block;
+  font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .htimeline-label {
   display: block;
-  font-size: 0.9rem;
-  color: #495057;
-  margin-top: 0.25rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: var(--text-secondary);
+  margin: 0.2rem 0;
 }
 
 .htimeline-future .htimeline-date,
 .htimeline-future .htimeline-label {
-  color: #6c757d;
+  color: var(--graphite);
 }
 
 .status-heading {
@@ -513,27 +1094,33 @@ sup.cite a {
   margin-bottom: 0.7rem;
 }
 
-.status-list .badge {
-  min-width: 6.5rem;
+.status-list .tag {
+  min-width: 7.5rem;
   margin-right: 0.5rem;
-  font-size: 0.75rem;
+  text-align: center;
   vertical-align: middle;
 }
 
+.status-list .icon {
+  margin-right: 0.35rem;
+}
+
 .debate-quote {
-  border-left: 4px solid #0d6efd;
-  padding: 0.5rem 0 0.5rem 1.25rem;
+  border-left: 0.35rem solid var(--ink);
+  padding: 0.25rem 0 0.25rem 1.25rem;
   margin: 0;
 }
 
 .debate-quote p {
   font-size: 1.5rem;
-  line-height: 1.35;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .debate-quote footer {
-  color: #6c757d;
-  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  color: var(--graphite);
+  font-size: 0.8rem;
 }
 
 .path-card {
@@ -541,8 +1128,9 @@ sup.cite a {
 }
 
 .path-icon {
-  font-size: 2.4rem;
-  margin-bottom: 0.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-bottom: 0.75rem;
 }
 
 .path-steps {
@@ -553,12 +1141,7 @@ sup.cite a {
 }
 
 .path-steps code {
-  font-size: 0.85rem;
-}
-
-.demo-emoji {
-  font-size: 6rem;
-  line-height: 1;
+  font-size: 0.8rem;
 }
 
 .checklist {
@@ -573,7 +1156,7 @@ sup.cite a {
 .checklist li {
   break-inside: avoid;
   margin-bottom: 1rem;
-  padding-left: 2rem;
+  padding-left: 2.25rem;
   position: relative;
 }
 
@@ -581,15 +1164,42 @@ sup.cite a {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #198754;
-  font-weight: 800;
+  top: 0.1em;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: var(--highlight);
+  border: var(--border-ink);
 }
 
 .qr-code {
-  border: 1px solid #dee2e6;
-  border-radius: 0.5rem;
+  border: 3px solid var(--paper);
   padding: 0.5rem;
-  background: #fff;
+  background: var(--white);
+}
+
+/* Big enough to scan from the back of the room. */
+.qr-code-lg {
+  width: 100%;
+  max-width: 26rem;
+  max-height: 64vh;
+  aspect-ratio: 1;
+  padding: 1rem;
+}
+
+.closing-link {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.closing-link a {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  margin-left: 0.4rem;
 }
 
 /* Small screens and projectors at 720p get tighter spacing. */
@@ -602,10 +1212,10 @@ sup.cite a {
     margin-bottom: 1.25rem;
   }
   .hook-slide h2 {
-    font-size: 3.2rem;
+    font-size: 3.4rem;
   }
   .cover-title {
-    font-size: 4.5rem !important;
+    font-size: 6rem !important;
   }
   .icon-card,
   .compare-card,
@@ -623,8 +1233,9 @@ sup.cite a {
     padding: 2rem 1.5rem 4rem;
     overflow-y: auto;
   }
-  .slide h1 {
-    font-size: 2.75rem;
+  .slide h1,
+  .cover-title {
+    font-size: 3rem !important;
   }
   .slide h2,
   .hook-slide h2 {
@@ -632,12 +1243,26 @@ sup.cite a {
   }
   .htimeline {
     flex-direction: column;
+    height: auto;
   }
-  .htimeline::before {
+  .htimeline::before,
+  .htimeline li::before,
+  .htimeline li::after {
     display: none;
   }
+  .htimeline li,
+  .htimeline li:nth-child(odd),
+  .htimeline li:nth-child(even) {
+    flex-direction: column;
+    padding: 0 0 1rem;
+  }
+  .htimeline li > span {
+    width: 100%;
+  }
   .index-list,
-  .checklist {
+  .checklist,
+  .about-facts {
     columns: 1;
+    grid-template-columns: 1fr;
   }
 }

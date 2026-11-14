@@ -12,7 +12,7 @@ That's WebMCP: a proposed web standard, already in an origin trial in Chrome
 and Edge and shipping inside ChatGPT's desktop browser, that lets a page hand
 an agent a list of typed tools instead of a screenshot. This repository is a
 portable talk about it — slides plus a live demo — with every claim linked
-to its source.
+to its source. By Roberto Costa ([@robertheory](https://www.linkedin.com/in/robertheory)).
 
 ### ▶ [Open the presentation](https://robertheory.github.io/webmcp-demo/) · [Try the live demo](https://robertheory.github.io/webmcp-demo/demo/)
 
@@ -40,7 +40,14 @@ real agent.
 Clone or download the repository and open `index.html` in a browser. That's
 it: no build, no server, nothing to install. The demo also works straight
 from disk (`demo/index.html`), including WebMCP itself in Chrome with the flag
-above. The styles load Bootstrap from a CDN, so keep an internet connection.
+above. Bootstrap and the brand fonts (Space Grotesk, JetBrains Mono) load
+from a CDN, so keep an internet connection; without it the deck falls back
+to Arial and Courier New.
+
+The visual identity follows the
+[robertheory brand book](https://github.com/robertheory/personal-page/tree/master/docs/brand):
+paper, ink and highlighter yellow, line icons from [Lucide](https://lucide.dev)
+(embedded in `js/icons.js`).
 
 The talk and the demo are in Brazilian Portuguese, with a PT / EN switch
 (or add `?lang=en` to the URL); the choice carries over between the two.

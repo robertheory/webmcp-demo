@@ -16,6 +16,12 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
   />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="css/presentation.css" />
 </head>
 <body>
@@ -36,13 +42,49 @@
       [data-lang="en"]; js/lang.js hides the inactive one.
     -->
     <div class="carousel-inner">
-      <!-- Cover -->
-      <div class="carousel-item active">
+      <!-- Cover (yellow: the brand's background for talk announcements) -->
+      <div class="carousel-item active theme-yellow">
         <div class="slide cover-slide">
           <h1 class="cover-title">WebMCP</h1>
           <p class="cover-subtitle" data-lang="pt">ensinando a Web a conversar com agentes de IA</p>
           <p class="cover-subtitle" data-lang="en">teaching the Web to talk to AI agents</p>
-          <p class="text-muted mt-4 small"><span data-lang="pt">novembro de 2026</span><span data-lang="en">November 2026</span></p>
+          <div class="cover-signature">
+            <span class="wordmark">rober<span class="wordmark-theory">theory</span></span>
+            <span class="cover-meta">Roberto Costa · <span data-lang="pt">novembro de 2026</span><span data-lang="en">November 2026</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- About the speaker -->
+      <div class="carousel-item">
+        <div class="slide">
+          <div class="row g-5 align-items-center">
+            <div class="col-md-4">
+              <div class="portrait">
+                <div class="portrait-circle"></div>
+                <img src="img/retrato.png" alt="Roberto Costa" class="portrait-img" />
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="slide-kicker"><span data-lang="pt">quem fala</span><span data-lang="en">who's talking</span></div>
+              <h2 class="about-name">Roberto Costa</h2>
+              <p class="about-role" data-lang="pt">Engenheiro de software full stack · BTG Pactual</p>
+              <p class="about-role" data-lang="en">Full stack software engineer · BTG Pactual</p>
+              <ul class="about-facts">
+                <li><span data-icon="briefcase"></span><span data-lang="pt">10+ anos de produto em produção</span><span data-lang="en">10+ years shipping to production</span></li>
+                <li><span data-icon="leaf"></span><span data-lang="pt">Sustentabilidade e ESG em finanças</span><span data-lang="en">Sustainability and ESG in finance</span></li>
+                <li><span data-icon="graduation-cap"></span><span data-lang="pt">Pós em Eng. de Software, PUC-Rio</span><span data-lang="en">Postgrad, Software Eng. · PUC-Rio</span></li>
+                <li><span data-icon="presentation"></span><span data-lang="pt">Já ensinei programação e robótica</span><span data-lang="en">Former programming and robotics teacher</span></li>
+                <li><span data-icon="users"></span><span data-lang="pt">Fundador da Tech In Rio</span><span data-lang="en">Founder of Tech In Rio</span></li>
+                <li><span data-icon="calendar-search"></span><span data-lang="pt">FindTech: seu próximo evento de TI</span><span data-lang="en">FindTech: your next tech event</span></li>
+              </ul>
+              <p class="about-tagline">
+                <span data-lang="pt">Teoria e prática com <span class="mark">intenção</span>.</span>
+                <span data-lang="en">Theory and practice, with <span class="mark">intention</span>.</span>
+                <span class="about-handle">@robertheory</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -50,11 +92,11 @@
       <div class="carousel-item" data-refs="chromeOverview chromeCompareMcp">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Como é hoje</span><span data-lang="en">The status quo</span></div>
-          <h2><span data-lang="pt">Agentes usam a web no chute</span><span data-lang="en">Agents use the web by guessing</span></h2>
+          <h2><span data-lang="pt">Agentes usam a web no <span class="mark">chute</span></span><span data-lang="en">Agents use the web by <span class="mark">guessing</span></span></h2>
           <div class="row g-4 mt-1">
             <div class="col-md-4">
               <div class="icon-card">
-                <div class="icon-card-emoji">📸</div>
+                <span class="icon-card-icon" data-icon="camera"></span>
                 <h5>Screenshots</h5>
                 <p data-lang="pt"><strong>Lento:</strong> um palpite a cada passo<sup data-cite="chromeOverview"></sup></p>
                 <p data-lang="en"><strong>Slow:</strong> one guess per step<sup data-cite="chromeOverview"></sup></p>
@@ -62,7 +104,7 @@
             </div>
             <div class="col-md-4">
               <div class="icon-card">
-                <div class="icon-card-emoji">🎯</div>
+                <span class="icon-card-icon" data-icon="crosshair"></span>
                 <h5><span data-lang="pt">Seletores CSS</span><span data-lang="en">CSS selectors</span></h5>
                 <p data-lang="pt"><strong>Frágil:</strong> um redesign quebra tudo<sup data-cite="chromeCompareMcp"></sup></p>
                 <p data-lang="en"><strong>Fragile:</strong> a redesign breaks it all<sup data-cite="chromeCompareMcp"></sup></p>
@@ -70,7 +112,7 @@
             </div>
             <div class="col-md-4">
               <div class="icon-card">
-                <div class="icon-card-emoji">🕵️</div>
+                <span class="icon-card-icon" data-icon="scan-search"></span>
                 <h5><span data-lang="pt">Ler o DOM</span><span data-lang="en">Reading the DOM</span></h5>
                 <p data-lang="pt"><strong>Ambíguo:</strong> nenhum contrato de intenção</p>
                 <p data-lang="en"><strong>Ambiguous:</strong> no contract of intent</p>
@@ -127,10 +169,10 @@
       </div>
 
       <!-- Idea (hook) -->
-      <div class="carousel-item" data-refs="spec">
+      <div class="carousel-item theme-ink" data-refs="spec">
         <div class="slide cover-slide hook-slide">
-          <h2 data-lang="pt">E se a página simplesmente dissesse ao agente o que ele pode fazer?</h2>
-          <h2 data-lang="en">What if the page just told the agent what it can do?</h2>
+          <h2 data-lang="pt">E se a página simplesmente <span class="accent">dissesse</span> ao agente o que ele pode fazer?</h2>
+          <h2 data-lang="en">What if the page just <span class="accent">told</span> the agent what it can do?</h2>
           <p class="lead text-body-secondary mt-4" data-lang="pt">WebMCP: ferramentas tipadas, registradas pela própria página<sup data-cite="spec"></sup></p>
           <p class="lead text-body-secondary mt-4" data-lang="en">WebMCP: typed tools, registered by the page itself<sup data-cite="spec"></sup></p>
         </div>
@@ -142,7 +184,7 @@
           <div class="slide-kicker"><span data-lang="pt">Como funciona</span><span data-lang="en">How it works</span></div>
           <h2><span data-lang="pt">Três atores, uma API</span><span data-lang="en">Three actors, one API</span></h2>
           <flow-diagram state="idle"></flow-diagram>
-          <div class="row text-center mt-3 small text-muted">
+          <div class="row text-center mt-3 diagram-captions">
             <div class="col-4" data-lang="pt">No navegador ou dentro da página<sup data-cite="spec"></sup></div>
             <div class="col-4" data-lang="en">In the browser or inside the page<sup data-cite="spec"></sup></div>
             <div class="col-4" data-lang="pt">Faz a mediação<sup data-cite="chromeCompareMcp"></sup></div>
@@ -156,14 +198,14 @@
       <!-- Registering a tool -->
       <div class="carousel-item" data-refs="spec chromeImperative">
         <div class="slide">
-          <div class="slide-kicker"><span data-lang="pt">Como funciona</span><span data-lang="en">How it works</span></div>
-          <h2><span data-lang="pt">A página registra uma ferramenta</span><span data-lang="en">The page registers a tool</span></h2>
+          <div class="slide-kicker is-practice"><span data-lang="pt">Como funciona</span><span data-lang="en">How it works</span></div>
+          <h2><span data-lang="pt">A página registra uma <span class="mark">ferramenta</span></span><span data-lang="en">The page registers a <span class="mark">tool</span></span></h2>
           <div class="row align-items-center g-5">
-            <div class="col-md-5">
-              <flow-diagram state="register"></flow-diagram>
+            <div class="col-md-4 d-flex justify-content-center">
+              <flow-diagram state="register" orientation="vertical" class="flow-vertical"></flow-diagram>
             </div>
-            <div class="col-md-7">
-              <pre class="code-block mb-0"><code>await document.modelContext.registerTool({
+            <div class="col-md-8">
+              <pre class="code-block code-block-lg mb-0"><code>await document.modelContext.registerTool({
   name: "favorite_event",
   description: "Add an event to favorites",
   inputSchema: {
@@ -188,14 +230,14 @@
       <!-- Imperative vs Declarative, side by side -->
       <div class="carousel-item" data-refs="blinkExtend pr338 declarativeExplainer openaiSiteTools">
         <div class="slide">
-          <div class="slide-kicker"><span data-lang="pt">Duas formas de registrar</span><span data-lang="en">Two ways to register</span></div>
+          <div class="slide-kicker is-practice"><span data-lang="pt">Duas formas de registrar</span><span data-lang="en">Two ways to register</span></div>
           <h2><span data-lang="pt">Imperativa na frente; declarativa em espera</span><span data-lang="en">Imperative leads; declarative on hold</span></h2>
           <div class="row g-4 align-items-stretch">
             <div class="col-md-6">
               <div class="compare-card compare-card-highlight">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                   <span class="compare-label mb-0"><span data-lang="pt">Imperativa</span><span data-lang="en">Imperative</span></span>
-                  <span class="badge text-bg-success"><span data-lang="pt">na spec</span><span data-lang="en">in the spec</span></span>
+                  <span class="tag tag-yellow"><span data-lang="pt">na spec</span><span data-lang="en">in the spec</span></span>
                 </div>
                 <pre class="code-block small mb-3"><code>document.modelContext.registerTool({
   name: "favorite_event",
@@ -209,7 +251,7 @@
               <div class="compare-card compare-card-muted">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                   <span class="compare-label mb-0"><span data-lang="pt">Declarativa</span><span data-lang="en">Declarative</span></span>
-                  <span class="badge text-bg-warning"><span data-lang="pt">fora da spec · 8 out.</span><span data-lang="en">out of the spec · 8 Oct</span></span>
+                  <span class="tag tag-outline"><span data-lang="pt">fora da spec · 8 out.</span><span data-lang="en">out of the spec · 8 Oct</span></span>
                 </div>
                 <pre class="code-block small mb-3"><code>&lt;form toolname="search_events"
       tooldescription="Search events"&gt;
@@ -294,7 +336,7 @@
           <div class="row row-cols-2 row-cols-md-4 g-4 text-center">
             <div class="col">
               <div class="icon-card">
-                <div class="icon-card-emoji">🧭</div>
+                <span class="icon-card-icon" data-icon="compass"></span>
                 <h5><span data-lang="pt">Contexto</span><span data-lang="en">Context</span></h5>
                 <p data-lang="pt">Lê o estado vivo da página<sup data-cite="chromeOverview"></sup></p>
                 <p data-lang="en">Reads the page's live state<sup data-cite="chromeOverview"></sup></p>
@@ -302,7 +344,7 @@
             </div>
             <div class="col">
               <div class="icon-card">
-                <div class="icon-card-emoji">🔄</div>
+                <span class="icon-card-icon" data-icon="refresh-cw"></span>
                 <h5><span data-lang="pt">Dinâmico</span><span data-lang="en">Dynamic</span></h5>
                 <p data-lang="pt">Registra e remove com <code>AbortSignal</code><sup data-cite="chromeImperative"></sup></p>
                 <p data-lang="en">Registers and removes with <code>AbortSignal</code><sup data-cite="chromeImperative"></sup></p>
@@ -310,7 +352,7 @@
             </div>
             <div class="col">
               <div class="icon-card">
-                <div class="icon-card-emoji">✋</div>
+                <span class="icon-card-icon" data-icon="hand"></span>
                 <h5><span data-lang="pt">Cancelável</span><span data-lang="en">Cancellable</span></h5>
                 <p data-lang="pt">Para no meio da execução<sup data-cite="chromeImperative"></sup></p>
                 <p data-lang="en">Stops mid-flight<sup data-cite="chromeImperative"></sup></p>
@@ -318,7 +360,7 @@
             </div>
             <div class="col">
               <div class="icon-card">
-                <div class="icon-card-emoji">⏳</div>
+                <span class="icon-card-icon" data-icon="hourglass"></span>
                 <h5><span data-lang="pt">Efêmero</span><span data-lang="en">Ephemeral</span></h5>
                 <p data-lang="pt">Some quando a página fecha<sup data-cite="chromeCompareMcp"></sup></p>
                 <p data-lang="en">Gone when the page closes<sup data-cite="chromeCompareMcp"></sup></p>
@@ -336,7 +378,7 @@
           <div class="row g-4 align-items-stretch text-center">
             <div class="col-md-6">
               <div class="compare-card">
-                <div class="icon-card-emoji">☎️</div>
+                <span class="icon-card-icon" data-icon="phone"></span>
                 <h4 class="fw-bold">MCP</h4>
                 <p class="lead mb-2" data-lang="pt">Central de atendimento<sup data-cite="chromeCompareMcp"></sup></p>
                 <p class="lead mb-2" data-lang="en">A call center<sup data-cite="chromeCompareMcp"></sup></p>
@@ -346,7 +388,7 @@
             </div>
             <div class="col-md-6">
               <div class="compare-card compare-card-highlight">
-                <div class="icon-card-emoji">🧑‍💼</div>
+                <span class="icon-card-icon" data-icon="store"></span>
                 <h4 class="fw-bold">WebMCP</h4>
                 <p class="lead mb-2" data-lang="pt">Especialista na loja<sup data-cite="chromeCompareMcp"></sup></p>
                 <p class="lead mb-2" data-lang="en">An in-store expert<sup data-cite="chromeCompareMcp"></sup></p>
@@ -355,16 +397,16 @@
               </div>
             </div>
           </div>
-          <p class="text-muted mt-4 mb-0 text-center" data-lang="pt"><em>"Não há MCP aqui."</em> — Mozilla, sobre o nome (tradução livre)<sup data-cite="mozillaPosition"></sup></p>
-          <p class="text-muted mt-4 mb-0 text-center" data-lang="en"><em>"There is no MCP here."</em> — Mozilla, on the name<sup data-cite="mozillaPosition"></sup></p>
+          <p class="slide-note mt-4 mb-0 text-center" data-lang="pt"><em>"Não há MCP aqui."</em> — Mozilla, sobre o nome (tradução livre)<sup data-cite="mozillaPosition"></sup></p>
+          <p class="slide-note mt-4 mb-0 text-center" data-lang="en"><em>"There is no MCP here."</em> — Mozilla, on the name<sup data-cite="mozillaPosition"></sup></p>
         </div>
       </div>
 
       <!-- Hook: security -->
-      <div class="carousel-item">
+      <div class="carousel-item theme-ink">
         <div class="slide cover-slide hook-slide">
-          <h2 data-lang="pt">Mas… e se a página mentir?</h2>
-          <h2 data-lang="en">But… what if the page lies?</h2>
+          <h2 data-lang="pt">Mas… e se a página <span class="accent">mentir</span>?</h2>
+          <h2 data-lang="en">But… what if the page <span class="accent">lies</span>?</h2>
         </div>
       </div>
 
@@ -372,34 +414,37 @@
       <div class="carousel-item" data-refs="lethalTrifecta chromeAgentSecurity">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Segurança</span><span data-lang="en">Security</span></div>
-          <h2><span data-lang="pt">A tríade letal</span><span data-lang="en">The lethal trifecta</span><sup data-cite="lethalTrifecta"></sup></h2>
+          <h2><span data-lang="pt">A tríade <span class="mark">letal</span></span><span data-lang="en">The lethal <span class="mark">trifecta</span></span><sup data-cite="lethalTrifecta"></sup></h2>
           <div class="row g-4 align-items-center">
             <div class="col-md-6">
-              <svg class="trifecta" viewBox="0 0 400 360" role="img" aria-label="Lethal trifecta">
-                <circle cx="140" cy="130" r="105" class="trifecta-a" />
-                <circle cx="260" cy="130" r="105" class="trifecta-b" />
-                <circle cx="200" cy="232" r="105" class="trifecta-c" />
+              <svg class="trifecta" viewBox="0 0 440 370" role="img" aria-label="Lethal trifecta">
+                <!-- Centers form a triangle; each label sits in the part of its
+                     circle no other circle covers, and the center label sits
+                     where all three overlap. -->
+                <circle cx="150" cy="135" r="110" class="trifecta-a" />
+                <circle cx="290" cy="135" r="110" class="trifecta-b" />
+                <circle cx="220" cy="248" r="110" class="trifecta-c" />
                 <g data-lang="pt">
-                  <text x="105" y="105" text-anchor="middle">Dados</text>
-                  <text x="105" y="125" text-anchor="middle">privados</text>
-                  <text x="295" y="105" text-anchor="middle">Conteúdo não</text>
-                  <text x="295" y="125" text-anchor="middle">confiável</text>
-                  <text x="200" y="295" text-anchor="middle">Canal de saída</text>
-                  <text x="200" y="172" text-anchor="middle" class="trifecta-center">roubo</text>
+                  <text x="105" y="112" text-anchor="middle">Dados</text>
+                  <text x="105" y="134" text-anchor="middle">privados</text>
+                  <text x="335" y="112" text-anchor="middle">Conteúdo</text>
+                  <text x="335" y="134" text-anchor="middle">não confiável</text>
+                  <text x="220" y="300" text-anchor="middle">Canal de saída</text>
+                  <text x="220" y="178" text-anchor="middle" class="trifecta-center">roubo</text>
                 </g>
                 <g data-lang="en">
-                  <text x="105" y="105" text-anchor="middle">Private</text>
-                  <text x="105" y="125" text-anchor="middle">data</text>
-                  <text x="295" y="105" text-anchor="middle">Untrusted</text>
-                  <text x="295" y="125" text-anchor="middle">content</text>
-                  <text x="200" y="295" text-anchor="middle">Way out</text>
-                  <text x="200" y="172" text-anchor="middle" class="trifecta-center">theft</text>
+                  <text x="105" y="112" text-anchor="middle">Private</text>
+                  <text x="105" y="134" text-anchor="middle">data</text>
+                  <text x="335" y="112" text-anchor="middle">Untrusted</text>
+                  <text x="335" y="134" text-anchor="middle">content</text>
+                  <text x="220" y="300" text-anchor="middle">Way out</text>
+                  <text x="220" y="178" text-anchor="middle" class="trifecta-center">theft</text>
                 </g>
               </svg>
             </div>
             <div class="col-md-6">
               <div class="vector">
-                <div class="icon-card-emoji">🎭</div>
+                <span class="icon-card-icon" data-icon="drama"></span>
                 <div>
                   <h5><span data-lang="pt">Manifesto malicioso</span><span data-lang="en">Malicious manifest</span></h5>
                   <p data-lang="pt">Instruções escondidas na descrição da ferramenta<sup data-cite="chromeAgentSecurity"></sup></p>
@@ -407,7 +452,7 @@
                 </div>
               </div>
               <div class="vector">
-                <div class="icon-card-emoji">☣️</div>
+                <span class="icon-card-icon" data-icon="biohazard"></span>
                 <div>
                   <h5><span data-lang="pt">Saída contaminada</span><span data-lang="en">Contaminated output</span></h5>
                   <p data-lang="pt">Reviews e comentários carregando ordens<sup data-cite="chromeAgentSecurity"></sup></p>
@@ -451,10 +496,10 @@
             </div>
           </div>
           <p class="callout mt-4 mb-0" data-lang="pt">
-            ⚠️ São dicas, não garantias: um site malicioso pode mentir<sup data-cite="spec"></sup> — no WebMCP e no MCP<sup data-cite="mcpAnnotations"></sup>.
+            São dicas, não garantias: um site malicioso pode mentir<sup data-cite="spec"></sup> — no WebMCP e no MCP<sup data-cite="mcpAnnotations"></sup>.
           </p>
           <p class="callout mt-4 mb-0" data-lang="en">
-            ⚠️ Hints, not guarantees: a malicious site can lie<sup data-cite="spec"></sup> — in WebMCP and in MCP<sup data-cite="mcpAnnotations"></sup>.
+            Hints, not guarantees: a malicious site can lie<sup data-cite="spec"></sup> — in WebMCP and in MCP<sup data-cite="mcpAnnotations"></sup>.
           </p>
         </div>
       </div>
@@ -462,7 +507,7 @@
       <!-- Cross-origin: three gates -->
       <div class="carousel-item" data-refs="spec chromeImperative">
         <div class="slide">
-          <div class="slide-kicker"><span data-lang="pt">Segurança</span><span data-lang="en">Security</span></div>
+          <div class="slide-kicker is-practice"><span data-lang="pt">Segurança</span><span data-lang="en">Security</span></div>
           <h2><span data-lang="pt">Cross-origin exige três autorizações</span><span data-lang="en">Cross-origin needs three yeses</span><sup data-cite="spec"></sup></h2>
           <div class="row g-3 align-items-stretch">
             <div class="col-md-4">
@@ -487,16 +532,16 @@
               </div>
             </div>
           </div>
-          <p class="text-muted mt-4 mb-0" data-lang="pt">Sem isso, só a mesma origem enxerga a ferramenta<sup data-cite="spec"></sup>.</p>
-          <p class="text-muted mt-4 mb-0" data-lang="en">Without it, only the same origin sees the tool<sup data-cite="spec"></sup>.</p>
+          <p class="text-muted fw-bold mt-4 mb-0" data-lang="pt">Sem isso, só a mesma origem enxerga a ferramenta<sup data-cite="spec"></sup>.</p>
+          <p class="text-muted fw-bold mt-4 mb-0" data-lang="en">Without it, only the same origin sees the tool<sup data-cite="spec"></sup>.</p>
         </div>
       </div>
 
       <!-- Hook: ecosystem -->
-      <div class="carousel-item">
+      <div class="carousel-item theme-ink">
         <div class="slide cover-slide hook-slide">
-          <h2 data-lang="pt">Isso já é real?</h2>
-          <h2 data-lang="en">Is this real yet?</h2>
+          <h2 data-lang="pt">Isso já é <span class="accent">real</span>?</h2>
+          <h2 data-lang="en">Is this <span class="accent">real</span> yet?</h2>
         </div>
       </div>
 
@@ -528,20 +573,20 @@
             <div class="col-md-4">
               <h5 class="status-heading"><span data-lang="pt">Navegadores</span><span data-lang="en">Browsers</span></h5>
               <ul class="status-list">
-                <li><span class="badge text-bg-primary">trial</span> Chrome<sup data-cite="chromeOtBlog"></sup></li>
-                <li><span class="badge text-bg-primary">trial</span> Edge<sup data-cite="edgeBlog"></sup></li>
-                <li><span class="badge text-bg-info">nightly</span> Brave<sup data-cite="bravePr"></sup></li>
-                <li><span class="badge text-bg-secondary"><span data-lang="pt">neutro</span><span data-lang="en">neutral</span></span> Firefox<sup data-cite="mozillaPosition"></sup></li>
-                <li><span class="badge text-bg-danger"><span data-lang="pt">contra</span><span data-lang="en">opposed</span></span> Safari<sup data-cite="webkitPosition"></sup></li>
+                <li><span class="tag tag-outline">trial</span> Chrome<sup data-cite="chromeOtBlog"></sup></li>
+                <li><span class="tag tag-outline">trial</span> Edge<sup data-cite="edgeBlog"></sup></li>
+                <li><span class="tag tag-dashed">nightly</span> Brave<sup data-cite="bravePr"></sup></li>
+                <li><span class="tag tag-muted"><span data-lang="pt">neutro</span><span data-lang="en">neutral</span></span> Firefox<sup data-cite="mozillaPosition"></sup></li>
+                <li><span class="tag tag-ink"><span data-lang="pt">contra</span><span data-lang="en">opposed</span></span> Safari<sup data-cite="webkitPosition"></sup></li>
               </ul>
             </div>
             <div class="col-md-4">
               <h5 class="status-heading"><span data-lang="pt">Agentes</span><span data-lang="en">Agents</span></h5>
               <ul class="status-list">
-                <li><span class="badge text-bg-success"><span data-lang="pt">no ar</span><span data-lang="en">live</span></span> ChatGPT desktop<sup data-cite="openaiSiteTools"></sup></li>
-                <li><span class="badge text-bg-info">nightly</span> Brave Leo<sup data-cite="bravePr"></sup></li>
-                <li><span class="badge text-bg-light"><span data-lang="pt">em breve</span><span data-lang="en">soon</span></span> Gemini<sup data-cite="chromeIo26"></sup></li>
-                <li><span class="badge text-bg-light"><span data-lang="pt">sem descoberta</span><span data-lang="en">no discovery</span></span> Claude<sup data-cite="ecosystemTracker"></sup></li>
+                <li><span class="tag tag-yellow"><span data-lang="pt">no ar</span><span data-lang="en">live</span></span> ChatGPT desktop<sup data-cite="openaiSiteTools"></sup></li>
+                <li><span class="tag tag-dashed">nightly</span> Brave Leo<sup data-cite="bravePr"></sup></li>
+                <li><span class="tag tag-muted"><span data-lang="pt">em breve</span><span data-lang="en">soon</span></span> Gemini<sup data-cite="chromeIo26"></sup></li>
+                <li><span class="tag tag-muted"><span data-lang="pt">sem descoberta</span><span data-lang="en">no discovery</span></span> Claude<sup data-cite="ecosystemTracker"></sup></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -586,21 +631,21 @@
       <div class="carousel-item" data-refs="blinkExtend tpacMinutes pr375">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">O que vem por aí</span><span data-lang="en">What's next</span></div>
-          <h2><span data-lang="pt">A API ainda vai mudar</span><span data-lang="en">The API will still change</span></h2>
+          <h2><span data-lang="pt">A API ainda vai <span class="mark">mudar</span></span><span data-lang="en">The API will still <span class="mark">change</span></span></h2>
           <div class="row g-4">
             <div class="col-md-6">
               <h5 class="status-heading"><span data-lang="pt">Chrome explorando</span><span data-lang="en">Chrome is exploring</span><sup data-cite="blinkExtend"></sup></h5>
               <ul class="status-list" data-lang="pt">
-                <li>🔗 Ferramentas que atravessam navegações</li>
-                <li>⏱️ Aviso de "ferramentas prontas"</li>
-                <li>📏 Limites de tamanho</li>
-                <li>🚢 Pedido de lançamento durante o trial</li>
+                <li><span data-icon="link"></span> Ferramentas que atravessam navegações</li>
+                <li><span data-icon="timer"></span> Aviso de "ferramentas prontas"</li>
+                <li><span data-icon="ruler"></span> Limites de tamanho</li>
+                <li><span data-icon="ship"></span> Pedido de lançamento durante o trial</li>
               </ul>
               <ul class="status-list" data-lang="en">
-                <li>🔗 Tools that survive navigations</li>
-                <li>⏱️ A "tools are ready" signal</li>
-                <li>📏 Size limits</li>
-                <li>🚢 Intent to Ship during the trial</li>
+                <li><span data-icon="link"></span> Tools that survive navigations</li>
+                <li><span data-icon="timer"></span> A "tools are ready" signal</li>
+                <li><span data-icon="ruler"></span> Size limits</li>
+                <li><span data-icon="ship"></span> Intent to Ship during the trial</li>
               </ul>
             </div>
             <div class="col-md-6">
@@ -619,12 +664,12 @@ window.opener.tools.getTools();</code></pre>
       <!-- Try it yourself: three paths -->
       <div class="carousel-item" data-refs="chromeOverview edgeLabs chromeOtBlog spec inspectorExtension openaiSiteTools ecosystemTracker">
         <div class="slide">
-          <div class="slide-kicker"><span data-lang="pt">Teste você mesmo</span><span data-lang="en">Try it yourself</span></div>
+          <div class="slide-kicker is-practice"><span data-lang="pt">Teste você mesmo</span><span data-lang="en">Try it yourself</span></div>
           <h2><span data-lang="pt">Três caminhos para começar</span><span data-lang="en">Three ways to start</span></h2>
           <div class="row g-4 align-items-stretch">
             <div class="col-md-4">
               <div class="path-card">
-                <div class="path-icon">🧪</div>
+                <span class="path-icon" data-icon="flask-conical"></span>
                 <h5><span data-lang="pt">Testar localmente</span><span data-lang="en">Test locally</span></h5>
                 <ol class="path-steps">
                   <li><code>chrome://flags/#enable-webmcp-testing</code><sup data-cite="chromeOverview"></sup></li>
@@ -635,7 +680,7 @@ window.opener.tools.getTools();</code></pre>
             </div>
             <div class="col-md-4">
               <div class="path-card">
-                <div class="path-icon">🚀</div>
+                <span class="path-icon" data-icon="rocket"></span>
                 <h5><span data-lang="pt">Ir para produção</span><span data-lang="en">Go to production</span></h5>
                 <ol class="path-steps">
                   <li><span data-lang="pt">Registrar no origin trial</span><span data-lang="en">Register for the origin trial</span><sup data-cite="chromeOtBlog"></sup></li>
@@ -646,7 +691,7 @@ window.opener.tools.getTools();</code></pre>
             </div>
             <div class="col-md-4">
               <div class="path-card">
-                <div class="path-icon">🤖</div>
+                <span class="path-icon" data-icon="bot"></span>
                 <h5><span data-lang="pt">Trazer um agente</span><span data-lang="en">Bring an agent</span></h5>
                 <ol class="path-steps">
                   <li>Tool Inspector<sup data-cite="inspectorExtension"></sup></li>
@@ -660,9 +705,10 @@ window.opener.tools.getTools();</code></pre>
       </div>
 
       <!-- Live demo -->
-      <div class="carousel-item">
+      <div class="carousel-item theme-ink">
         <div class="slide cover-slide">
-          <div class="demo-emoji">🎮</div>
+          <div class="slide-kicker is-practice">demo</div>
+          <span class="demo-icon" data-icon="gamepad-2"></span>
           <h2><span data-lang="pt">Hora da demo</span><span data-lang="en">Demo time</span></h2>
           <div class="chip-row justify-content-center mt-2">
             <span class="chip"><span data-lang="pt">atividade do agente</span><span data-lang="en">agent activity</span></span>
@@ -676,8 +722,8 @@ window.opener.tools.getTools();</code></pre>
       <!-- Checklist -->
       <div class="carousel-item" data-refs="chromeOverview pr338 chromeBestPractices chromeSecureTools">
         <div class="slide">
-          <div class="slide-kicker"><span data-lang="pt">Para levar</span><span data-lang="en">Takeaways</span></div>
-          <h2><span data-lang="pt">Adote amanhã</span><span data-lang="en">Adopt it tomorrow</span></h2>
+          <div class="slide-kicker is-practice"><span data-lang="pt">Para levar</span><span data-lang="en">Takeaways</span></div>
+          <h2><span data-lang="pt">Adote <span class="mark">amanhã</span></span><span data-lang="en">Adopt it <span class="mark">tomorrow</span></span></h2>
           <ul class="checklist" data-lang="pt">
             <li>Detecte <code>document.modelContext</code><sup data-cite="chromeOverview"></sup></li>
             <li>Comece pela imperativa<sup data-cite="pr338"></sup></li>
@@ -698,18 +744,26 @@ window.opener.tools.getTools();</code></pre>
       </div>
 
       <!-- Closing -->
-      <div class="carousel-item">
+      <div class="carousel-item theme-ink">
         <div class="slide cover-slide">
-          <h2><span data-lang="pt">Obrigado!</span><span data-lang="en">Thanks!</span></h2>
-          <img src="img/qr-demo.svg" alt="QR code" class="qr-code mt-2" width="200" height="200" />
-          <p class="text-muted mt-3 mb-1">
-            <span data-lang="pt">Teste a demo:</span><span data-lang="en">Try the demo:</span>
-            <a href="https://robertheory.github.io/webmcp-demo/demo/" target="_blank" rel="noopener noreferrer">robertheory.github.io/webmcp-demo/demo</a>
-          </p>
-          <p class="text-muted small mb-0">
-            <a href="https://github.com/robertheory/webmcp-demo" target="_blank" rel="noopener noreferrer">github.com/robertheory/webmcp-demo</a> ·
-            <span data-lang="pt">fontes nos próximos slides</span><span data-lang="en">sources on the next slides</span>
-          </p>
+          <div class="row w-100 g-5 align-items-center">
+            <div class="col-md-7">
+              <h2><span data-lang="pt">Obrigado!</span><span data-lang="en">Thanks!</span></h2>
+              <p class="closing-tagline"><span data-lang="pt">Teoria. Prática. <span class="accent">Intenção.</span></span><span data-lang="en">Theory. Practice. <span class="accent">Intention.</span></span></p>
+              <p class="closing-link">
+                <span data-lang="pt">Teste a demo</span><span data-lang="en">Try the demo</span>
+                <a href="https://robertheory.github.io/webmcp-demo/demo/" target="_blank" rel="noopener noreferrer">robertheory.github.io/webmcp-demo/demo</a>
+              </p>
+              <p class="text-muted small mb-0">
+                <a href="https://github.com/robertheory/webmcp-demo" target="_blank" rel="noopener noreferrer">github.com/robertheory/webmcp-demo</a> ·
+                @robertheory ·
+                <span data-lang="pt">fontes no próximo slide</span><span data-lang="en">sources on the next slide</span>
+              </p>
+            </div>
+            <div class="col-md-5 d-flex justify-content-center">
+              <img src="img/qr-demo.svg" alt="QR code" class="qr-code qr-code-lg" />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -722,6 +776,13 @@ window.opener.tools.getTools();</code></pre>
     <button class="carousel-control-next" type="button" data-bs-target="#deck" data-bs-slide="next" aria-label="Next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </button>
+  </div>
+
+  <!-- Brand signature, bottom-left on every slide but the cover. -->
+  <div class="brand-signature" aria-hidden="true">
+    <img src="img/rt-icon.svg" class="sig-icon sig-icon-paper" width="22" height="22" alt="" />
+    <img src="img/rt-icon-ink.svg" class="sig-icon sig-icon-ink" width="22" height="22" alt="" />
+    <span class="wordmark">rober<span class="wordmark-theory">theory</span></span>
   </div>
 
   <!-- Icon-only controls for the operator: fullscreen (F), demo (D), language (L). -->
@@ -755,6 +816,7 @@ window.opener.tools.getTools();</code></pre>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/icons.js"></script>
   <script src="js/references.js"></script>
   <script src="js/components/tool-card.js"></script>
   <script src="js/components/flow-diagram.js"></script>

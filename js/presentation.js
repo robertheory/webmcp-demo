@@ -175,7 +175,18 @@ function updateCounter(index) {
   counterEl.textContent = `${index + 1} / ${allSlides().length}`;
 }
 
+// The fixed chrome (signature, counter, dots, action bar) flips colors on
+// ink and yellow slides; switching at the start of the transition keeps it
+// in step with the slide coming in.
+function updateTheme(index) {
+  const item = allSlides()[index];
+  document.body.classList.toggle("on-ink", !!item?.classList.contains("theme-ink"));
+  document.body.classList.toggle("on-yellow", !!item?.classList.contains("theme-yellow"));
+}
+
+deckEl.addEventListener("slide.bs.carousel", (event) => updateTheme(event.to));
 deckEl.addEventListener("slid.bs.carousel", (event) => updateCounter(event.to));
+updateTheme(0);
 
 function updateDocumentTitle() {
   document.title = tr(

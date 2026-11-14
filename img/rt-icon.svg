@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="robertheory">
+  <circle cx="32" cy="32" r="29.5" fill="#FFD23F" stroke="#141414" stroke-width="3"/>
+  <g fill="none" stroke="#141414" stroke-width="6" stroke-linecap="butt">
+    <path d="M16 48V20"/>
+    <path d="M16 31c0-5 3-8 9-8"/>
+    <path d="M36 12v29c0 4 2 6 6 6h4"/>
+    <path d="M29 23h14"/>
+  </g>
+  <path d="M42 16l8 7-8 7z" fill="#141414"/>
+</svg>
