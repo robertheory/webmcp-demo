@@ -73,3 +73,15 @@
 main.container {
   padding-bottom: 12rem !important;
 }
+
+/* Compact language switcher: shows only the active language. */
+.lang-current {
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  min-width: 2.25rem;
+}
+
+.lang-current::after {
+  display: none;
+}

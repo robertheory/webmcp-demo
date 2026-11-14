@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WebMCP — Apresentação</title>
+  <title>WebMCP: ensinando a Web a conversar com agentes de IA</title>
   <!--
     To give GitHub Pages visitors WebMCP without the testing flag, register
     https://robertheory.github.io for the WebMCP origin trial
@@ -21,19 +21,16 @@
 <body>
   <div class="slide-counter" id="slide-counter"></div>
 
-  <div class="btn-group btn-group-sm lang-switch" role="group" aria-label="Idioma / Language">
-    <button type="button" class="btn btn-outline-secondary" data-set-lang="pt-BR" title="Português">PT</button>
-    <button type="button" class="btn btn-outline-secondary" data-set-lang="en" title="English">EN</button>
-  </div>
-
   <div id="deck" class="carousel slide" data-bs-touch="true">
     <div class="carousel-indicators" id="deck-indicators"></div>
 
     <!--
+      Built to be driven by a slide clicker: no slide content needs a click.
+
       Citations: each slide lists its sources in data-refs (ids from
       js/references.js), and inline <sup data-cite="id"></sup> markers get
-      numbered against that list. presentation.js renders the footer and the
-      final References slide from the same data.
+      numbered against that list. presentation.js renders each slide's footer
+      and the final per-slide source index from the same data.
 
       Languages: every piece of text exists twice, as [data-lang="pt"] and
       [data-lang="en"]; js/lang.js hides the inactive one.
@@ -42,54 +39,41 @@
       <!-- Cover -->
       <div class="carousel-item active">
         <div class="slide cover-slide">
-          <h1>WebMCP</h1>
-          <p class="lead text-body-secondary mt-3" data-lang="pt">Dê à web uma voz que agentes de IA conseguem usar.</p>
-          <p class="lead text-body-secondary mt-3" data-lang="en">Give the web a voice AI agents can act on.</p>
-          <p class="text-muted mt-4 small" data-lang="pt">Um olhar prático sobre o Web Model Context Protocol &middot; novembro de 2026</p>
-          <p class="text-muted mt-4 small" data-lang="en">A hands-on look at the Web Model Context Protocol &middot; November 2026</p>
+          <h1 class="cover-title">WebMCP</h1>
+          <p class="cover-subtitle" data-lang="pt">ensinando a Web a conversar com agentes de IA</p>
+          <p class="cover-subtitle" data-lang="en">teaching the Web to talk to AI agents</p>
+          <p class="text-muted mt-4 small"><span data-lang="pt">novembro de 2026</span><span data-lang="en">November 2026</span></p>
         </div>
       </div>
 
-      <!-- Status quo -->
-      <div class="carousel-item" data-refs="chromeOverview">
+      <!-- Status quo + why it breaks -->
+      <div class="carousel-item" data-refs="chromeOverview chromeCompareMcp">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Como é hoje</span><span data-lang="en">The status quo</span></div>
-          <h2><span data-lang="pt">Como agentes navegam na web hoje</span><span data-lang="en">How agents browse the web today</span></h2>
-          <p class="lead text-body-secondary mb-5" data-lang="pt">
-            <em>Atuação</em>: simular cliques e digitação como se o agente fosse o usuário humano<sup data-cite="chromeOverview"></sup>.
-          </p>
-          <p class="lead text-body-secondary mb-5" data-lang="en">
-            <em>Actuation</em>: simulating clicks and typing as if the agent were the human user<sup data-cite="chromeOverview"></sup>.
-          </p>
-          <div class="row g-4">
+          <h2><span data-lang="pt">Agentes usam a web no chute</span><span data-lang="en">Agents use the web by guessing</span></h2>
+          <div class="row g-4 mt-1">
             <div class="col-md-4">
-              <div class="card h-100 border-0 bg-body-tertiary">
-                <div class="card-body">
-                  <div class="fs-1 mb-2">📸</div>
-                  <h5><span data-lang="pt">Screenshots + visão</span><span data-lang="en">Screenshots + vision</span></h5>
-                  <p class="text-muted small mb-0" data-lang="pt">Lento, e tão bom quanto o palpite do modelo.</p>
-                  <p class="text-muted small mb-0" data-lang="en">Slow, and only as good as the model's guess.</p>
-                </div>
+              <div class="icon-card">
+                <div class="icon-card-emoji">📸</div>
+                <h5>Screenshots</h5>
+                <p data-lang="pt"><strong>Lento:</strong> um palpite a cada passo<sup data-cite="chromeOverview"></sup></p>
+                <p data-lang="en"><strong>Slow:</strong> one guess per step<sup data-cite="chromeOverview"></sup></p>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card h-100 border-0 bg-body-tertiary">
-                <div class="card-body">
-                  <div class="fs-1 mb-2">🎯</div>
-                  <h5><span data-lang="pt">Seletores frágeis</span><span data-lang="en">Brittle selectors</span></h5>
-                  <p class="text-muted small mb-0" data-lang="pt">Uma classe CSS renomeada e a automação quebra.</p>
-                  <p class="text-muted small mb-0" data-lang="en">One CSS class rename and the automation breaks.</p>
-                </div>
+              <div class="icon-card">
+                <div class="icon-card-emoji">🎯</div>
+                <h5><span data-lang="pt">Seletores CSS</span><span data-lang="en">CSS selectors</span></h5>
+                <p data-lang="pt"><strong>Frágil:</strong> um redesign quebra tudo<sup data-cite="chromeCompareMcp"></sup></p>
+                <p data-lang="en"><strong>Fragile:</strong> a redesign breaks it all<sup data-cite="chromeCompareMcp"></sup></p>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card h-100 border-0 bg-body-tertiary">
-                <div class="card-body">
-                  <div class="fs-1 mb-2">🕵️</div>
-                  <h5><span data-lang="pt">DOM na engenharia reversa</span><span data-lang="en">Reverse-engineered DOM</span></h5>
-                  <p class="text-muted small mb-0" data-lang="pt">Adivinhar o que um botão faz pelo rótulo — cada passo aberto a interpretação<sup data-cite="chromeOverview"></sup>.</p>
-                  <p class="text-muted small mb-0" data-lang="en">Guessing what a button does from its label — every step open to interpretation<sup data-cite="chromeOverview"></sup>.</p>
-                </div>
+              <div class="icon-card">
+                <div class="icon-card-emoji">🕵️</div>
+                <h5><span data-lang="pt">Ler o DOM</span><span data-lang="en">Reading the DOM</span></h5>
+                <p data-lang="pt"><strong>Ambíguo:</strong> nenhum contrato de intenção</p>
+                <p data-lang="en"><strong>Ambiguous:</strong> no contract of intent</p>
               </div>
             </div>
           </div>
@@ -100,131 +84,71 @@
       <div class="carousel-item" data-refs="ecosystemTracker">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Como é hoje</span><span data-lang="en">The status quo</span></div>
-          <h2><span data-lang="pt">A mesma reserva de hotel, dois agentes</span><span data-lang="en">Same hotel booking, two agents</span></h2>
-          <p class="text-body-secondary mb-4" data-lang="pt">
-            A demo da Browser Use (6 set. 2026) fez a mesma reserva duas vezes<sup data-cite="ecosystemTracker"></sup>.
-          </p>
-          <p class="text-body-secondary mb-4" data-lang="en">
-            Browser Use's demo (6 Sep 2026) ran the same booking twice<sup data-cite="ecosystemTracker"></sup>.
-          </p>
-          <div class="row g-4">
+          <h2><span data-lang="pt">Mesma reserva, dois agentes</span><span data-lang="en">Same booking, two agents</span></h2>
+          <div class="row g-4 align-items-stretch">
             <div class="col-md-6">
-              <div class="card h-100 border-0 bg-body-tertiary">
-                <div class="card-body">
-                  <h5 class="mb-3"><span data-lang="pt">Sem WebMCP</span><span data-lang="en">Without WebMCP</span></h5>
-                  <ol class="small text-muted mb-0" data-lang="pt">
-                    <li>Ler a página</li>
-                    <li>Encontrar os controles</li>
-                    <li>Digitar um orçamento</li>
-                    <li>Marcar os filtros</li>
-                    <li>Comparar quartos</li>
-                    <li>Preencher os dados do hóspede</li>
-                  </ol>
-                  <ol class="small text-muted mb-0" data-lang="en">
-                    <li>Read the page</li>
-                    <li>Find the controls</li>
-                    <li>Type a budget</li>
-                    <li>Tick the filters</li>
-                    <li>Compare rooms</li>
-                    <li>Fill in guest details</li>
-                  </ol>
-                </div>
+              <div class="compare-card">
+                <div class="compare-label"><span data-lang="pt">Sem WebMCP</span><span data-lang="en">Without WebMCP</span></div>
+                <ol data-lang="pt">
+                  <li>Ler a página</li>
+                  <li>Achar os controles</li>
+                  <li>Digitar o orçamento</li>
+                  <li>Marcar os filtros</li>
+                  <li>Comparar quartos</li>
+                  <li>Preencher o hóspede</li>
+                </ol>
+                <ol data-lang="en">
+                  <li>Read the page</li>
+                  <li>Find the controls</li>
+                  <li>Type a budget</li>
+                  <li>Tick the filters</li>
+                  <li>Compare rooms</li>
+                  <li>Fill in the guest</li>
+                </ol>
               </div>
             </div>
             <div class="col-md-6">
-              <div class="card h-100 border-primary">
-                <div class="card-body">
-                  <h5 class="mb-3"><span data-lang="pt">Com WebMCP</span><span data-lang="en">With WebMCP</span></h5>
-                  <ol class="small mb-0 font-monospace">
-                    <li>search_hotels</li>
-                    <li>filter_hotels</li>
-                    <li>compare_rooms</li>
-                    <li>select_room</li>
-                    <li>prepare_reservation</li>
-                    <li>get_reservation</li>
-                  </ol>
-                </div>
+              <div class="compare-card compare-card-highlight">
+                <div class="compare-label"><span data-lang="pt">Com WebMCP</span><span data-lang="en">With WebMCP</span></div>
+                <ol class="font-monospace">
+                  <li>search_hotels</li>
+                  <li>filter_hotels</li>
+                  <li>compare_rooms</li>
+                  <li>select_room</li>
+                  <li>prepare_reservation</li>
+                  <li>get_reservation</li>
+                </ol>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-4 mb-0" data-lang="pt">
-            <em>"Interfaces são feitas para humanos. Chamadas HTTP diretas são feitas para agentes. WebMCP torna a interação 100% determinística."</em>
-            — Gregor Zunic, Browser Use (tradução livre)<sup data-cite="ecosystemTracker"></sup>
-          </p>
-          <p class="text-muted mt-4 mb-0" data-lang="en">
-            <em>"UI is made for humans. Direct HTTP calls are made for agents. WebMCP makes interaction 100% deterministic."</em>
-            — Gregor Zunic, Browser Use<sup data-cite="ecosystemTracker"></sup>
-          </p>
+          <p class="text-muted mt-3 mb-0 small" data-lang="pt">Demo da Browser Use, setembro de 2026<sup data-cite="ecosystemTracker"></sup></p>
+          <p class="text-muted mt-3 mb-0 small" data-lang="en">Browser Use demo, September 2026<sup data-cite="ecosystemTracker"></sup></p>
         </div>
       </div>
 
-      <!-- Problem -->
-      <div class="carousel-item" data-refs="chromeOverview chromeCompareMcp">
-        <div class="slide">
-          <div class="slide-kicker"><span data-lang="pt">O problema</span><span data-lang="en">The problem</span></div>
-          <h2><span data-lang="pt">Por que isso não se sustenta</span><span data-lang="en">Why that breaks down</span></h2>
-          <div class="row row-cols-2 g-4 mt-2">
-            <div class="col">
-              <h4 class="fw-bold"><span data-lang="pt">Lento</span><span data-lang="en">Slow</span></h4>
-              <p class="text-muted" data-lang="pt">Cada ação exige uma ida e volta de screenshot e palpite, com muitos passos por tarefa<sup data-cite="chromeOverview"></sup>.</p>
-              <p class="text-muted" data-lang="en">Every action needs a screenshot-and-guess round trip, with many steps per task<sup data-cite="chromeOverview"></sup>.</p>
-            </div>
-            <div class="col">
-              <h4 class="fw-bold"><span data-lang="pt">Frágil</span><span data-lang="en">Fragile</span></h4>
-              <p class="text-muted" data-lang="pt">Um redesign quebra em silêncio toda automação construída sobre o layout<sup data-cite="chromeCompareMcp"></sup>.</p>
-              <p class="text-muted" data-lang="en">A redesign silently breaks every automation built on the layout<sup data-cite="chromeCompareMcp"></sup>.</p>
-            </div>
-            <div class="col">
-              <h4 class="fw-bold"><span data-lang="pt">Ambíguo</span><span data-lang="en">Ambiguous</span></h4>
-              <p class="text-muted" data-lang="pt">Sem schema, sem contrato — só um palpite sobre a intenção.</p>
-              <p class="text-muted" data-lang="en">No schema, no contract — just a best guess at intent.</p>
-            </div>
-            <div class="col">
-              <h4 class="fw-bold"><span data-lang="pt">Sem modelo de permissão</span><span data-lang="en">No permission model</span></h4>
-              <p class="text-muted" data-lang="pt">A página não consegue dizer ao agente o que é seguro fazer sozinho.</p>
-              <p class="text-muted" data-lang="en">The page can't tell the agent what's safe to do on its own.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Idea -->
+      <!-- Idea (hook) -->
       <div class="carousel-item" data-refs="spec">
-        <div class="slide cover-slide">
-          <div class="slide-kicker"><span data-lang="pt">A ideia</span><span data-lang="en">The idea</span></div>
-          <h2 style="font-size: 3.5rem;" data-lang="pt">E se a página simplesmente dissesse ao agente<br />o que ele pode fazer?</h2>
-          <h2 style="font-size: 3.5rem;" data-lang="en">What if the page just told the agent<br />what it can do?</h2>
-          <p class="lead text-body-secondary mt-4" data-lang="pt">
-            WebMCP: uma API do navegador para páginas registrarem ferramentas tipadas e chamáveis<sup data-cite="spec"></sup>.
-          </p>
-          <p class="lead text-body-secondary mt-4" data-lang="en">
-            WebMCP: a browser API for pages to register callable, typed tools<sup data-cite="spec"></sup>.
-          </p>
+        <div class="slide cover-slide hook-slide">
+          <h2 data-lang="pt">E se a página simplesmente dissesse ao agente o que ele pode fazer?</h2>
+          <h2 data-lang="en">What if the page just told the agent what it can do?</h2>
+          <p class="lead text-body-secondary mt-4" data-lang="pt">WebMCP: ferramentas tipadas, registradas pela própria página<sup data-cite="spec"></sup></p>
+          <p class="lead text-body-secondary mt-4" data-lang="en">WebMCP: typed tools, registered by the page itself<sup data-cite="spec"></sup></p>
         </div>
       </div>
 
-      <!-- The shape -->
+      <!-- Three actors -->
       <div class="carousel-item" data-refs="spec chromeCompareMcp">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Como funciona</span><span data-lang="en">How it works</span></div>
           <h2><span data-lang="pt">Três atores, uma API</span><span data-lang="en">Three actors, one API</span></h2>
           <flow-diagram state="idle"></flow-diagram>
-          <div class="row text-center mt-4">
-            <div class="col-md-4">
-              <strong><span data-lang="pt">Agente de IA</span><span data-lang="en">AI Agent</span></strong>
-              <div class="text-muted small" data-lang="pt">Embutido no navegador, ou um agente in-page escrito em JavaScript<sup data-cite="spec"></sup></div>
-              <div class="text-muted small" data-lang="en">Built into the browser, or an in-page agent written in JavaScript<sup data-cite="spec"></sup></div>
-            </div>
-            <div class="col-md-4">
-              <strong><span data-lang="pt">Navegador</span><span data-lang="en">Browser</span></strong>
-              <div class="text-muted small" data-lang="pt">Faz a mediação entre o agente e a página<sup data-cite="chromeCompareMcp"></sup></div>
-              <div class="text-muted small" data-lang="en">Mediates between the agent and the page<sup data-cite="chromeCompareMcp"></sup></div>
-            </div>
-            <div class="col-md-4">
-              <strong><span data-lang="pt">Página web</span><span data-lang="en">Web Page</span></strong>
-              <div class="text-muted small" data-lang="pt">Registra as ferramentas que quer expor, rodando na sessão do usuário<sup data-cite="chromeCompareMcp"></sup></div>
-              <div class="text-muted small" data-lang="en">Registers the tools it wants to expose, running in the user's session<sup data-cite="chromeCompareMcp"></sup></div>
-            </div>
+          <div class="row text-center mt-3 small text-muted">
+            <div class="col-4" data-lang="pt">No navegador ou dentro da página<sup data-cite="spec"></sup></div>
+            <div class="col-4" data-lang="en">In the browser or inside the page<sup data-cite="spec"></sup></div>
+            <div class="col-4" data-lang="pt">Faz a mediação<sup data-cite="chromeCompareMcp"></sup></div>
+            <div class="col-4" data-lang="en">Mediates<sup data-cite="chromeCompareMcp"></sup></div>
+            <div class="col-4" data-lang="pt">Na sessão do usuário<sup data-cite="chromeCompareMcp"></sup></div>
+            <div class="col-4" data-lang="en">In the user's session<sup data-cite="chromeCompareMcp"></sup></div>
           </div>
         </div>
       </div>
@@ -239,14 +163,12 @@
               <flow-diagram state="register"></flow-diagram>
             </div>
             <div class="col-md-7">
-              <pre class="bg-dark text-light p-3 rounded small mb-0"><code>await document.modelContext.registerTool({
+              <pre class="code-block mb-0"><code>await document.modelContext.registerTool({
   name: "favorite_event",
-  title: "Favorite event",
-  description: "Add a tech event to the user's favorites.",
+  description: "Add an event to favorites",
   inputSchema: {
     type: "object",
-    properties: { eventId: { type: "string" } },
-    required: ["eventId"]
+    properties: { eventId: { type: "string" } }
   },
   execute: async ({ eventId }) =&gt; {
     favorite(eventId);
@@ -255,75 +177,47 @@
 });</code></pre>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0" data-lang="pt">
-            Fica em <code>document.modelContext</code>, só em contextos seguros<sup data-cite="spec"></sup>.
-            A promise é rejeitada se o nome já estiver em uso<sup data-cite="spec"></sup>.
-            O retorno pode ser qualquer valor serializável em JSON — uma string simples serve<sup data-cite="chromeImperative"></sup>.
-          </p>
-          <p class="text-muted mt-3 mb-0" data-lang="en">
-            Lives on <code>document.modelContext</code>, secure contexts only<sup data-cite="spec"></sup>.
-            The promise rejects if the name is already taken<sup data-cite="spec"></sup>.
-            The return value can be any JSON-serializable value — a plain string is fine<sup data-cite="chromeImperative"></sup>.
-          </p>
+          <div class="chip-row mt-4">
+            <span class="chip"><span data-lang="pt">só em contexto seguro</span><span data-lang="en">secure contexts only</span><sup data-cite="spec"></sup></span>
+            <span class="chip"><span data-lang="pt">nome único</span><span data-lang="en">unique name</span><sup data-cite="spec"></sup></span>
+            <span class="chip"><span data-lang="pt">retorna qualquer JSON</span><span data-lang="en">returns any JSON</span><sup data-cite="chromeImperative"></sup></span>
+          </div>
         </div>
       </div>
 
-      <!-- Imperative vs Declarative -->
-      <div class="carousel-item" data-refs="pr338 declarativeExplainer tpacMinutes blinkExtend chromeDeclarative openaiSiteTools">
+      <!-- Imperative vs Declarative, side by side -->
+      <div class="carousel-item" data-refs="blinkExtend pr338 declarativeExplainer openaiSiteTools">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Duas formas de registrar</span><span data-lang="en">Two ways to register</span></div>
-          <h2><span data-lang="pt">Imperativa primeiro, declarativa em espera</span><span data-lang="en">Imperative first, declarative on hold</span></h2>
-
-          <ul class="nav nav-tabs" id="regTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-imperative" type="button">
-                <span data-lang="pt">Imperativa</span><span data-lang="en">Imperative</span>
-                <span class="badge text-bg-success ms-1"><span data-lang="pt">na spec</span><span data-lang="en">in the spec</span></span>
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-declarative" type="button">
-                <span data-lang="pt">Declarativa</span><span data-lang="en">Declarative</span>
-                <span class="badge text-bg-warning ms-1"><span data-lang="pt">removida da spec</span><span data-lang="en">removed from the spec</span></span>
-              </button>
-            </li>
-          </ul>
-          <div class="tab-content border border-top-0 p-4 rounded-bottom">
-            <div class="tab-pane fade show active" id="tab-imperative">
-              <pre class="bg-dark text-light p-3 rounded small"><code>await document.modelContext.registerTool({
+          <h2><span data-lang="pt">Imperativa na frente; declarativa em espera</span><span data-lang="en">Imperative leads; declarative on hold</span></h2>
+          <div class="row g-4 align-items-stretch">
+            <div class="col-md-6">
+              <div class="compare-card compare-card-highlight">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="compare-label mb-0"><span data-lang="pt">Imperativa</span><span data-lang="en">Imperative</span></span>
+                  <span class="badge text-bg-success"><span data-lang="pt">na spec</span><span data-lang="en">in the spec</span></span>
+                </div>
+                <pre class="code-block small mb-3"><code>document.modelContext.registerTool({
   name: "favorite_event",
   execute: async ({ eventId }) =&gt; { ... }
 });</code></pre>
-              <p class="text-muted mb-0" data-lang="pt">
-                Controle total sobre schema, execução e efeitos colaterais. O Chrome relata que ela é
-                <em>"muito mais popular que a declarativa"</em><sup data-cite="blinkExtend"></sup>
-                e planeja lançá-la primeiro<sup data-cite="pr338"></sup>.
-              </p>
-              <p class="text-muted mb-0" data-lang="en">
-                Full control over schema, execution and side effects. Chrome reports it is
-                <em>"a lot more popular than the declarative one"</em><sup data-cite="blinkExtend"></sup>
-                and plans to ship it first<sup data-cite="pr338"></sup>.
-              </p>
+                <p class="mb-0" data-lang="pt">"Muito mais popular"<sup data-cite="blinkExtend"></sup> — o Chrome planeja lançar primeiro<sup data-cite="pr338"></sup></p>
+                <p class="mb-0" data-lang="en">"A lot more popular"<sup data-cite="blinkExtend"></sup> — Chrome plans to ship it first<sup data-cite="pr338"></sup></p>
+              </div>
             </div>
-            <div class="tab-pane fade" id="tab-declarative">
-              <pre class="bg-dark text-light p-3 rounded small"><code>&lt;form toolname="search_events"
-      tooldescription="Search events by keyword"
-      toolautosubmit&gt;
+            <div class="col-md-6">
+              <div class="compare-card compare-card-muted">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="compare-label mb-0"><span data-lang="pt">Declarativa</span><span data-lang="en">Declarative</span></span>
+                  <span class="badge text-bg-warning"><span data-lang="pt">fora da spec · 8 out.</span><span data-lang="en">out of the spec · 8 Oct</span></span>
+                </div>
+                <pre class="code-block small mb-3"><code>&lt;form toolname="search_events"
+      tooldescription="Search events"&gt;
   &lt;input name="query" /&gt;
-  &lt;button type="submit"&gt;Search&lt;/button&gt;
 &lt;/form&gt;</code></pre>
-              <p class="text-muted mb-0" data-lang="pt">
-                Removida da spec em 8 out. 2026<sup data-cite="pr338"></sup>; o trabalho continua como explainer<sup data-cite="declarativeExplainer"></sup>
-                até haver experiência real de implementação<sup data-cite="tpacMinutes"></sup>.
-                O Chrome ainda aceita durante o origin trial<sup data-cite="chromeDeclarative"></sup>,
-                mas as site tools do ChatGPT não suportam ferramentas baseadas em formulário<sup data-cite="openaiSiteTools"></sup>.
-              </p>
-              <p class="text-muted mb-0" data-lang="en">
-                Removed from the spec on 8 Oct 2026<sup data-cite="pr338"></sup>; work continues as an explainer<sup data-cite="declarativeExplainer"></sup>
-                until there is real-world implementation experience<sup data-cite="tpacMinutes"></sup>.
-                Chrome still accepts it during the origin trial<sup data-cite="chromeDeclarative"></sup>,
-                but ChatGPT's site tools don't support form-based tools<sup data-cite="openaiSiteTools"></sup>.
-              </p>
+                <p class="mb-0" data-lang="pt">Segue como explainer<sup data-cite="declarativeExplainer"></sup>; o ChatGPT não suporta<sup data-cite="openaiSiteTools"></sup></p>
+                <p class="mb-0" data-lang="en">Lives on as an explainer<sup data-cite="declarativeExplainer"></sup>; ChatGPT doesn't support it<sup data-cite="openaiSiteTools"></sup></p>
+              </div>
             </div>
           </div>
         </div>
@@ -333,274 +227,234 @@
       <div class="carousel-item" data-refs="spec chromeImperative">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Anatomia</span><span data-lang="en">Anatomy</span></div>
-          <h2><span data-lang="pt">O mesmo formato, toda ferramenta</span><span data-lang="en">Same shape, every tool</span></h2>
+          <h2><span data-lang="pt">Toda ferramenta tem o mesmo formato</span><span data-lang="en">Every tool has the same shape</span></h2>
           <div class="row g-4">
             <div class="col-md-4">
               <tool-card
                 name="favorite_event"
-                tool-title="Favoritar evento"
-                tool-title-en="Favorite event"
-                description="Adiciona um evento de tecnologia aos favoritos pelo id."
-                description-en="Add a tech event to favorites by its id."
+                description="Adiciona um evento aos favoritos."
+                description-en="Add an event to favorites."
                 schema="eventId: string"
               ></tool-card>
             </div>
             <div class="col-md-4">
               <tool-card
                 name="get_event_details"
-                tool-title="Detalhes do evento"
-                tool-title-en="Event details"
-                description="Retorna todos os detalhes de um evento."
-                description-en="Get full details for one event."
+                description="Retorna os detalhes de um evento."
+                description-en="Get one event's details."
                 schema="eventId: string"
-                output="id, title, date, location, ..."
+                output="id, title, date, ..."
                 annotations="read-only"
               ></tool-card>
             </div>
             <div class="col-md-4">
               <tool-card
                 name="buy_ticket"
-                tool-title="Comprar ingresso"
-                tool-title-en="Buy ticket"
-                description="Compra ingressos — ação real, difícil de desfazer."
-                description-en="Buy tickets — real-world, hard to undo."
+                description="Compra ingressos — difícil de desfazer."
+                description-en="Buy tickets — hard to undo."
                 schema="eventId: string, quantity: number"
                 annotations="consequential"
               ></tool-card>
             </div>
           </div>
-          <ul class="text-muted mt-4 mb-0" data-lang="pt">
-            <li><code>name</code>: 1–128 caracteres de <code>A–Z a–z 0–9 _ - .</code><sup data-cite="spec"></sup> · <code>title</code>: rótulo legível para a interface · <code>description</code>: quando e como usar.</li>
-            <li><code>inputSchema</code> / <code>outputSchema</code>: JSON Schema na entrada e na saída — agentes podem rejeitar saídas que não validam<sup data-cite="spec"></sup>.</li>
-            <li><code>annotations</code>: <code>readOnlyHint</code>, <code>consequentialHint</code>, <code>untrustedContentHint</code>, <code>debugging</code><sup data-cite="chromeImperative"></sup>.</li>
-          </ul>
-          <ul class="text-muted mt-4 mb-0" data-lang="en">
-            <li><code>name</code>: 1–128 chars of <code>A–Z a–z 0–9 _ - .</code><sup data-cite="spec"></sup> · <code>title</code>: human label for the UI · <code>description</code>: when and how to use it.</li>
-            <li><code>inputSchema</code> / <code>outputSchema</code>: JSON Schema in and out — agents may reject output that doesn't validate<sup data-cite="spec"></sup>.</li>
-            <li><code>annotations</code>: <code>readOnlyHint</code>, <code>consequentialHint</code>, <code>untrustedContentHint</code>, <code>debugging</code><sup data-cite="chromeImperative"></sup>.</li>
-          </ul>
+          <div class="chip-row mt-4">
+            <span class="chip">name<sup data-cite="spec"></sup></span>
+            <span class="chip">description</span>
+            <span class="chip">inputSchema / outputSchema<sup data-cite="spec"></sup></span>
+            <span class="chip">annotations<sup data-cite="chromeImperative"></sup></span>
+          </div>
         </div>
       </div>
 
       <!-- Calling a tool -->
-      <div class="carousel-item" data-refs="spec chromeImperative">
+      <div class="carousel-item" data-refs="spec">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Como funciona</span><span data-lang="en">How it works</span></div>
-          <h2><span data-lang="pt">O agente chama uma ferramenta</span><span data-lang="en">The agent calls a tool</span></h2>
+          <h2><span data-lang="pt">O agente chama a ferramenta</span><span data-lang="en">The agent calls the tool</span></h2>
           <flow-diagram state="call"></flow-diagram>
-          <div class="row g-4 mt-1">
+          <div class="row g-4 mt-2 text-center">
             <div class="col-md-6">
-              <h5 class="fw-bold"><span data-lang="pt">Agente do navegador</span><span data-lang="en">Browser agent</span></h5>
-              <p class="text-muted small mb-0" data-lang="pt">
-                Agentes embutidos (ChatGPT desktop, Brave Leo...) recebem as ferramentas da página por um mecanismo
-                interno e separado do navegador — não pelo <code>getTools()</code><sup data-cite="spec"></sup>.
-              </p>
-              <p class="text-muted small mb-0" data-lang="en">
-                Built-in agents (ChatGPT desktop, Brave Leo...) get the page's tools through a separate, internal
-                browser mechanism — not through <code>getTools()</code><sup data-cite="spec"></sup>.
-              </p>
+              <h5 class="fw-bold mb-1"><span data-lang="pt">Agente do navegador</span><span data-lang="en">Browser agent</span></h5>
+              <p class="text-muted mb-0" data-lang="pt">Usa um mecanismo interno do navegador<sup data-cite="spec"></sup></p>
+              <p class="text-muted mb-0" data-lang="en">Uses an internal browser mechanism<sup data-cite="spec"></sup></p>
             </div>
             <div class="col-md-6">
-              <h5 class="fw-bold"><span data-lang="pt">Agente in-page</span><span data-lang="en">In-page agent</span></h5>
-              <p class="text-muted small mb-0" data-lang="pt">
-                <code>getTools()</code> e depois <code>executeTool(tool, input, {&nbsp;signal&nbsp;})</code>, que resolve com
-                o resultado serializado como string JSON<sup data-cite="spec"></sup> — ou <code>null</code> se a ferramenta navegou<sup data-cite="chromeImperative"></sup>.
-              </p>
-              <p class="text-muted small mb-0" data-lang="en">
-                <code>getTools()</code> then <code>executeTool(tool, input, {&nbsp;signal&nbsp;})</code>, which resolves with
-                the result serialized as a JSON string<sup data-cite="spec"></sup> — or <code>null</code> if the tool navigated<sup data-cite="chromeImperative"></sup>.
-              </p>
+              <h5 class="fw-bold mb-1"><span data-lang="pt">Agente in-page</span><span data-lang="en">In-page agent</span></h5>
+              <p class="text-muted mb-0"><code>getTools()</code> → <code>executeTool()</code> → JSON<sup data-cite="spec"></sup></p>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 small" data-lang="pt">
-            Nos dois casos o seu <code>execute()</code> roda, e a página recebe os eventos <code>toolactivated</code> / <code>toolcancel</code> em <code>document.modelContext</code><sup data-cite="spec"></sup>.
-          </p>
-          <p class="text-muted mt-3 mb-0 small" data-lang="en">
-            Either way your <code>execute()</code> runs, and the page sees <code>toolactivated</code> / <code>toolcancel</code> events on <code>document.modelContext</code><sup data-cite="spec"></sup>.
-          </p>
         </div>
       </div>
 
-      <!-- Lifecycle -->
-      <div class="carousel-item" data-refs="chromeOverview chromeBestPractices chromeImperative chromeCompareMcp">
+      <!-- What this unlocks -->
+      <div class="carousel-item" data-refs="chromeOverview chromeImperative chromeCompareMcp">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Além do básico</span><span data-lang="en">Beyond the basics</span></div>
           <h2><span data-lang="pt">O que isso destrava</span><span data-lang="en">What this unlocks</span></h2>
-          <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="row row-cols-2 row-cols-md-4 g-4 text-center">
             <div class="col">
-              <h5 class="fw-bold"><span data-lang="pt">Ciente do contexto</span><span data-lang="en">Context-aware</span></h5>
-              <p class="text-muted small" data-lang="pt">As ferramentas compartilham o estado vivo da página, então o agente sabe no que pode agir agora<sup data-cite="chromeOverview"></sup>.</p>
-              <p class="text-muted small" data-lang="en">Tools share the page's live state, so the agent knows what it can act on right now<sup data-cite="chromeOverview"></sup>.</p>
+              <div class="icon-card">
+                <div class="icon-card-emoji">🧭</div>
+                <h5><span data-lang="pt">Contexto</span><span data-lang="en">Context</span></h5>
+                <p data-lang="pt">Lê o estado vivo da página<sup data-cite="chromeOverview"></sup></p>
+                <p data-lang="en">Reads the page's live state<sup data-cite="chromeOverview"></sup></p>
+              </div>
             </div>
             <div class="col">
-              <h5 class="fw-bold"><span data-lang="pt">Dinâmico</span><span data-lang="en">Dynamic</span></h5>
-              <p class="text-muted small" data-lang="pt">Registre a ferramenta quando ela for útil e desregistre com um <code>AbortSignal</code> quando não for<sup data-cite="chromeBestPractices"></sup>. Desde o Chrome 153 isso não quebra mais chamadas em andamento<sup data-cite="chromeImperative"></sup>.</p>
-              <p class="text-muted small" data-lang="en">Register a tool when it's useful, unregister it with an <code>AbortSignal</code> when it isn't<sup data-cite="chromeBestPractices"></sup>. Since Chrome 153 this no longer breaks in-flight calls<sup data-cite="chromeImperative"></sup>.</p>
+              <div class="icon-card">
+                <div class="icon-card-emoji">🔄</div>
+                <h5><span data-lang="pt">Dinâmico</span><span data-lang="en">Dynamic</span></h5>
+                <p data-lang="pt">Registra e remove com <code>AbortSignal</code><sup data-cite="chromeImperative"></sup></p>
+                <p data-lang="en">Registers and removes with <code>AbortSignal</code><sup data-cite="chromeImperative"></sup></p>
+              </div>
             </div>
             <div class="col">
-              <h5 class="fw-bold"><span data-lang="pt">Cancelável</span><span data-lang="en">Cancellable</span></h5>
-              <p class="text-muted small" data-lang="pt"><code>execute(input, { signal })</code> fica sabendo quando o usuário ou o agente cancela no meio<sup data-cite="chromeImperative"></sup>.</p>
-              <p class="text-muted small" data-lang="en"><code>execute(input, { signal })</code> learns when the user or agent cancels mid-flight<sup data-cite="chromeImperative"></sup>.</p>
+              <div class="icon-card">
+                <div class="icon-card-emoji">✋</div>
+                <h5><span data-lang="pt">Cancelável</span><span data-lang="en">Cancellable</span></h5>
+                <p data-lang="pt">Para no meio da execução<sup data-cite="chromeImperative"></sup></p>
+                <p data-lang="en">Stops mid-flight<sup data-cite="chromeImperative"></sup></p>
+              </div>
             </div>
             <div class="col">
-              <h5 class="fw-bold"><span data-lang="pt">Efêmero</span><span data-lang="en">Ephemeral</span></h5>
-              <p class="text-muted small" data-lang="pt">As ferramentas só existem enquanto a página está aberta — navegou, sumiram<sup data-cite="chromeCompareMcp"></sup>.</p>
-              <p class="text-muted small" data-lang="en">Tools exist only while the page is open — navigate away and they're gone<sup data-cite="chromeCompareMcp"></sup>.</p>
+              <div class="icon-card">
+                <div class="icon-card-emoji">⏳</div>
+                <h5><span data-lang="pt">Efêmero</span><span data-lang="en">Ephemeral</span></h5>
+                <p data-lang="pt">Some quando a página fecha<sup data-cite="chromeCompareMcp"></sup></p>
+                <p data-lang="en">Gone when the page closes<sup data-cite="chromeCompareMcp"></sup></p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- WebMCP vs MCP -->
-      <div class="carousel-item" data-refs="chromeCompareMcp openaiSiteTools mozillaPosition">
+      <div class="carousel-item" data-refs="chromeCompareMcp mozillaPosition">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Não é a mesma coisa</span><span data-lang="en">Not the same thing</span></div>
           <h2>WebMCP vs. MCP</h2>
-          <p class="text-body-secondary mb-3" data-lang="pt">
-            MCP é uma central de atendimento; WebMCP é um especialista dentro da loja<sup data-cite="chromeCompareMcp"></sup>.
-          </p>
-          <p class="text-body-secondary mb-3" data-lang="en">
-            MCP is a call center; WebMCP is an in-store expert<sup data-cite="chromeCompareMcp"></sup>.
-          </p>
-          <table class="table table-sm align-middle" data-lang="pt">
-            <thead>
-              <tr><th></th><th>MCP</th><th>WebMCP</th></tr>
-            </thead>
-            <tbody>
-              <tr><th class="text-muted fw-normal">Onde as ferramentas vivem</th><td>Num servidor</td><td>Na página web</td></tr>
-              <tr><th class="text-muted fw-normal">Quando estão disponíveis</th><td>Enquanto o servidor estiver no ar</td><td>Só enquanto a página está aberta</td></tr>
-              <tr><th class="text-muted fw-normal">Login de quem</th><td>Credenciais próprias</td><td>A sessão atual do usuário</td></tr>
-              <tr><th class="text-muted fw-normal">Blocos de construção</th><td>Tools, resources, prompts</td><td>Só tools</td></tr>
-              <tr><th class="text-muted fw-normal">Configuração</th><td>Usuário ou app adiciona o servidor</td><td>Descobertas ao visitar a página<sup data-cite="openaiSiteTools"></sup></td></tr>
-            </tbody>
-          </table>
-          <table class="table table-sm align-middle" data-lang="en">
-            <thead>
-              <tr><th></th><th>MCP</th><th>WebMCP</th></tr>
-            </thead>
-            <tbody>
-              <tr><th class="text-muted fw-normal">Where tools live</th><td>On a server</td><td>In the web page</td></tr>
-              <tr><th class="text-muted fw-normal">When available</th><td>Whenever the server is up</td><td>Only while the page is open</td></tr>
-              <tr><th class="text-muted fw-normal">Whose login</th><td>Its own credentials</td><td>The user's current session</td></tr>
-              <tr><th class="text-muted fw-normal">Building blocks</th><td>Tools, resources, prompts</td><td>Tools only</td></tr>
-              <tr><th class="text-muted fw-normal">Setup</th><td>User or app adds the server</td><td>Discovered on visit<sup data-cite="openaiSiteTools"></sup></td></tr>
-            </tbody>
-          </table>
-          <p class="text-muted small mb-0" data-lang="pt">
-            Use os dois: MCP para trabalho em segundo plano, WebMCP para ações no contexto<sup data-cite="chromeCompareMcp"></sup>.
-            A Mozilla sobre o nome: <em>"Não há MCP aqui."</em> (tradução livre)<sup data-cite="mozillaPosition"></sup>
-          </p>
-          <p class="text-muted small mb-0" data-lang="en">
-            Use both: MCP for background work, WebMCP for in-context actions<sup data-cite="chromeCompareMcp"></sup>.
-            Mozilla's take on the name: <em>"There is no MCP here."</em><sup data-cite="mozillaPosition"></sup>
-          </p>
-        </div>
-      </div>
-
-      <!-- Security risk -->
-      <div class="carousel-item" data-refs="chromeSecureTools chromeAgentSecurity lethalTrifecta mozillaPosition">
-        <div class="slide">
-          <div class="slide-kicker"><span data-lang="pt">Segurança</span><span data-lang="en">Security</span></div>
-          <h2><span data-lang="pt">Agentes rodam dentro da sua sessão</span><span data-lang="en">Agents run inside your session</span></h2>
-          <p class="lead text-body-secondary mb-4" data-lang="pt">
-            Modelos leem instruções e dados como um único fluxo de tokens, então texto injetado consegue guiá-los<sup data-cite="chromeSecureTools"></sup>.
-          </p>
-          <p class="lead text-body-secondary mb-4" data-lang="en">
-            Models read instructions and data as one stream of tokens, so injected text can steer them<sup data-cite="chromeSecureTools"></sup>.
-          </p>
-          <div class="row g-4">
+          <div class="row g-4 align-items-stretch text-center">
             <div class="col-md-6">
-              <div class="card h-100 border-0 bg-body-tertiary">
-                <div class="card-body">
-                  <div class="fs-1 mb-2">🎭</div>
-                  <h5><span data-lang="pt">Manifestos maliciosos</span><span data-lang="en">Malicious manifests</span></h5>
-                  <p class="text-muted small mb-0" data-lang="pt">
-                    O nome, a descrição ou os parâmetros de uma ferramenta podem esconder instruções feitas para sequestrar o agente<sup data-cite="chromeAgentSecurity"></sup> —
-                    prompt injection "invisível para usuários comuns"<sup data-cite="mozillaPosition"></sup>.
-                  </p>
-                  <p class="text-muted small mb-0" data-lang="en">
-                    A tool's name, description or parameters can hide instructions designed to hijack the agent<sup data-cite="chromeAgentSecurity"></sup> —
-                    prompt injection "invisible to typical users"<sup data-cite="mozillaPosition"></sup>.
-                  </p>
-                </div>
+              <div class="compare-card">
+                <div class="icon-card-emoji">☎️</div>
+                <h4 class="fw-bold">MCP</h4>
+                <p class="lead mb-2" data-lang="pt">Central de atendimento<sup data-cite="chromeCompareMcp"></sup></p>
+                <p class="lead mb-2" data-lang="en">A call center<sup data-cite="chromeCompareMcp"></sup></p>
+                <p class="text-muted mb-0" data-lang="pt">Num servidor · credenciais próprias · sempre no ar</p>
+                <p class="text-muted mb-0" data-lang="en">On a server · its own credentials · always on</p>
               </div>
             </div>
             <div class="col-md-6">
-              <div class="card h-100 border-0 bg-body-tertiary">
-                <div class="card-body">
-                  <div class="fs-1 mb-2">☣️</div>
+              <div class="compare-card compare-card-highlight">
+                <div class="icon-card-emoji">🧑‍💼</div>
+                <h4 class="fw-bold">WebMCP</h4>
+                <p class="lead mb-2" data-lang="pt">Especialista na loja<sup data-cite="chromeCompareMcp"></sup></p>
+                <p class="lead mb-2" data-lang="en">An in-store expert<sup data-cite="chromeCompareMcp"></sup></p>
+                <p class="text-muted mb-0" data-lang="pt">Na página · sessão do usuário · só com a página aberta</p>
+                <p class="text-muted mb-0" data-lang="en">In the page · the user's session · only while it's open</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-muted mt-4 mb-0 text-center" data-lang="pt"><em>"Não há MCP aqui."</em> — Mozilla, sobre o nome (tradução livre)<sup data-cite="mozillaPosition"></sup></p>
+          <p class="text-muted mt-4 mb-0 text-center" data-lang="en"><em>"There is no MCP here."</em> — Mozilla, on the name<sup data-cite="mozillaPosition"></sup></p>
+        </div>
+      </div>
+
+      <!-- Hook: security -->
+      <div class="carousel-item">
+        <div class="slide cover-slide hook-slide">
+          <h2 data-lang="pt">Mas… e se a página mentir?</h2>
+          <h2 data-lang="en">But… what if the page lies?</h2>
+        </div>
+      </div>
+
+      <!-- Lethal trifecta -->
+      <div class="carousel-item" data-refs="lethalTrifecta chromeAgentSecurity">
+        <div class="slide">
+          <div class="slide-kicker"><span data-lang="pt">Segurança</span><span data-lang="en">Security</span></div>
+          <h2><span data-lang="pt">A tríade letal</span><span data-lang="en">The lethal trifecta</span><sup data-cite="lethalTrifecta"></sup></h2>
+          <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+              <svg class="trifecta" viewBox="0 0 400 360" role="img" aria-label="Lethal trifecta">
+                <circle cx="140" cy="130" r="105" class="trifecta-a" />
+                <circle cx="260" cy="130" r="105" class="trifecta-b" />
+                <circle cx="200" cy="232" r="105" class="trifecta-c" />
+                <g data-lang="pt">
+                  <text x="105" y="105" text-anchor="middle">Dados</text>
+                  <text x="105" y="125" text-anchor="middle">privados</text>
+                  <text x="295" y="105" text-anchor="middle">Conteúdo não</text>
+                  <text x="295" y="125" text-anchor="middle">confiável</text>
+                  <text x="200" y="295" text-anchor="middle">Canal de saída</text>
+                  <text x="200" y="172" text-anchor="middle" class="trifecta-center">roubo</text>
+                </g>
+                <g data-lang="en">
+                  <text x="105" y="105" text-anchor="middle">Private</text>
+                  <text x="105" y="125" text-anchor="middle">data</text>
+                  <text x="295" y="105" text-anchor="middle">Untrusted</text>
+                  <text x="295" y="125" text-anchor="middle">content</text>
+                  <text x="200" y="295" text-anchor="middle">Way out</text>
+                  <text x="200" y="172" text-anchor="middle" class="trifecta-center">theft</text>
+                </g>
+              </svg>
+            </div>
+            <div class="col-md-6">
+              <div class="vector">
+                <div class="icon-card-emoji">🎭</div>
+                <div>
+                  <h5><span data-lang="pt">Manifesto malicioso</span><span data-lang="en">Malicious manifest</span></h5>
+                  <p data-lang="pt">Instruções escondidas na descrição da ferramenta<sup data-cite="chromeAgentSecurity"></sup></p>
+                  <p data-lang="en">Instructions hidden in the tool description<sup data-cite="chromeAgentSecurity"></sup></p>
+                </div>
+              </div>
+              <div class="vector">
+                <div class="icon-card-emoji">☣️</div>
+                <div>
                   <h5><span data-lang="pt">Saída contaminada</span><span data-lang="en">Contaminated output</span></h5>
-                  <p class="text-muted small mb-0" data-lang="pt">
-                    Uma ferramenta de um site confiável ainda pode devolver dados de terceiros — comentários, reviews — carregando instruções<sup data-cite="chromeAgentSecurity"></sup>.
-                  </p>
-                  <p class="text-muted small mb-0" data-lang="en">
-                    A tool from an otherwise trustworthy site can still return third-party data — user comments, reviews — carrying instructions<sup data-cite="chromeAgentSecurity"></sup>.
-                  </p>
+                  <p data-lang="pt">Reviews e comentários carregando ordens<sup data-cite="chromeAgentSecurity"></sup></p>
+                  <p data-lang="en">Reviews and comments carrying orders<sup data-cite="chromeAgentSecurity"></sup></p>
                 </div>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-4 mb-0" data-lang="pt">
-            Dados privados + conteúdo não confiável + um jeito de enviar dados para fora = a <strong>"tríade letal"</strong>,
-            suficiente para roubar os dados de um usuário<sup data-cite="lethalTrifecta"></sup>.
-          </p>
-          <p class="text-muted mt-4 mb-0" data-lang="en">
-            Private data + untrusted content + a way to send data out = the <strong>"lethal trifecta"</strong>,
-            enough to steal a user's data<sup data-cite="lethalTrifecta"></sup>.
-          </p>
         </div>
       </div>
 
       <!-- Defense in depth -->
-      <div class="carousel-item" data-refs="chromeSecureTools mcpAnnotations spec openaiSiteTools chromeAgentSecurity">
+      <div class="carousel-item" data-refs="chromeSecureTools spec mcpAnnotations">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Segurança</span><span data-lang="en">Security</span></div>
-          <h2><span data-lang="pt">Defesa em camadas</span><span data-lang="en">Defense in depth</span></h2>
+          <h2><span data-lang="pt">Anotações ajudam o agente a decidir</span><span data-lang="en">Annotations help the agent decide</span><sup data-cite="chromeSecureTools"></sup></h2>
           <div class="row g-4">
             <div class="col-md-4">
               <tool-card
                 name="get_event_details"
-                description="readOnlyHint — ajuda o agente a decidir quando pular confirmações."
-                description-en="readOnlyHint — helps the agent decide when to skip confirmations."
+                description="Seguro chamar sem perguntar."
+                description-en="Safe to call without asking."
                 annotations="read-only"
               ></tool-card>
             </div>
             <div class="col-md-4">
               <tool-card
                 name="buy_ticket"
-                description="consequentialHint — permite que o agente ou o navegador pergunte ao usuário antes."
-                description-en="consequentialHint — lets the agent or browser ask the user first."
+                description="Peça confirmação ao usuário."
+                description-en="Ask the user to confirm."
                 annotations="consequential"
               ></tool-card>
             </div>
             <div class="col-md-4">
               <tool-card
                 name="get_event_reviews"
-                description="untrustedContentHint — saída gerada por usuários, trate como dado."
-                description-en="untrustedContentHint — user-generated output, handle as data."
+                description="Trate a saída como dado."
+                description-en="Treat the output as data."
                 annotations="untrusted output"
               ></tool-card>
             </div>
           </div>
-          <p class="text-muted mt-4 mb-2" data-lang="pt">
-            O Chrome recomenda as três<sup data-cite="chromeSecureTools"></sup>. O MCP usa a mesma ideia, e diz que clientes devem tratar
-            hints de servidores não confiáveis como não confiáveis<sup data-cite="mcpAnnotations"></sup>.
+          <p class="callout mt-4 mb-0" data-lang="pt">
+            ⚠️ São dicas, não garantias: um site malicioso pode mentir<sup data-cite="spec"></sup> — no WebMCP e no MCP<sup data-cite="mcpAnnotations"></sup>.
           </p>
-          <p class="text-muted mt-4 mb-2" data-lang="en">
-            Chrome recommends all three<sup data-cite="chromeSecureTools"></sup>. MCP uses the same idea, and says clients must treat
-            hints from untrusted servers as untrusted<sup data-cite="mcpAnnotations"></sup>.
-          </p>
-          <p class="text-muted mb-0" data-lang="pt">
-            <strong>Atenção:</strong> um site malicioso pode omitir ou falsear os hints<sup data-cite="spec"></sup>.
-            Nas palavras da OpenAI, <em>"o nome de uma ferramenta, ou a alegação de que ela só lê dados, não é prova do que ela faz"</em> (tradução livre)<sup data-cite="openaiSiteTools"></sup> —
-            combine hints com controles reais. Agentes devem assumir que ferramentas alteram estado, confirmar com o usuário
-            e destacar (spotlighting) saídas não confiáveis<sup data-cite="chromeAgentSecurity"></sup>.
-          </p>
-          <p class="text-muted mb-0" data-lang="en">
-            <strong>Caveat:</strong> a malicious site can omit or misrepresent hints<sup data-cite="spec"></sup>.
-            As OpenAI puts it, <em>"a tool's name or claim that it only reads data isn't proof of what it does"</em><sup data-cite="openaiSiteTools"></sup> —
-            pair hints with real controls. Agents should assume tools mutate state, confirm with the user,
-            and spotlight untrusted output<sup data-cite="chromeAgentSecurity"></sup>.
+          <p class="callout mt-4 mb-0" data-lang="en">
+            ⚠️ Hints, not guarantees: a malicious site can lie<sup data-cite="spec"></sup> — in WebMCP and in MCP<sup data-cite="mcpAnnotations"></sup>.
           </p>
         </div>
       </div>
@@ -609,140 +463,93 @@
       <div class="carousel-item" data-refs="spec chromeImperative">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Segurança</span><span data-lang="en">Security</span></div>
-          <h2><span data-lang="pt">Cross-origin exige três autorizações</span><span data-lang="en">Cross-origin needs three yeses</span></h2>
-          <p class="text-body-secondary mb-4" data-lang="pt">
-            Por padrão, uma ferramenta só é visível para documentos da mesma origem<sup data-cite="spec"></sup>. Cruzar origens exige os três:
-          </p>
-          <p class="text-body-secondary mb-4" data-lang="en">
-            By default a tool is visible only to same-origin documents<sup data-cite="spec"></sup>. Crossing origins takes all three:
-          </p>
+          <h2><span data-lang="pt">Cross-origin exige três autorizações</span><span data-lang="en">Cross-origin needs three yeses</span><sup data-cite="spec"></sup></h2>
           <div class="row g-3 align-items-stretch">
             <div class="col-md-4">
-              <div class="card h-100 border-0 bg-body-tertiary">
-                <div class="card-body">
-                  <div class="gate-step">1</div>
-                  <h5><span data-lang="pt">Quem incorpora delega</span><span data-lang="en">Embedder delegates</span></h5>
-                  <pre class="small mb-2"><code>&lt;iframe allow="tools"&gt;</code></pre>
-                  <p class="text-muted small mb-0" data-lang="pt">A Permissions Policy <code>tools</code> tem padrão <code>'self'</code><sup data-cite="chromeImperative"></sup>.</p>
-                  <p class="text-muted small mb-0" data-lang="en">The <code>tools</code> Permissions Policy defaults to <code>'self'</code><sup data-cite="chromeImperative"></sup>.</p>
-                </div>
+              <div class="step-card">
+                <div class="gate-step">1</div>
+                <h5><span data-lang="pt">Quem incorpora delega</span><span data-lang="en">Embedder delegates</span></h5>
+                <pre class="code-inline"><code>&lt;iframe allow="tools"&gt;</code></pre>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card h-100 border-0 bg-body-tertiary">
-                <div class="card-body">
-                  <div class="gate-step">2</div>
-                  <h5><span data-lang="pt">Quem fornece aceita</span><span data-lang="en">Provider opts in</span></h5>
-                  <pre class="small mb-2"><code>registerTool(tool, {
-  exposedTo: [origin]
-})</code></pre>
-                  <p class="text-muted small mb-0" data-lang="pt">Só origens listadas e seguras podem ver ou chamar a ferramenta<sup data-cite="spec"></sup>.</p>
-                  <p class="text-muted small mb-0" data-lang="en">Only listed, secure origins can see or call it<sup data-cite="spec"></sup>.</p>
-                </div>
+              <div class="step-card">
+                <div class="gate-step">2</div>
+                <h5><span data-lang="pt">Quem fornece aceita</span><span data-lang="en">Provider opts in</span></h5>
+                <pre class="code-inline"><code>exposedTo: [origin]</code></pre>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card h-100 border-0 bg-body-tertiary">
-                <div class="card-body">
-                  <div class="gate-step">3</div>
-                  <h5><span data-lang="pt">Quem consome aceita</span><span data-lang="en">Consumer opts in</span></h5>
-                  <pre class="small mb-2"><code>getTools({
-  fromOrigins: [origin]
-})</code></pre>
-                  <p class="text-muted small mb-0" data-lang="pt">Impede que frames não confiáveis poluam a lista de ferramentas<sup data-cite="spec"></sup>.</p>
-                  <p class="text-muted small mb-0" data-lang="en">Stops untrusted frames from polluting the tool list<sup data-cite="spec"></sup>.</p>
-                </div>
+              <div class="step-card">
+                <div class="gate-step">3</div>
+                <h5><span data-lang="pt">Quem consome aceita</span><span data-lang="en">Consumer opts in</span></h5>
+                <pre class="code-inline"><code>fromOrigins: [origin]</code></pre>
               </div>
             </div>
           </div>
+          <p class="text-muted mt-4 mb-0" data-lang="pt">Sem isso, só a mesma origem enxerga a ferramenta<sup data-cite="spec"></sup>.</p>
+          <p class="text-muted mt-4 mb-0" data-lang="en">Without it, only the same origin sees the tool<sup data-cite="spec"></sup>.</p>
+        </div>
+      </div>
+
+      <!-- Hook: ecosystem -->
+      <div class="carousel-item">
+        <div class="slide cover-slide hook-slide">
+          <h2 data-lang="pt">Isso já é real?</h2>
+          <h2 data-lang="en">Is this real yet?</h2>
         </div>
       </div>
 
       <!-- Timeline -->
-      <div class="carousel-item" data-refs="chromeEpp blinkI2E chromeIo26 webkitPosition chromeOtBlog ecosystemTracker edgeBlog blinkExtend pr338 tpacMinutes bravePr edgeOt">
+      <div class="carousel-item" data-refs="chromeEpp chromeIo26 webkitPosition chromeOtBlog ecosystemTracker blinkExtend pr338 bravePr edgeOt">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Como chegamos aqui</span><span data-lang="en">How we got here</span></div>
           <h2><span data-lang="pt">2026 em um slide</span><span data-lang="en">2026 in one slide</span></h2>
-          <ul class="timeline small" data-lang="pt">
-            <li><strong>10 fev.</strong> Chrome abre um programa de prévia antecipada<sup data-cite="chromeEpp"></sup></li>
-            <li><strong>15 mai.</strong> Intent to Experiment no blink-dev<sup data-cite="blinkI2E"></sup></li>
-            <li><strong>19 mai.</strong> Anúncio no Google I/O; o Gemini no Chrome "em breve vai suportar"<sup data-cite="chromeIo26"></sup></li>
-            <li><strong>3 jun.</strong> WebKit se declara contra<sup data-cite="webkitPosition"></sup></li>
-            <li><strong>9 jun.</strong> Origin trial abre no Chrome 149<sup data-cite="chromeOtBlog"></sup></li>
-            <li><strong>25 ago.</strong> ChatGPT desktop lança as "site tools", ativas por padrão<sup data-cite="ecosystemTracker"></sup></li>
-            <li><strong>21 set.</strong> Edge diz que sua implementação está pronta para testes<sup data-cite="edgeBlog"></sup></li>
-            <li><strong>28 set.</strong> Origin trial estendido até o Chrome 162<sup data-cite="blinkExtend"></sup><sup data-cite="ecosystemTracker"></sup></li>
-            <li><strong>8 out.</strong> API declarativa removida da spec<sup data-cite="pr338"></sup></li>
-            <li><strong>27 out.</strong> TPAC: explorar uma primitiva genérica de chamada de ferramentas; declarativa segue como explainer<sup data-cite="tpacMinutes"></sup></li>
-            <li><strong>12 nov.</strong> Brave Nightly ativa por padrão para o Leo<sup data-cite="bravePr"></sup></li>
-            <li class="timeline-future"><strong>30 mar. 2027</strong> Fim dos origin trials do Chrome e do Edge<sup data-cite="ecosystemTracker"></sup><sup data-cite="edgeOt"></sup></li>
-          </ul>
-          <ul class="timeline small" data-lang="en">
-            <li><strong>10 Feb</strong> Chrome opens an early preview program<sup data-cite="chromeEpp"></sup></li>
-            <li><strong>15 May</strong> Intent to Experiment on blink-dev<sup data-cite="blinkI2E"></sup></li>
-            <li><strong>19 May</strong> Announced at Google I/O; Gemini in Chrome "will soon support" it<sup data-cite="chromeIo26"></sup></li>
-            <li><strong>3 Jun</strong> WebKit says it is opposed<sup data-cite="webkitPosition"></sup></li>
-            <li><strong>9 Jun</strong> Origin trial opens in Chrome 149<sup data-cite="chromeOtBlog"></sup></li>
-            <li><strong>25 Aug</strong> ChatGPT desktop ships "site tools", on by default<sup data-cite="ecosystemTracker"></sup></li>
-            <li><strong>21 Sep</strong> Edge calls its implementation ready for testing<sup data-cite="edgeBlog"></sup></li>
-            <li><strong>28 Sep</strong> Origin trial extended to Chrome 162<sup data-cite="blinkExtend"></sup><sup data-cite="ecosystemTracker"></sup></li>
-            <li><strong>8 Oct</strong> Declarative API removed from the spec<sup data-cite="pr338"></sup></li>
-            <li><strong>27 Oct</strong> TPAC: explore a generic tool-calling primitive; declarative stays an explainer<sup data-cite="tpacMinutes"></sup></li>
-            <li><strong>12 Nov</strong> Brave Nightly turns it on by default for Leo<sup data-cite="bravePr"></sup></li>
-            <li class="timeline-future"><strong>30 Mar 2027</strong> Chrome and Edge origin trials end<sup data-cite="ecosystemTracker"></sup><sup data-cite="edgeOt"></sup></li>
-          </ul>
+          <ol class="htimeline">
+            <li><span class="htimeline-date"><span data-lang="pt">10 fev.</span><span data-lang="en">10 Feb</span></span><span class="htimeline-label"><span data-lang="pt">Prévia antecipada</span><span data-lang="en">Early preview</span><sup data-cite="chromeEpp"></sup></span></li>
+            <li><span class="htimeline-date"><span data-lang="pt">19 mai.</span><span data-lang="en">19 May</span></span><span class="htimeline-label"><span data-lang="pt">Anúncio no I/O</span><span data-lang="en">Announced at I/O</span><sup data-cite="chromeIo26"></sup></span></li>
+            <li><span class="htimeline-date"><span data-lang="pt">3 jun.</span><span data-lang="en">3 Jun</span></span><span class="htimeline-label"><span data-lang="pt">WebKit contra</span><span data-lang="en">WebKit opposes</span><sup data-cite="webkitPosition"></sup></span></li>
+            <li><span class="htimeline-date"><span data-lang="pt">9 jun.</span><span data-lang="en">9 Jun</span></span><span class="htimeline-label"><span data-lang="pt">Origin trial no Chrome 149</span><span data-lang="en">Origin trial in Chrome 149</span><sup data-cite="chromeOtBlog"></sup></span></li>
+            <li><span class="htimeline-date"><span data-lang="pt">25 ago.</span><span data-lang="en">25 Aug</span></span><span class="htimeline-label"><span data-lang="pt">ChatGPT lança "site tools"</span><span data-lang="en">ChatGPT ships "site tools"</span><sup data-cite="ecosystemTracker"></sup></span></li>
+            <li><span class="htimeline-date"><span data-lang="pt">28 set.</span><span data-lang="en">28 Sep</span></span><span class="htimeline-label"><span data-lang="pt">Trial até o Chrome 162</span><span data-lang="en">Trial to Chrome 162</span><sup data-cite="blinkExtend"></sup><sup data-cite="ecosystemTracker"></sup></span></li>
+            <li><span class="htimeline-date"><span data-lang="pt">8 out.</span><span data-lang="en">8 Oct</span></span><span class="htimeline-label"><span data-lang="pt">Declarativa sai da spec</span><span data-lang="en">Declarative leaves the spec</span><sup data-cite="pr338"></sup></span></li>
+            <li><span class="htimeline-date"><span data-lang="pt">12 nov.</span><span data-lang="en">12 Nov</span></span><span class="htimeline-label"><span data-lang="pt">Brave Nightly liga por padrão</span><span data-lang="en">Brave Nightly on by default</span><sup data-cite="bravePr"></sup></span></li>
+            <li class="htimeline-future"><span class="htimeline-date"><span data-lang="pt">30 mar. 2027</span><span data-lang="en">30 Mar 2027</span></span><span class="htimeline-label"><span data-lang="pt">Fim dos origin trials</span><span data-lang="en">Origin trials end</span><sup data-cite="ecosystemTracker"></sup><sup data-cite="edgeOt"></sup></span></li>
+          </ol>
         </div>
       </div>
 
       <!-- Where it stands -->
-      <div class="carousel-item" data-refs="chromeStatus chromeOtBlog edgeOt bravePr implStatus mozillaPosition webkitPosition openaiSiteTools chromeIo26 ecosystemTracker">
+      <div class="carousel-item" data-refs="chromeOtBlog edgeBlog bravePr mozillaPosition webkitPosition openaiSiteTools chromeIo26 ecosystemTracker">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Novembro de 2026</span><span data-lang="en">November 2026</span></div>
           <h2><span data-lang="pt">Onde estamos hoje</span><span data-lang="en">Where it stands today</span></h2>
           <div class="row g-4">
             <div class="col-md-4">
-              <h5 class="fw-bold"><span data-lang="pt">Navegadores</span><span data-lang="en">Browsers</span></h5>
-              <ul class="list-unstyled small status-list" data-lang="pt">
-                <li><span class="badge text-bg-primary">Origin trial</span> Chrome 149–162<sup data-cite="ecosystemTracker"></sup>, ainda "Proposed"<sup data-cite="chromeStatus"></sup></li>
-                <li><span class="badge text-bg-primary">Origin trial</span> Edge, até 30 mar. 2027<sup data-cite="edgeOt"></sup></li>
-                <li><span class="badge text-bg-info">Nightly</span> Brave 1.102.2, estável prevista para 5 jan. 2027<sup data-cite="implStatus"></sup></li>
-                <li><span class="badge text-bg-secondary">Neutra</span> Firefox<sup data-cite="mozillaPosition"></sup>: protótipo, desligado por padrão<sup data-cite="ecosystemTracker"></sup></li>
-                <li><span class="badge text-bg-danger">Contra</span> Safari / WebKit<sup data-cite="webkitPosition"></sup></li>
-              </ul>
-              <ul class="list-unstyled small status-list" data-lang="en">
-                <li><span class="badge text-bg-primary">Origin trial</span> Chrome 149–162<sup data-cite="ecosystemTracker"></sup>, still "Proposed"<sup data-cite="chromeStatus"></sup></li>
-                <li><span class="badge text-bg-primary">Origin trial</span> Edge, until 30 Mar 2027<sup data-cite="edgeOt"></sup></li>
-                <li><span class="badge text-bg-info">Nightly</span> Brave 1.102.2, stable expected 5 Jan 2027<sup data-cite="implStatus"></sup></li>
-                <li><span class="badge text-bg-secondary">Neutral</span> Firefox<sup data-cite="mozillaPosition"></sup>: prototype, off by default<sup data-cite="ecosystemTracker"></sup></li>
-                <li><span class="badge text-bg-danger">Opposed</span> Safari / WebKit<sup data-cite="webkitPosition"></sup></li>
+              <h5 class="status-heading"><span data-lang="pt">Navegadores</span><span data-lang="en">Browsers</span></h5>
+              <ul class="status-list">
+                <li><span class="badge text-bg-primary">trial</span> Chrome<sup data-cite="chromeOtBlog"></sup></li>
+                <li><span class="badge text-bg-primary">trial</span> Edge<sup data-cite="edgeBlog"></sup></li>
+                <li><span class="badge text-bg-info">nightly</span> Brave<sup data-cite="bravePr"></sup></li>
+                <li><span class="badge text-bg-secondary"><span data-lang="pt">neutro</span><span data-lang="en">neutral</span></span> Firefox<sup data-cite="mozillaPosition"></sup></li>
+                <li><span class="badge text-bg-danger"><span data-lang="pt">contra</span><span data-lang="en">opposed</span></span> Safari<sup data-cite="webkitPosition"></sup></li>
               </ul>
             </div>
             <div class="col-md-4">
-              <h5 class="fw-bold"><span data-lang="pt">Agentes</span><span data-lang="en">Agents</span></h5>
-              <ul class="list-unstyled small status-list" data-lang="pt">
-                <li><span class="badge text-bg-success">Em produção</span> "Site tools" do ChatGPT desktop<sup data-cite="openaiSiteTools"></sup></li>
-                <li><span class="badge text-bg-info">Nightly</span> Brave Leo<sup data-cite="bravePr"></sup></li>
-                <li><span class="badge text-bg-info">Em rollout</span> Meta AI nos Ray-Ban Display<sup data-cite="ecosystemTracker"></sup></li>
-                <li><span class="badge text-bg-light">Em breve</span> Gemini no Chrome<sup data-cite="chromeIo26"></sup></li>
-                <li><span class="badge text-bg-light">Sem descoberta</span> Claude for Chrome<sup data-cite="ecosystemTracker"></sup></li>
-              </ul>
-              <ul class="list-unstyled small status-list" data-lang="en">
-                <li><span class="badge text-bg-success">Shipping</span> ChatGPT desktop "site tools"<sup data-cite="openaiSiteTools"></sup></li>
-                <li><span class="badge text-bg-info">Nightly</span> Brave Leo<sup data-cite="bravePr"></sup></li>
-                <li><span class="badge text-bg-info">Rollout</span> Meta AI on Ray-Ban Display<sup data-cite="ecosystemTracker"></sup></li>
-                <li><span class="badge text-bg-light">Coming</span> Gemini in Chrome<sup data-cite="chromeIo26"></sup></li>
-                <li><span class="badge text-bg-light">No discovery</span> Claude for Chrome<sup data-cite="ecosystemTracker"></sup></li>
+              <h5 class="status-heading"><span data-lang="pt">Agentes</span><span data-lang="en">Agents</span></h5>
+              <ul class="status-list">
+                <li><span class="badge text-bg-success"><span data-lang="pt">no ar</span><span data-lang="en">live</span></span> ChatGPT desktop<sup data-cite="openaiSiteTools"></sup></li>
+                <li><span class="badge text-bg-info">nightly</span> Brave Leo<sup data-cite="bravePr"></sup></li>
+                <li><span class="badge text-bg-light"><span data-lang="pt">em breve</span><span data-lang="en">soon</span></span> Gemini<sup data-cite="chromeIo26"></sup></li>
+                <li><span class="badge text-bg-light"><span data-lang="pt">sem descoberta</span><span data-lang="en">no discovery</span></span> Claude<sup data-cite="ecosystemTracker"></sup></li>
               </ul>
             </div>
             <div class="col-md-4">
-              <h5 class="fw-bold"><span data-lang="pt">Ferramentas para devs</span><span data-lang="en">Developer tooling</span></h5>
-              <ul class="list-unstyled small status-list">
-                <li>Playwright 1.64 + Playwright MCP</li>
-                <li>Puppeteer · Chrome DevTools MCP</li>
-                <li>Stagehand · Vercel agent-browser</li>
-                <li>Google ADK for TypeScript</li>
-                <li class="text-muted" data-lang="pt">A maioria ainda exige ligar o WebMCP no navegador<sup data-cite="ecosystemTracker"></sup></li>
-                <li class="text-muted" data-lang="en">Most still need WebMCP switched on in the browser<sup data-cite="ecosystemTracker"></sup></li>
+              <h5 class="status-heading"><span data-lang="pt">Para devs</span><span data-lang="en">For developers</span></h5>
+              <ul class="status-list">
+                <li>Playwright + Playwright MCP</li>
+                <li>Puppeteer · DevTools MCP</li>
+                <li>Stagehand · agent-browser<sup data-cite="ecosystemTracker"></sup></li>
               </ul>
             </div>
           </div>
@@ -756,207 +563,137 @@
           <h2><span data-lang="pt">O debate</span><span data-lang="en">The debate</span></h2>
           <div class="row g-4">
             <div class="col-md-6">
-              <blockquote class="debate-quote" data-lang="pt">
-                <p>"Um agente agindo em nome de um usuário é, na prática, <strong>tecnologia assistiva</strong>: ele deveria operar o site como o usuário operaria, e o site não deveria tratá-lo de forma diferente."</p>
-                <footer class="small text-muted">WebKit — posição: contra (tradução livre)<sup data-cite="webkitPosition"></sup></footer>
-              </blockquote>
-              <blockquote class="debate-quote" data-lang="en">
-                <p>"An agent acting on a user's behalf is, in effect, <strong>assistive technology</strong>: it should operate a site as the user would, and the site should not single it out for different treatment."</p>
-                <footer class="small text-muted">WebKit — position: oppose<sup data-cite="webkitPosition"></sup></footer>
+              <blockquote class="debate-quote">
+                <p data-lang="pt">"Um agente agindo em nome de um usuário é, na prática, <strong>tecnologia assistiva</strong>…"</p>
+                <p data-lang="en">"An agent acting on a user's behalf is, in effect, <strong>assistive technology</strong>…"</p>
+                <footer>WebKit · <span data-lang="pt">contra (tradução livre)</span><span data-lang="en">oppose</span><sup data-cite="webkitPosition"></sup></footer>
               </blockquote>
             </div>
             <div class="col-md-6">
-              <blockquote class="debate-quote" data-lang="pt">
-                <p>"Num cenário adversarial, há o risco de sites oferecerem ferramentas que não correspondem à experiência de um usuário na página […] fornecerem prompt injection invisível para usuários comuns, coletarem dados do usuário a partir das entradas das ferramentas."</p>
-                <footer class="small text-muted">Mozilla — posição: neutra (tradução livre)<sup data-cite="mozillaPosition"></sup></footer>
-              </blockquote>
-              <blockquote class="debate-quote" data-lang="en">
-                <p>"In an adversarial setting there is a risk that sites will provide tools that do not match the experience of a user on the page […] provide prompt injection that is invisible to typical users, collect user data from the inputs of the tools."</p>
-                <footer class="small text-muted">Mozilla — position: neutral<sup data-cite="mozillaPosition"></sup></footer>
+              <blockquote class="debate-quote">
+                <p data-lang="pt">"…o risco de sites oferecerem ferramentas que <strong>não correspondem</strong> à experiência de um usuário na página."</p>
+                <p data-lang="en">"…a risk that sites will provide tools that <strong>do not match</strong> the experience of a user on the page."</p>
+                <footer>Mozilla · <span data-lang="pt">neutra (tradução livre)</span><span data-lang="en">neutral</span><sup data-cite="mozillaPosition"></sup></footer>
               </blockquote>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0" data-lang="pt">
-            Até o fórum é disputado: a Apple avisa que fará uma objeção formal se o WebMCP for para o
-            Web Machine Learning Working Group do W3C, e sugere um novo grupo sobre a web agêntica<sup data-cite="charterPr829"></sup>.
-          </p>
-          <p class="text-muted mt-3 mb-0" data-lang="en">
-            Even the venue is contested: Apple says to expect a formal objection if WebMCP moves into the
-            W3C Web Machine Learning Working Group, and suggests a new agentic-web group instead<sup data-cite="charterPr829"></sup>.
-          </p>
+          <p class="callout mt-4 mb-0" data-lang="pt">Até o fórum é disputado: a Apple ameaça objeção formal no W3C<sup data-cite="charterPr829"></sup>.</p>
+          <p class="callout mt-4 mb-0" data-lang="en">Even the venue is contested: Apple threatens a formal objection at the W3C<sup data-cite="charterPr829"></sup>.</p>
         </div>
       </div>
 
       <!-- What's next -->
-      <div class="carousel-item" data-refs="blinkExtend chromeSecureTools pr375 ecosystemTracker">
+      <div class="carousel-item" data-refs="blinkExtend tpacMinutes pr375">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">O que vem por aí</span><span data-lang="en">What's next</span></div>
-          <h2><span data-lang="pt">O que sai do origin trial</span><span data-lang="en">Coming out of the origin trial</span></h2>
+          <h2><span data-lang="pt">A API ainda vai mudar</span><span data-lang="en">The API will still change</span></h2>
           <div class="row g-4">
             <div class="col-md-6">
-              <h5 class="fw-bold"><span data-lang="pt">O Chrome está explorando</span><span data-lang="en">Chrome is exploring</span><sup data-cite="blinkExtend"></sup></h5>
-              <ul class="small text-muted" data-lang="pt">
-                <li><strong>Continuation API</strong> — uma ferramenta que começa numa página e termina depois de uma navegação.</li>
-                <li><strong>Tool stability API</strong> — avisar aos agentes quando a lista de ferramentas da página estabilizou.</li>
-                <li><strong>Limites de tamanho</strong> para ferramentas (hoje: orçamentos de caracteres sugeridos<sup data-cite="chromeSecureTools"></sup>).</li>
-                <li><strong>User activation</strong> repassada de um agente in-page para a página da ferramenta.</li>
+              <h5 class="status-heading"><span data-lang="pt">Chrome explorando</span><span data-lang="en">Chrome is exploring</span><sup data-cite="blinkExtend"></sup></h5>
+              <ul class="status-list" data-lang="pt">
+                <li>🔗 Ferramentas que atravessam navegações</li>
+                <li>⏱️ Aviso de "ferramentas prontas"</li>
+                <li>📏 Limites de tamanho</li>
+                <li>🚢 Pedido de lançamento durante o trial</li>
               </ul>
-              <ul class="small text-muted" data-lang="en">
-                <li><strong>Continuation API</strong> — a tool that starts on one page and finishes after a navigation.</li>
-                <li><strong>Tool stability API</strong> — tell agents when the page's tool list has settled.</li>
-                <li><strong>Size limits</strong> on tools (today: suggested character budgets<sup data-cite="chromeSecureTools"></sup>).</li>
-                <li><strong>User activation</strong> passed from an in-page agent to the tool's page.</li>
+              <ul class="status-list" data-lang="en">
+                <li>🔗 Tools that survive navigations</li>
+                <li>⏱️ A "tools are ready" signal</li>
+                <li>📏 Size limits</li>
+                <li>🚢 Intent to Ship during the trial</li>
               </ul>
-              <p class="small text-muted mb-0" data-lang="pt">O time espera pedir o Intent to Ship durante a extensão do trial<sup data-cite="blinkExtend"></sup>.</p>
-              <p class="small text-muted mb-0" data-lang="en">The team hopes to request Intent to Ship during the extended trial<sup data-cite="blinkExtend"></sup>.</p>
             </div>
             <div class="col-md-6">
-              <h5 class="fw-bold">
-                <span data-lang="pt">Reformulação proposta</span><span data-lang="en">Proposed reshape</span>
-                <span class="badge text-bg-warning align-middle"><span data-lang="pt">PR aberto, não é final</span><span data-lang="en">open PR, not final</span></span><sup data-cite="pr375"></sup>
+              <h5 class="status-heading">
+                <span data-lang="pt">Proposta em aberto</span><span data-lang="en">Open proposal</span><sup data-cite="pr375"></sup>
               </h5>
-              <pre class="bg-dark text-light p-3 rounded small mb-2"><code>await window.toolRegistry.registerTool(...);
-const theirs = await window.opener.tools.getTools();</code></pre>
-              <ul class="small text-muted mb-0" data-lang="pt">
-                <li>Renomear <code>modelContext</code> para <code>tools</code>: uma primitiva genérica de chamada de ferramentas, não só para LLMs.</li>
-                <li><code>naturalLanguageProperties</code> para os metadados voltados ao agente.</li>
-                <li>Entradas e saídas structured-clone (<code>Date</code>, <code>Blob</code>, <code>ImageData</code>...).</li>
-              </ul>
-              <ul class="small text-muted mb-0" data-lang="en">
-                <li>Rename <code>modelContext</code> to <code>tools</code>: a generic tool-calling primitive, not LLM-only.</li>
-                <li><code>naturalLanguageProperties</code> for agent-facing metadata.</li>
-                <li>Structured-clone inputs and outputs (<code>Date</code>, <code>Blob</code>, <code>ImageData</code>...).</li>
-              </ul>
+              <pre class="code-block small mb-3"><code>window.toolRegistry.registerTool(...);
+window.opener.tools.getTools();</code></pre>
+              <p class="text-muted mb-0" data-lang="pt">Rumo a uma primitiva genérica, não só para IA<sup data-cite="tpacMinutes"></sup></p>
+              <p class="text-muted mb-0" data-lang="en">Toward a generic primitive, not just for AI<sup data-cite="tpacMinutes"></sup></p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Try it yourself -->
-      <div class="carousel-item" data-refs="chromeOverview chromeOtBlog edgeLabs spec inspectorExtension openaiSiteTools ecosystemTracker">
+      <!-- Try it yourself: three paths -->
+      <div class="carousel-item" data-refs="chromeOverview edgeLabs chromeOtBlog spec inspectorExtension openaiSiteTools ecosystemTracker">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Teste você mesmo</span><span data-lang="en">Try it yourself</span></div>
-          <h2><span data-lang="pt">Ligando o WebMCP hoje</span><span data-lang="en">Turning WebMCP on today</span></h2>
-          <div class="accordion" id="setupAccordion">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#setupFlag">
-                  <span data-lang="pt">Opção A — Flag de testes local</span><span data-lang="en">Option A — Local testing flag</span>
-                </button>
-              </h2>
-              <div id="setupFlag" class="accordion-collapse collapse show" data-bs-parent="#setupAccordion">
-                <div class="accordion-body">
-                  <ol class="mb-0" data-lang="pt">
-                    <li>Chrome: abra <code>chrome://flags/#enable-webmcp-testing</code>, marque Enabled e reinicie<sup data-cite="chromeOverview"></sup>.</li>
-                    <li>Edge Canary/Dev: a mesma flag em <code>edge://flags/#enable-webmcp-testing</code><sup data-cite="edgeLabs"></sup>.</li>
-                  </ol>
-                  <ol class="mb-0" data-lang="en">
-                    <li>Chrome: open <code>chrome://flags/#enable-webmcp-testing</code>, set it to Enabled, relaunch<sup data-cite="chromeOverview"></sup>.</li>
-                    <li>Edge Canary/Dev: same flag at <code>edge://flags/#enable-webmcp-testing</code><sup data-cite="edgeLabs"></sup>.</li>
-                  </ol>
-                </div>
+          <h2><span data-lang="pt">Três caminhos para começar</span><span data-lang="en">Three ways to start</span></h2>
+          <div class="row g-4 align-items-stretch">
+            <div class="col-md-4">
+              <div class="path-card">
+                <div class="path-icon">🧪</div>
+                <h5><span data-lang="pt">Testar localmente</span><span data-lang="en">Test locally</span></h5>
+                <ol class="path-steps">
+                  <li><code>chrome://flags/#enable-webmcp-testing</code><sup data-cite="chromeOverview"></sup></li>
+                  <li><span data-lang="pt">Enabled e reiniciar</span><span data-lang="en">Enabled, then relaunch</span></li>
+                  <li><span data-lang="pt">No Edge: a mesma flag</span><span data-lang="en">On Edge: same flag</span><sup data-cite="edgeLabs"></sup></li>
+                </ol>
               </div>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#setupOt">
-                  <span data-lang="pt">Opção B — Origin trial, para usuários reais</span><span data-lang="en">Option B — Origin trial, for real users</span>
-                </button>
-              </h2>
-              <div id="setupOt" class="accordion-collapse collapse" data-bs-parent="#setupAccordion">
-                <div class="accordion-body">
-                  <ol class="mb-0" data-lang="pt">
-                    <li>Registre sua origem no origin trial do WebMCP (Chrome 149+)<sup data-cite="chromeOtBlog"></sup>.</li>
-                    <li>Sirva o token: <code>&lt;meta http-equiv="origin-trial" content="…"&gt;</code> ou um header HTTP.</li>
-                    <li>Sirva via HTTPS — a API só existe em contextos seguros<sup data-cite="spec"></sup>.</li>
-                  </ol>
-                  <ol class="mb-0" data-lang="en">
-                    <li>Register your origin for the WebMCP origin trial (Chrome 149+)<sup data-cite="chromeOtBlog"></sup>.</li>
-                    <li>Serve the token: <code>&lt;meta http-equiv="origin-trial" content="…"&gt;</code> or an HTTP header.</li>
-                    <li>Serve over HTTPS — the API only exists in secure contexts<sup data-cite="spec"></sup>.</li>
-                  </ol>
-                </div>
+            <div class="col-md-4">
+              <div class="path-card">
+                <div class="path-icon">🚀</div>
+                <h5><span data-lang="pt">Ir para produção</span><span data-lang="en">Go to production</span></h5>
+                <ol class="path-steps">
+                  <li><span data-lang="pt">Registrar no origin trial</span><span data-lang="en">Register for the origin trial</span><sup data-cite="chromeOtBlog"></sup></li>
+                  <li><span data-lang="pt">Servir o token</span><span data-lang="en">Serve the token</span></li>
+                  <li>HTTPS<sup data-cite="spec"></sup></li>
+                </ol>
               </div>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#setupAgent">
-                  <span data-lang="pt">Opção C — Traga um agente</span><span data-lang="en">Option C — Bring an agent</span>
-                </button>
-              </h2>
-              <div id="setupAgent" class="accordion-collapse collapse" data-bs-parent="#setupAccordion">
-                <div class="accordion-body">
-                  <ul class="mb-0" data-lang="pt">
-                    <li><a href="https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd" target="_blank" rel="noopener noreferrer">Model Context Tool Inspector</a> (chave de API do Gemini)<sup data-cite="inspectorExtension"></sup>, ou a extensão de agente de exemplo do Chrome rodando no dispositivo via Prompt API<sup data-cite="chromeOverview"></sup>.</li>
-                    <li>A extensão WebMCP Explorer, do Edge<sup data-cite="edgeLabs"></sup>.</li>
-                    <li>O navegador embutido do ChatGPT desktop — sem flag<sup data-cite="openaiSiteTools"></sup>.</li>
-                    <li>Agentes de código (Cursor, Claude Code) via Playwright MCP ou Chrome DevTools MCP<sup data-cite="ecosystemTracker"></sup>.</li>
-                  </ul>
-                  <ul class="mb-0" data-lang="en">
-                    <li><a href="https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd" target="_blank" rel="noopener noreferrer">Model Context Tool Inspector</a> (Gemini API key)<sup data-cite="inspectorExtension"></sup>, or Chrome's example agent extension running on-device via the Prompt API<sup data-cite="chromeOverview"></sup>.</li>
-                    <li>Edge's WebMCP Explorer extension<sup data-cite="edgeLabs"></sup>.</li>
-                    <li>ChatGPT desktop's built-in browser — no flag needed<sup data-cite="openaiSiteTools"></sup>.</li>
-                    <li>Coding agents (Cursor, Claude Code) via Playwright MCP or Chrome DevTools MCP<sup data-cite="ecosystemTracker"></sup>.</li>
-                  </ul>
-                </div>
+            <div class="col-md-4">
+              <div class="path-card">
+                <div class="path-icon">🤖</div>
+                <h5><span data-lang="pt">Trazer um agente</span><span data-lang="en">Bring an agent</span></h5>
+                <ol class="path-steps">
+                  <li>Tool Inspector<sup data-cite="inspectorExtension"></sup></li>
+                  <li>ChatGPT desktop<sup data-cite="openaiSiteTools"></sup></li>
+                  <li>Playwright MCP<sup data-cite="ecosystemTracker"></sup></li>
+                </ol>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- See it running -->
-      <div class="carousel-item" data-refs="chromeImperative chromeSecureTools">
-        <div class="slide">
-          <div class="slide-kicker"><span data-lang="pt">Demo ao vivo</span><span data-lang="en">Live demo</span></div>
-          <h2><span data-lang="pt">Veja funcionando</span><span data-lang="en">See it running</span></h2>
-          <ul class="lead text-body-secondary demo-steps" data-lang="pt">
-            <li>Acompanhe o painel <strong>Atividade do agente</strong> — cada <code>toolactivated</code>, <code>toolcancel</code> e <code>toolchange</code>.</li>
-            <li>Favorite um evento pelo testador de ferramentas — a string JSON do <code>executeTool()</code>, já interpretada.</li>
-            <li>Chame <code>buy_ticket</code> — uma ferramenta com <code>consequentialHint</code> que pede sua confirmação<sup data-cite="chromeSecureTools"></sup>.</li>
-            <li>Chame <code>get_event_reviews</code> — <code>untrustedContentHint</code>, e uma das reviews carrega uma instrução injetada.</li>
-            <li>Rode <code>sync_favorites_to_cloud</code> e clique em Cancelar antes de terminar<sup data-cite="chromeImperative"></sup>.</li>
-            <li>Abra um evento e alterne o favorito — a ferramenta se troca sozinha via <code>AbortSignal</code>.</li>
-          </ul>
-          <ul class="lead text-body-secondary demo-steps" data-lang="en">
-            <li>Watch the <strong>Agent activity</strong> panel — every <code>toolactivated</code>, <code>toolcancel</code> and <code>toolchange</code>.</li>
-            <li>Favorite an event from the tool tester — the JSON string from <code>executeTool()</code>, parsed.</li>
-            <li>Call <code>buy_ticket</code> — a <code>consequentialHint</code> tool that asks you to confirm<sup data-cite="chromeSecureTools"></sup>.</li>
-            <li>Call <code>get_event_reviews</code> — <code>untrustedContentHint</code>, and one review carries an injected instruction.</li>
-            <li>Run <code>sync_favorites_to_cloud</code>, then Cancel before it finishes<sup data-cite="chromeImperative"></sup>.</li>
-            <li>Open an event and toggle favorite — the tool swaps itself via <code>AbortSignal</code>.</li>
-          </ul>
-          <a href="demo/index.html" class="btn btn-primary btn-lg mt-2 align-self-start">
-            <span data-lang="pt">Abrir a demo &rarr;</span><span data-lang="en">Open the demo &rarr;</span>
-          </a>
+      <!-- Live demo -->
+      <div class="carousel-item">
+        <div class="slide cover-slide">
+          <div class="demo-emoji">🎮</div>
+          <h2><span data-lang="pt">Hora da demo</span><span data-lang="en">Demo time</span></h2>
+          <div class="chip-row justify-content-center mt-2">
+            <span class="chip"><span data-lang="pt">atividade do agente</span><span data-lang="en">agent activity</span></span>
+            <span class="chip"><span data-lang="pt">compra com confirmação</span><span data-lang="en">purchase with confirmation</span></span>
+            <span class="chip"><span data-lang="pt">review com prompt injection</span><span data-lang="en">review with prompt injection</span></span>
+            <span class="chip"><span data-lang="pt">cancelar no meio</span><span data-lang="en">cancel mid-flight</span></span>
+          </div>
         </div>
       </div>
 
       <!-- Checklist -->
-      <div class="carousel-item" data-refs="chromeOverview chromeBestPractices chromeSecureTools pr338">
+      <div class="carousel-item" data-refs="chromeOverview pr338 chromeBestPractices chromeSecureTools">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Para levar</span><span data-lang="en">Takeaways</span></div>
           <h2><span data-lang="pt">Adote amanhã</span><span data-lang="en">Adopt it tomorrow</span></h2>
-          <div class="row row-cols-1 row-cols-md-2 g-3 small" data-lang="pt">
-            <div class="col">✅ Detecte <code>document.modelContext</code> — é um aprimoramento progressivo<sup data-cite="chromeOverview"></sup>.</div>
-            <div class="col">✅ Comece pela imperativa; a declarativa está fora da spec por enquanto<sup data-cite="pr338"></sup>.</div>
-            <div class="col">✅ Uma função por ferramenta, verbos precisos, descrições positivas<sup data-cite="chromeBestPractices"></sup>.</div>
-            <div class="col">✅ Orçamentos: 500 caracteres por descrição, 30 por nome, 1,5 mil por saída<sup data-cite="chromeSecureTools"></sup>.</div>
-            <div class="col">✅ Anote: somente leitura, consequencial, não confiável<sup data-cite="chromeSecureTools"></sup>.</div>
-            <div class="col">✅ Valide com rigor no código, com folga no schema<sup data-cite="chromeBestPractices"></sup>.</div>
-            <div class="col">✅ Registre o conjunto inteiro de uma vez, e desfaça tudo se algo falhar<sup data-cite="chromeBestPractices"></sup>.</div>
-            <div class="col">✅ Só reporte sucesso quando o estado do app corresponder<sup data-cite="chromeBestPractices"></sup>.</div>
-          </div>
-          <div class="row row-cols-1 row-cols-md-2 g-3 small" data-lang="en">
-            <div class="col">✅ Feature-detect <code>document.modelContext</code> — it's a progressive enhancement<sup data-cite="chromeOverview"></sup>.</div>
-            <div class="col">✅ Start imperative; the declarative API is out of the spec for now<sup data-cite="pr338"></sup>.</div>
-            <div class="col">✅ One function per tool, precise verbs, positive descriptions<sup data-cite="chromeBestPractices"></sup>.</div>
-            <div class="col">✅ Budgets: 500 chars per description, 30 per name, 1.5K per output<sup data-cite="chromeSecureTools"></sup>.</div>
-            <div class="col">✅ Annotate: read-only, consequential, untrusted<sup data-cite="chromeSecureTools"></sup>.</div>
-            <div class="col">✅ Validate strictly in code, loosely in schema<sup data-cite="chromeBestPractices"></sup>.</div>
-            <div class="col">✅ Register the whole tool set at once, and roll back on failure<sup data-cite="chromeBestPractices"></sup>.</div>
-            <div class="col">✅ Only report success once the app state matches<sup data-cite="chromeBestPractices"></sup>.</div>
-          </div>
+          <ul class="checklist" data-lang="pt">
+            <li>Detecte <code>document.modelContext</code><sup data-cite="chromeOverview"></sup></li>
+            <li>Comece pela imperativa<sup data-cite="pr338"></sup></li>
+            <li>Uma função por ferramenta<sup data-cite="chromeBestPractices"></sup></li>
+            <li>Descrições curtas e positivas<sup data-cite="chromeSecureTools"></sup></li>
+            <li>Anote: leitura, consequencial, não confiável<sup data-cite="chromeSecureTools"></sup></li>
+            <li>Valide no código, não só no schema<sup data-cite="chromeBestPractices"></sup></li>
+          </ul>
+          <ul class="checklist" data-lang="en">
+            <li>Feature-detect <code>document.modelContext</code><sup data-cite="chromeOverview"></sup></li>
+            <li>Start imperative<sup data-cite="pr338"></sup></li>
+            <li>One function per tool<sup data-cite="chromeBestPractices"></sup></li>
+            <li>Short, positive descriptions<sup data-cite="chromeSecureTools"></sup></li>
+            <li>Annotate: read-only, consequential, untrusted<sup data-cite="chromeSecureTools"></sup></li>
+            <li>Validate in code, not only in the schema<sup data-cite="chromeBestPractices"></sup></li>
+          </ul>
         </div>
       </div>
 
@@ -970,38 +707,52 @@ const theirs = await window.opener.tools.getTools();</code></pre>
             <a href="https://robertheory.github.io/webmcp-demo/demo/" target="_blank" rel="noopener noreferrer">robertheory.github.io/webmcp-demo/demo</a>
           </p>
           <p class="text-muted small mb-0">
-            <span data-lang="pt">Código:</span><span data-lang="en">Source:</span>
             <a href="https://github.com/robertheory/webmcp-demo" target="_blank" rel="noopener noreferrer">github.com/robertheory/webmcp-demo</a> ·
-            <span data-lang="pt">Referências no próximo slide</span><span data-lang="en">References on the next slide</span>
+            <span data-lang="pt">fontes nos próximos slides</span><span data-lang="en">sources on the next slides</span>
           </p>
         </div>
       </div>
 
-      <!-- References (generated by presentation.js from every data-refs/data-cite in the deck) -->
-      <div class="carousel-item">
-        <div class="slide references-slide">
-          <div class="slide-kicker"><span data-lang="pt">Fontes</span><span data-lang="en">Sources</span></div>
-          <h2><span data-lang="pt">Referências</span><span data-lang="en">References</span></h2>
-          <div id="references-list" class="references-list"></div>
-        </div>
-      </div>
+      <!-- Source index slides are appended here by presentation.js. -->
     </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#deck" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#deck" data-bs-slide="prev" aria-label="Previous">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#deck" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#deck" data-bs-slide="next" aria-label="Next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </button>
   </div>
 
-  <button type="button" id="present-mode-toggle" class="btn btn-sm btn-outline-secondary present-mode-btn">
-    &#x26F6; <span data-lang="pt">Apresentar</span><span data-lang="en">Present</span>
-  </button>
-
-  <a href="demo/index.html" class="btn btn-danger floating-demo-btn">
-    <span data-lang="pt">Testar a demo &rarr;</span><span data-lang="en">Try the demo &rarr;</span>
-  </a>
+  <!-- Icon-only controls for the operator: fullscreen (F), demo (D), language (L). -->
+  <div class="action-bar" role="toolbar">
+    <button type="button" id="fullscreen-toggle" class="btn btn-sm btn-outline-secondary"
+      data-title-pt="Tela cheia (F)" data-title-en="Fullscreen (F)">
+      <svg class="icon-enter" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5M.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5"/>
+      </svg>
+      <svg class="icon-exit" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5m5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5M0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5m10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0z"/>
+      </svg>
+    </button>
+    <a href="demo/index.html" id="demo-link" class="btn btn-sm btn-outline-secondary"
+      data-title-pt="Abrir a demo (D)" data-title-en="Open the demo (D)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1z"/>
+        <path d="M3.051 3.26a.5.5 0 0 1 .354-.613l1.932-.518a.5.5 0 0 1 .62.39c.655-.079 1.35-.117 2.043-.117.72 0 1.443.041 2.12.126a.5.5 0 0 1 .622-.399l1.932.518a.5.5 0 0 1 .306.729q.211.136.373.297c.408.408.78 1.05 1.095 1.772.32.733.599 1.591.805 2.466s.34 1.78.364 2.606c.024.816-.059 1.602-.328 2.21a1.42 1.42 0 0 1-1.445.83c-.636-.067-1.115-.394-1.513-.773-.245-.232-.496-.526-.739-.808-.126-.148-.25-.292-.368-.423-.728-.804-1.597-1.527-3.224-1.527s-2.496.723-3.224 1.527c-.119.131-.242.275-.368.423-.243.282-.494.575-.739.808-.398.38-.877.706-1.513.773a1.42 1.42 0 0 1-1.445-.83c-.27-.608-.352-1.395-.329-2.21.024-.826.16-1.73.365-2.606.206-.875.486-1.733.805-2.466.315-.722.687-1.364 1.094-1.772a2.3 2.3 0 0 1 .433-.335l-.028-.079zm2.036.412c-.877.185-1.469.443-1.733.708-.276.276-.587.783-.885 1.465a14 14 0 0 0-.748 2.295 12.4 12.4 0 0 0-.339 2.406c-.022.755.062 1.368.243 1.776a.42.42 0 0 0 .426.24c.327-.034.61-.199.929-.502.212-.202.4-.423.615-.674.133-.156.276-.323.44-.504C4.861 9.969 5.978 9.027 8 9.027s3.139.942 3.965 1.855c.164.181.307.348.44.504.214.251.403.472.615.674.318.303.601.468.929.503a.42.42 0 0 0 .426-.241c.18-.408.265-1.02.243-1.776a12.4 12.4 0 0 0-.339-2.406 14 14 0 0 0-.748-2.295c-.298-.682-.61-1.19-.885-1.465-.264-.265-.856-.523-1.733-.708-.85-.179-1.877-.27-2.913-.27s-2.063.091-2.913.27"/>
+      </svg>
+    </a>
+    <div class="dropup">
+      <button type="button" class="btn btn-sm btn-outline-secondary lang-current" data-bs-toggle="dropdown" aria-expanded="false"
+        data-title-pt="Idioma (L)" data-title-en="Language (L)">
+        <span data-lang-current>PT</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><button type="button" class="dropdown-item" data-set-lang="pt-BR">Português (PT)</button></li>
+        <li><button type="button" class="dropdown-item" data-set-lang="en">English (EN)</button></li>
+      </ul>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/references.js"></script>

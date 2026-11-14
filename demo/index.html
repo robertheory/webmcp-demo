@@ -22,9 +22,15 @@
       <div class="d-flex align-items-center gap-2 ms-auto">
         <span class="navbar-text small" data-lang="pt">Demo do protocolo WebMCP</span>
         <span class="navbar-text small" data-lang="en">WebMCP protocol demo</span>
-        <div class="btn-group btn-group-sm" role="group" aria-label="Idioma / Language">
-          <button type="button" class="btn btn-outline-light" data-set-lang="pt-BR" title="Português">PT</button>
-          <button type="button" class="btn btn-outline-light" data-set-lang="en" title="English">EN</button>
+        <div class="dropdown">
+          <button type="button" class="btn btn-outline-light btn-sm lang-current" data-bs-toggle="dropdown" aria-expanded="false"
+            data-title-pt="Idioma" data-title-en="Language">
+            <span data-lang-current>PT</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><button type="button" class="dropdown-item" data-set-lang="pt-BR">Português (PT)</button></li>
+            <li><button type="button" class="dropdown-item" data-set-lang="en">English (EN)</button></li>
+          </ul>
         </div>
         <button
           type="button"

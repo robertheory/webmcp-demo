@@ -1,4 +1,6 @@
-# WebMCP — give the web a voice AI agents can act on
+# WebMCP: ensinando a Web a conversar com agentes de IA
+
+*Teaching the Web to talk to AI agents.*
 
 Today, an AI agent uses your website the way a tourist reads a menu in a
 language they don't speak: it takes screenshots, guesses what each button
@@ -40,16 +42,22 @@ it: no build, no server, nothing to install. The demo also works straight
 from disk (`demo/index.html`), including WebMCP itself in Chrome with the flag
 above. The styles load Bootstrap from a CDN, so keep an internet connection.
 
-The talk and the demo are in Brazilian Portuguese, with a PT / EN switch in
-the corner (or add `?lang=en` to the URL); the choice carries over between
-the two. Arrow keys move between slides, "Apresentar" goes fullscreen, and
-every slide links its sources in a footer.
+The talk and the demo are in Brazilian Portuguese, with a PT / EN switch
+(or add `?lang=en` to the URL); the choice carries over between the two.
+
+It's built for a slide clicker: nothing on a slide needs a click. Clickers
+(PageDown/PageUp), arrows and Space move between slides; the operator can
+press **F** for fullscreen, **D** to open the demo and **L** to switch
+language — the same three actions as the icons in the bottom-right corner.
+Every slide lists its sources in a footer, and the last slides index them
+by slide.
 
 ## References
 
-Every source cited in the presentation, grouped as on its References slide
-(accessed 13–14 Nov 2026). The slides cite them from a single catalog,
-[`js/references.js`](js/references.js).
+Every source cited in the presentation, grouped by topic (accessed 13–14
+Nov 2026). The slides cite them from a single catalog,
+[`js/references.js`](js/references.js), and the deck's last slides list
+them by slide.
 
 **Spec & standards process**
 
@@ -58,20 +66,16 @@ Every source cited in the presentation, grouped as on its References slide
 - [Introduce generic tool calling explainer — webmcp PR #375 (open)](https://github.com/webmachinelearning/webmcp/pull/375)
 - [Declarative API explainer](https://github.com/webmachinelearning/webmcp/blob/main/declarative-api-explainer.md)
 - [WebML CG F2F at TPAC 2026 — minutes (27 Oct 2026)](https://www.w3.org/2026/10/27-webmachinelearning-minutes.html)
-- [Browser and agent implementation status](https://github.com/webmachinelearning/webmcp/blob/main/implementation-status.md)
 - [Adds WebMCP in scope — w3c/charter-drafts PR #829](https://github.com/w3c/charter-drafts/pull/829)
 
 **Chrome & Edge**
 
 - [WebMCP — Chrome for Developers](https://developer.chrome.com/docs/ai/webmcp)
 - [WebMCP Imperative API](https://developer.chrome.com/docs/ai/webmcp/imperative-api)
-- [WebMCP Declarative API](https://developer.chrome.com/docs/ai/webmcp/declarative-api)
 - [WebMCP and MCP](https://developer.chrome.com/docs/ai/webmcp/compare-mcp)
 - [Join the WebMCP origin trial (9 Jun 2026)](https://developer.chrome.com/blog/ai-webmcp-origin-trial)
 - [Chrome at Google I/O 2026 (19 May 2026)](https://developer.chrome.com/blog/chrome-at-io26)
 - [WebMCP early preview program (10 Feb 2026)](https://developer.chrome.com/blog/webmcp-epp)
-- [WebMCP — Chrome Platform Status](https://chromestatus.com/feature/5117755740913664)
-- [Intent to Experiment: WebMCP — blink-dev](https://groups.google.com/a/chromium.org/g/blink-dev/c/gmYffo5WOE8)
 - [Intent to Extend Experiment: WebMCP — blink-dev](https://www.mail-archive.com/blink-dev@chromium.org/msg17897.html)
 - [New in Edge for developers — WebMCP ready for testing (21 Sep 2026)](https://blogs.windows.com/msedgedev/2026/09/21/new-in-edge-for-developers-create-better-components-and-make-your-site-agent-ready/)
 - [WebMCP — Microsoft Edge origin trial](https://developer.microsoft.com/en-us/microsoft-edge/origin-trials/trials/0b76fe60-b266-458e-a285-04e375c0c31a)
