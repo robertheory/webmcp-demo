@@ -35,9 +35,11 @@ serializes them to JSON for the caller, so the MCP-style
 
 **Imperative only.** The form-based "declarative" API (`toolname` /
 `tooldescription` attributes) was
-[removed from the spec on 8 Oct 2026](https://github.com/webmachinelearning/webmcp/pull/338)
-and ChatGPT's site tools ignore form-based tools, so the demo doesn't use
-it. Search is the imperative `search_events` tool instead: it fills in the
+[removed from the spec on 8 Oct 2026](https://github.com/webmachinelearning/webmcp/pull/338),
+so the demo sticks to what the spec defines — even though implementations
+such as Chrome's origin trial and
+[ChatGPT's site tools](https://learn.chatgpt.com/docs/webmcp) still accept
+form-based tools. Search is the imperative `search_events` tool instead: it fills in the
 same search form a human uses, so the audience sees the agent's query appear.
 The presentation still explains the declarative API and its status.
 
@@ -62,7 +64,10 @@ badges.
 **A consequential tool that asks first.** `buy_ticket(eventId, quantity)`
 opens a confirmation dialog before buying anything. The page doesn't rely on
 the agent (or the browser) honoring `consequentialHint`: it asks the human
-directly, and the dialog closes itself if the call is cancelled.
+directly, and the dialog closes itself if the call is cancelled. That dialog
+is this page's own code, not a WebMCP feature — `consequentialHint` is only
+a hint. The purchase is simulated: tickets are just counted in
+`localStorage`, no payment happens, and the tool's description says so.
 
 **A prompt injection in user content.** `get_event_reviews` returns reviews
 written by "the public". One review of the AI Agents Hackathon tells the AI
@@ -121,8 +126,8 @@ Pick one, then follow the script below.
   Bring your own model key.
 - **ChatGPT desktop app.** Open the live demo in the app's built-in browser:
   ["site tools"](https://learn.chatgpt.com/docs/webmcp) are on by default,
-  no flag needed. Only imperative tools on the top-level page show up —
-  which is every tool in this demo.
+  no flag needed. It finds tools on the top-level page and in iframes,
+  registered in JavaScript or through form attributes.
 - **Coding agents (Cursor, Claude Code).** Playwright MCP and Chrome
   DevTools MCP can list and call page tools once Chrome is launched with
   WebMCP enabled (e.g. `--enable-features=WebMCP`), per the

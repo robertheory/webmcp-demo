@@ -382,6 +382,13 @@ code {
   color: rgba(243, 239, 228, 0.75) !important;
 }
 
+.hook-note {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: rgba(243, 239, 228, 0.7);
+  margin: 0.5rem 0 0;
+}
+
 .closing-tagline {
   font-size: 1.8rem;
   font-weight: 700;
@@ -1099,6 +1106,16 @@ tool-card {
   margin-right: 0.5rem;
   text-align: center;
   vertical-align: middle;
+}
+
+/* Institutional positions, kept apart from implementation status. */
+.status-positions {
+  margin: 0.4rem 0 0;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--graphite);
 }
 
 .status-list .icon {

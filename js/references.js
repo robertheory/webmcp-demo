@@ -9,7 +9,7 @@
 const REFERENCE_GROUPS = [
   "Spec & standards process",
   "Chrome & Edge",
-  "Browser positions",
+  "Browsers",
   "Agents & ecosystem",
   "Security",
   "Guides",
@@ -20,7 +20,7 @@ const REFERENCE_GROUPS = [
 const REFERENCE_GROUP_LABELS_PT = {
   "Spec & standards process": "Spec e processo de padronização",
   "Chrome & Edge": "Chrome e Edge",
-  "Browser positions": "Posições dos navegadores",
+  "Browsers": "Navegadores",
   "Agents & ecosystem": "Agentes e ecossistema",
   Security: "Segurança",
   Guides: "Guias",
@@ -64,9 +64,23 @@ const REFERENCES = {
     accessed: "2026-11-13",
   },
   charterPr829: {
-    title: "[wg/webmachinelearning] Adds WebMCP in scope (w3c/charter-drafts PR #829)",
+    title: "[wg/webmachinelearning] Adds WebMCP in scope (w3c/charter-drafts PR #829, closed unmerged 13 Oct 2026)",
     short: "W3C charter draft PR #829",
     url: "https://github.com/w3c/charter-drafts/pull/829",
+    group: "Spec & standards process",
+    accessed: "2026-11-14",
+  },
+  agenticWebCharter: {
+    title: "Agentic Web Working Group Charter (W3C draft)",
+    short: "Agentic Web WG charter (draft)",
+    url: "https://w3c.github.io/charter-drafts/2026/agenticweb-wg.html",
+    group: "Spec & standards process",
+    accessed: "2026-11-14",
+  },
+  cgMinutesNov12: {
+    title: "WebML CG teleconference — minutes (12 Nov 2026)",
+    short: "WebML CG minutes, 12 Nov",
+    url: "https://www.w3.org/2026/11/12-webmachinelearning-minutes.html",
     group: "Spec & standards process",
     accessed: "2026-11-14",
   },
@@ -155,21 +169,28 @@ const REFERENCES = {
     title: "WebKit standards position on WebMCP — oppose (issue #670)",
     short: "WebKit position",
     url: "https://github.com/WebKit/standards-positions/issues/670",
-    group: "Browser positions",
+    group: "Browsers",
     accessed: "2026-11-14",
   },
   mozillaPosition: {
     title: "Mozilla standards position on WebMCP — neutral (issue #1412)",
     short: "Mozilla position",
     url: "https://github.com/mozilla/standards-positions/issues/1412",
-    group: "Browser positions",
+    group: "Browsers",
     accessed: "2026-11-14",
   },
   bravePr: {
     title: "[AI Chat]: Enable WebMCP by default (brave-core PR #40616)",
     short: "Brave PR #40616",
     url: "https://github.com/brave/brave-core/pull/40616",
-    group: "Browser positions",
+    group: "Browsers",
+    accessed: "2026-11-14",
+  },
+  firefoxPrototype: {
+    title: "[meta] Implement a prototype WebMCP API (Mozilla Bugzilla 2018306)",
+    short: "Firefox prototype (Bugzilla)",
+    url: "https://bugzilla.mozilla.org/show_bug.cgi?id=2018306",
+    group: "Browsers",
     accessed: "2026-11-14",
   },
 
@@ -187,6 +208,13 @@ const REFERENCES = {
     url: "https://webmcp.com/ecosystem-tracker",
     group: "Agents & ecosystem",
     accessed: "2026-11-13",
+  },
+  mcpTransports: {
+    title: "Model Context Protocol specification — Transports (stdio, Streamable HTTP)",
+    short: "MCP spec: transports",
+    url: "https://modelcontextprotocol.io/specification/latest/basic/transports",
+    group: "Agents & ecosystem",
+    accessed: "2026-11-14",
   },
 
   // --- Security ------------------------------------------------------------

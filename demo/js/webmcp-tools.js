@@ -7,7 +7,8 @@
 // one way to do that: call document.modelContext.registerTool({...}) from
 // JavaScript (the "imperative" API) — that's the only kind of tool this
 // demo uses. The form-based "declarative" API was removed from the spec on
-// 8 Oct 2026 (webmcp PR #338) and ChatGPT's site tools don't support it.
+// 8 Oct 2026 (webmcp PR #338), so the demo sticks to what the spec defines,
+// even though some implementations still accept form-based tools.
 //
 // All text — UI, tool titles/descriptions and tool results — follows the
 // language picked in js/lang.js (Portuguese by default). Switching language
@@ -245,15 +246,17 @@ async function registerSharedTools() {
     },
   });
 
-  // consequentialHint: spends money, hard to undo. Agents and browsers may
-  // ask for confirmation themselves, but the page doesn't rely on that — it
-  // always asks the human before committing.
+  // consequentialHint: stands in for a purchase, which is hard to undo. The
+  // purchase is simulated (tickets are only counted in localStorage), and the
+  // description says so. The confirmation dialog is this page's own safeguard,
+  // not something WebMCP provides: agents and browsers may ask too, but the
+  // page doesn't rely on that.
   await modelContext.registerTool({
     name: "buy_ticket",
     title: tr("Comprar ingresso", "Buy ticket"),
     description: tr(
-      "Compra ingressos para um evento de tecnologia. Cobra no cartão salvo do usuário.",
-      "Buy tickets for a tech event. Charges the user's saved card."
+      "Simula a compra de ingressos para um evento de tecnologia e registra a quantidade localmente. Nenhuma cobrança real é feita.",
+      "Simulates buying tickets for a tech event and records the quantity locally. No real payment is made."
     ),
     inputSchema: {
       type: "object",
@@ -281,9 +284,11 @@ async function registerSharedTools() {
           title: tr("Um agente quer comprar ingressos", "An agent wants to buy tickets"),
           body: tr(
             `<p class="mb-1"><strong>${count}</strong> ingresso(s) para <strong>${escapeHtml(event.title)}</strong>.</p>
-             <p class="text-muted small mb-0">A página pergunta direto para você — ela não confia na palavra do agente de que você concordou.</p>`,
+             <p class="text-muted small mb-2">A página pergunta direto para você — ela não confia na palavra do agente de que você concordou.</p>
+             <p class="small mb-0"><span class="badge text-bg-light border">Compra simulada — nenhum pagamento real</span></p>`,
             `<p class="mb-1"><strong>${count}</strong> ticket(s) for <strong>${escapeHtml(event.title)}</strong>.</p>
-             <p class="text-muted small mb-0">The page asks you directly — it doesn't trust the agent's word that you agreed.</p>`
+             <p class="text-muted small mb-2">The page asks you directly — it doesn't trust the agent's word that you agreed.</p>
+             <p class="small mb-0"><span class="badge text-bg-light border">Simulated purchase — no real payment</span></p>`
           ),
           confirmLabel: tr("Comprar ingressos", "Buy tickets"),
         },

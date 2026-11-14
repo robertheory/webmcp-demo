@@ -73,7 +73,9 @@ them by slide.
 - [Introduce generic tool calling explainer — webmcp PR #375 (open)](https://github.com/webmachinelearning/webmcp/pull/375)
 - [Declarative API explainer](https://github.com/webmachinelearning/webmcp/blob/main/declarative-api-explainer.md)
 - [WebML CG F2F at TPAC 2026 — minutes (27 Oct 2026)](https://www.w3.org/2026/10/27-webmachinelearning-minutes.html)
-- [Adds WebMCP in scope — w3c/charter-drafts PR #829](https://github.com/w3c/charter-drafts/pull/829)
+- [Adds WebMCP in scope — w3c/charter-drafts PR #829 (closed unmerged)](https://github.com/w3c/charter-drafts/pull/829)
+- [Agentic Web Working Group Charter (W3C draft)](https://w3c.github.io/charter-drafts/2026/agenticweb-wg.html)
+- [WebML CG teleconference — minutes (12 Nov 2026)](https://www.w3.org/2026/11/12-webmachinelearning-minutes.html)
 
 **Chrome & Edge**
 
@@ -89,16 +91,18 @@ them by slide.
 - [MicrosoftEdge/webmcp-labs](https://github.com/MicrosoftEdge/webmcp-labs)
 - [WebMCP - Model Context Tool Inspector](https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd)
 
-**Browser positions**
+**Browsers**
 
 - [WebKit standards position — oppose (#670)](https://github.com/WebKit/standards-positions/issues/670)
 - [Mozilla standards position — neutral (#1412)](https://github.com/mozilla/standards-positions/issues/1412)
 - [Enable WebMCP by default — brave-core PR #40616](https://github.com/brave/brave-core/pull/40616)
+- [Implement a prototype WebMCP API — Mozilla Bugzilla 2018306](https://bugzilla.mozilla.org/show_bug.cgi?id=2018306)
 
 **Agents & ecosystem**
 
 - [Site tools (WebMCP) — ChatGPT Learn](https://learn.chatgpt.com/docs/webmcp)
 - [WebMCP Ecosystem Adoption Tracker](https://webmcp.com/ecosystem-tracker)
+- [Model Context Protocol specification — Transports](https://modelcontextprotocol.io/specification/latest/basic/transports)
 
 **Security**
 

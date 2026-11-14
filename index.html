@@ -163,8 +163,8 @@
               </div>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 small" data-lang="pt">Demo da Browser Use, setembro de 2026<sup data-cite="ecosystemTracker"></sup></p>
-          <p class="text-muted mt-3 mb-0 small" data-lang="en">Browser Use demo, September 2026<sup data-cite="ecosystemTracker"></sup></p>
+          <p class="text-muted mt-3 mb-0 small" data-lang="pt">Anúncio da Browser Use (set. 2026), sem documentação pública<sup data-cite="ecosystemTracker"></sup></p>
+          <p class="text-muted mt-3 mb-0 small" data-lang="en">Browser Use announcement (Sep 2026), no public documentation<sup data-cite="ecosystemTracker"></sup></p>
         </div>
       </div>
 
@@ -173,8 +173,10 @@
         <div class="slide cover-slide hook-slide">
           <h2 data-lang="pt">E se a página simplesmente <span class="accent">dissesse</span> ao agente o que ele pode fazer?</h2>
           <h2 data-lang="en">What if the page just <span class="accent">told</span> the agent what it can do?</h2>
-          <p class="lead text-body-secondary mt-4" data-lang="pt">WebMCP: ferramentas tipadas, registradas pela própria página<sup data-cite="spec"></sup></p>
-          <p class="lead text-body-secondary mt-4" data-lang="en">WebMCP: typed tools, registered by the page itself<sup data-cite="spec"></sup></p>
+          <p class="lead text-body-secondary mt-4" data-lang="pt">WebMCP: ferramentas tipadas, registradas pela própria página</p>
+          <p class="lead text-body-secondary mt-4" data-lang="en">WebMCP: typed tools, registered by the page itself</p>
+          <p class="hook-note" data-lang="pt">uma proposta em rascunho de Community Group, ainda não um padrão W3C<sup data-cite="spec"></sup></p>
+          <p class="hook-note" data-lang="en">a draft Community Group proposal, not yet a W3C standard<sup data-cite="spec"></sup></p>
         </div>
       </div>
 
@@ -257,8 +259,8 @@
       tooldescription="Search events"&gt;
   &lt;input name="query" /&gt;
 &lt;/form&gt;</code></pre>
-                <p class="mb-0" data-lang="pt">Segue como explainer<sup data-cite="declarativeExplainer"></sup>; o ChatGPT não suporta<sup data-cite="openaiSiteTools"></sup></p>
-                <p class="mb-0" data-lang="en">Lives on as an explainer<sup data-cite="declarativeExplainer"></sup>; ChatGPT doesn't support it<sup data-cite="openaiSiteTools"></sup></p>
+                <p class="mb-0" data-lang="pt">Segue como explainer<sup data-cite="declarativeExplainer"></sup>, mas Chrome<sup data-cite="pr338"></sup> e ChatGPT<sup data-cite="openaiSiteTools"></sup> ainda aceitam</p>
+                <p class="mb-0" data-lang="en">Lives on as an explainer<sup data-cite="declarativeExplainer"></sup>, but Chrome<sup data-cite="pr338"></sup> and ChatGPT<sup data-cite="openaiSiteTools"></sup> still accept it</p>
               </div>
             </div>
           </div>
@@ -371,7 +373,7 @@
       </div>
 
       <!-- WebMCP vs MCP -->
-      <div class="carousel-item" data-refs="chromeCompareMcp mozillaPosition">
+      <div class="carousel-item" data-refs="chromeCompareMcp openaiSiteTools mcpTransports mozillaPosition">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Não é a mesma coisa</span><span data-lang="en">Not the same thing</span></div>
           <h2>WebMCP vs. MCP</h2>
@@ -382,8 +384,8 @@
                 <h4 class="fw-bold">MCP</h4>
                 <p class="lead mb-2" data-lang="pt">Central de atendimento<sup data-cite="chromeCompareMcp"></sup></p>
                 <p class="lead mb-2" data-lang="en">A call center<sup data-cite="chromeCompareMcp"></sup></p>
-                <p class="text-muted mb-0" data-lang="pt">Num servidor · credenciais próprias · sempre no ar</p>
-                <p class="text-muted mb-0" data-lang="en">On a server · its own credentials · always on</p>
+                <p class="text-muted mb-0" data-lang="pt">Servidor local ou remoto<sup data-cite="mcpTransports"></sup> · independe da página aberta<sup data-cite="openaiSiteTools"></sup></p>
+                <p class="text-muted mb-0" data-lang="en">Local or remote server<sup data-cite="mcpTransports"></sup> · works without an open page<sup data-cite="openaiSiteTools"></sup></p>
               </div>
             </div>
             <div class="col-md-6">
@@ -565,7 +567,7 @@
       </div>
 
       <!-- Where it stands -->
-      <div class="carousel-item" data-refs="chromeOtBlog edgeBlog bravePr mozillaPosition webkitPosition openaiSiteTools chromeIo26 ecosystemTracker">
+      <div class="carousel-item" data-refs="chromeOtBlog edgeBlog bravePr firefoxPrototype ecosystemTracker mozillaPosition webkitPosition openaiSiteTools chromeIo26">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Novembro de 2026</span><span data-lang="en">November 2026</span></div>
           <h2><span data-lang="pt">Onde estamos hoje</span><span data-lang="en">Where it stands today</span></h2>
@@ -576,9 +578,14 @@
                 <li><span class="tag tag-outline">trial</span> Chrome<sup data-cite="chromeOtBlog"></sup></li>
                 <li><span class="tag tag-outline">trial</span> Edge<sup data-cite="edgeBlog"></sup></li>
                 <li><span class="tag tag-dashed">nightly</span> Brave<sup data-cite="bravePr"></sup></li>
-                <li><span class="tag tag-muted"><span data-lang="pt">neutro</span><span data-lang="en">neutral</span></span> Firefox<sup data-cite="mozillaPosition"></sup></li>
-                <li><span class="tag tag-ink"><span data-lang="pt">contra</span><span data-lang="en">opposed</span></span> Safari<sup data-cite="webkitPosition"></sup></li>
+                <li><span class="tag tag-muted"><span data-lang="pt">protótipo</span><span data-lang="en">prototype</span></span> Firefox<sup data-cite="firefoxPrototype"></sup></li>
+                <li><span class="tag tag-muted"><span data-lang="pt">sem suporte</span><span data-lang="en">none</span></span> Safari<sup data-cite="ecosystemTracker"></sup></li>
               </ul>
+              <p class="status-positions">
+                <span data-lang="pt">Posições:</span><span data-lang="en">Positions:</span>
+                Mozilla <span data-lang="pt">neutra</span><span data-lang="en">neutral</span><sup data-cite="mozillaPosition"></sup> ·
+                WebKit <span data-lang="pt">contra</span><span data-lang="en">opposed</span><sup data-cite="webkitPosition"></sup>
+              </p>
             </div>
             <div class="col-md-4">
               <h5 class="status-heading"><span data-lang="pt">Agentes</span><span data-lang="en">Agents</span></h5>
@@ -586,7 +593,7 @@
                 <li><span class="tag tag-yellow"><span data-lang="pt">no ar</span><span data-lang="en">live</span></span> ChatGPT desktop<sup data-cite="openaiSiteTools"></sup></li>
                 <li><span class="tag tag-dashed">nightly</span> Brave Leo<sup data-cite="bravePr"></sup></li>
                 <li><span class="tag tag-muted"><span data-lang="pt">em breve</span><span data-lang="en">soon</span></span> Gemini<sup data-cite="chromeIo26"></sup></li>
-                <li><span class="tag tag-muted"><span data-lang="pt">sem descoberta</span><span data-lang="en">no discovery</span></span> Claude<sup data-cite="ecosystemTracker"></sup></li>
+                <li><span class="tag tag-muted"><span data-lang="pt">só se pedido</span><span data-lang="en">if asked</span></span> Claude<sup data-cite="ecosystemTracker"></sup></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -602,7 +609,7 @@
       </div>
 
       <!-- The debate -->
-      <div class="carousel-item" data-refs="webkitPosition mozillaPosition charterPr829">
+      <div class="carousel-item" data-refs="webkitPosition mozillaPosition charterPr829 agenticWebCharter cgMinutesNov12">
         <div class="slide">
           <div class="slide-kicker"><span data-lang="pt">Nada resolvido</span><span data-lang="en">Not settled</span></div>
           <h2><span data-lang="pt">O debate</span><span data-lang="en">The debate</span></h2>
@@ -622,8 +629,8 @@
               </blockquote>
             </div>
           </div>
-          <p class="callout mt-4 mb-0" data-lang="pt">Até o fórum é disputado: a Apple ameaça objeção formal no W3C<sup data-cite="charterPr829"></sup>.</p>
-          <p class="callout mt-4 mb-0" data-lang="en">Even the venue is contested: Apple threatens a formal objection at the W3C<sup data-cite="charterPr829"></sup>.</p>
+          <p class="callout mt-4 mb-0" data-lang="pt">Até o fórum foi disputado: a Apple ameaçou objeção formal no grupo original<sup data-cite="charterPr829"></sup>. Agora o caminho é um novo Agentic Web WG (charter em rascunho), com o WebMCP como ponto de partida<sup data-cite="agenticWebCharter"></sup><sup data-cite="cgMinutesNov12"></sup>.</p>
+          <p class="callout mt-4 mb-0" data-lang="en">Even the venue was contested: Apple threatened a formal objection in the original group<sup data-cite="charterPr829"></sup>. The path now is a new Agentic Web WG (draft charter), with WebMCP as its starting point<sup data-cite="agenticWebCharter"></sup><sup data-cite="cgMinutesNov12"></sup>.</p>
         </div>
       </div>
 
@@ -639,13 +646,13 @@
                 <li><span data-icon="link"></span> Ferramentas que atravessam navegações</li>
                 <li><span data-icon="timer"></span> Aviso de "ferramentas prontas"</li>
                 <li><span data-icon="ruler"></span> Limites de tamanho</li>
-                <li><span data-icon="ship"></span> Pedido de lançamento durante o trial</li>
+                <li><span data-icon="ship"></span> Expectativa (sem data) de Intent to Ship</li>
               </ul>
               <ul class="status-list" data-lang="en">
                 <li><span data-icon="link"></span> Tools that survive navigations</li>
                 <li><span data-icon="timer"></span> A "tools are ready" signal</li>
                 <li><span data-icon="ruler"></span> Size limits</li>
-                <li><span data-icon="ship"></span> Intent to Ship during the trial</li>
+                <li><span data-icon="ship"></span> Hoping for Intent to Ship (no date)</li>
               </ul>
             </div>
             <div class="col-md-6">
@@ -720,23 +727,23 @@ window.opener.tools.getTools();</code></pre>
       </div>
 
       <!-- Checklist -->
-      <div class="carousel-item" data-refs="chromeOverview pr338 chromeBestPractices chromeSecureTools">
+      <div class="carousel-item" data-refs="chromeOverview openaiSiteTools pr338 chromeBestPractices chromeSecureTools">
         <div class="slide">
           <div class="slide-kicker is-practice"><span data-lang="pt">Para levar</span><span data-lang="en">Takeaways</span></div>
           <h2><span data-lang="pt">Adote <span class="mark">amanhã</span></span><span data-lang="en">Adopt it <span class="mark">tomorrow</span></span></h2>
           <ul class="checklist" data-lang="pt">
-            <li>Detecte <code>document.modelContext</code><sup data-cite="chromeOverview"></sup></li>
+            <li>Detecte <code>document.modelContext</code><sup data-cite="chromeOverview"></sup><sup data-cite="openaiSiteTools"></sup></li>
             <li>Comece pela imperativa<sup data-cite="pr338"></sup></li>
             <li>Uma função por ferramenta<sup data-cite="chromeBestPractices"></sup></li>
-            <li>Descrições curtas e positivas<sup data-cite="chromeSecureTools"></sup></li>
+            <li>Descrições curtas<sup data-cite="chromeSecureTools"></sup> e positivas<sup data-cite="chromeBestPractices"></sup></li>
             <li>Anote: leitura, consequencial, não confiável<sup data-cite="chromeSecureTools"></sup></li>
             <li>Valide no código, não só no schema<sup data-cite="chromeBestPractices"></sup></li>
           </ul>
           <ul class="checklist" data-lang="en">
-            <li>Feature-detect <code>document.modelContext</code><sup data-cite="chromeOverview"></sup></li>
+            <li>Feature-detect <code>document.modelContext</code><sup data-cite="chromeOverview"></sup><sup data-cite="openaiSiteTools"></sup></li>
             <li>Start imperative<sup data-cite="pr338"></sup></li>
             <li>One function per tool<sup data-cite="chromeBestPractices"></sup></li>
-            <li>Short, positive descriptions<sup data-cite="chromeSecureTools"></sup></li>
+            <li>Short<sup data-cite="chromeSecureTools"></sup>, positive<sup data-cite="chromeBestPractices"></sup> descriptions</li>
             <li>Annotate: read-only, consequential, untrusted<sup data-cite="chromeSecureTools"></sup></li>
             <li>Validate in code, not only in the schema<sup data-cite="chromeBestPractices"></sup></li>
           </ul>
