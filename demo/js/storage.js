@@ -24,3 +24,25 @@ function toggleFavorite(eventId) {
   localStorage.setItem(FAVORITES_KEY, JSON.stringify(ids));
   return ids.includes(eventId);
 }
+
+// Tickets bought through the buy_ticket tool: { [eventId]: quantity }.
+const TICKETS_KEY = "webmcp-demo-tickets";
+
+function getTickets() {
+  try {
+    return JSON.parse(localStorage.getItem(TICKETS_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
+
+function getTicketCount(eventId) {
+  return getTickets()[eventId] || 0;
+}
+
+function addTickets(eventId, quantity) {
+  const tickets = getTickets();
+  tickets[eventId] = (tickets[eventId] || 0) + quantity;
+  localStorage.setItem(TICKETS_KEY, JSON.stringify(tickets));
+  return tickets[eventId];
+}

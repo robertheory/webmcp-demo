@@ -1,84 +1,127 @@
-// <flow-diagram state="idle|register|call"> — a native Web Component that
-// draws the Agent / Browser / Page relationship as inline SVG, highlighting
-// whichever leg of the flow is relevant to the current slide.
+// <flow-diagram state="idle|register|call" orientation="horizontal|vertical">
+// — a native Web Component that draws the Agent / Browser / Page
+// relationship as inline SVG, highlighting whichever leg of the flow is
+// relevant to the current slide.
 //
 //   idle     — just the three boxes, nothing highlighted (introduces the shape).
 //   register — highlights Page -> Browser, labeled registerTool().
-//   call     — highlights the full round trip: Agent -> Browser -> Page
-//              (executeTool()) and Page -> Browser -> Agent (result).
+//   call     — highlights the full round trip: Agent -> Browser (tool call),
+//              Browser -> Page (runs execute()) and back (JSON result).
+//
+// "horizontal" (default) suits full-width slides; "vertical" stacks the
+// boxes so the diagram can fill a side column next to code at a readable size.
 //
 // Renders into light DOM on purpose (see tool-card.js for why) and re-draws
-// whenever the `state` attribute changes, so the same element can be reused
-// across slides just by swapping the attribute.
+// whenever an attribute or the language changes, so the same element can be
+// reused across slides just by swapping attributes.
+// Marker ids must be unique per diagram: url(#id) resolves to the first match
+// in the document, and a marker inside a hidden slide doesn't render.
+let flowDiagramCount = 0;
+
 class FlowDiagram extends HTMLElement {
   static get observedAttributes() {
-    return ["state"];
+    return ["state", "orientation"];
   }
 
   connectedCallback() {
+    this.uid ??= `flow-${++flowDiagramCount}`;
     this.render();
+    this.onLangChange = () => this.render();
+    document.addEventListener("langchange", this.onLangChange);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("langchange", this.onLangChange);
   }
 
   attributeChangedCallback() {
-    this.render();
+    if (this.isConnected) this.render();
   }
 
   render() {
     const state = this.getAttribute("state") || "idle";
-    const active = "#0d6efd";
-    const idle = "#adb5bd";
+    const vertical = this.getAttribute("orientation") === "vertical";
 
-    const pt = document.documentElement.lang === "pt-BR";
-    const t = (en, ptText) => (pt ? ptText : en);
+    // Brand palette: ink for the active path, soft line for the rest, and
+    // the boxes involved in the step filled with highlighter yellow.
+    const c = {
+      active: "#141414",
+      idle: "#cfc8b6",
+      muted: "#5e584c",
+      fill: (on) => (on ? "#ffd23f" : "#ffffff"),
+      display: "'Space Grotesk', system-ui, sans-serif",
+      mono: "'JetBrains Mono', monospace",
+    };
+    const on = { register: state === "register", call: state === "call" };
+    const label = {
+      agent: tr("Agente de IA", "AI Agent"),
+      browser: tr("Navegador", "Browser"),
+      page: tr("Página web", "Web Page"),
+      tools: tr("(ferramentas registradas)", "(registered tools)"),
+      call: tr("chamada", "tool call"),
+      result: tr("resultado (JSON)", "result (JSON)"),
+      aria: tr("Diagrama da relação entre agente, navegador e página", "Agent, browser and page relationship diagram"),
+    };
 
-    const registerOn = state === "register";
-    const callOn = state === "call";
+    const markers = `
+      <defs>
+        <marker id="${this.uid}-active" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="${c.active}" />
+        </marker>
+        <marker id="${this.uid}-idle" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="${c.idle}" />
+        </marker>
+      </defs>`;
+    const line = (x1, y1, x2, y2, isOn) =>
+      `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${isOn ? c.active : c.idle}" stroke-width="2" marker-end="url(#${this.uid}-${isOn ? "active" : "idle"})"/>`;
+    const text = (x, y, value, { size = 12, anchor = "middle", weight = 700, font = c.mono, color = c.active } = {}) =>
+      `<text x="${x}" y="${y}" text-anchor="${anchor}" font-size="${size}" font-weight="${weight}" fill="${color}" font-family="${font}">${value}</text>`;
+    const box = (x, y, w, h, isOn, title, subtitle, titleSize) => {
+      const titleY = subtitle ? y + h / 2 - 2 : y + h / 2 + titleSize * 0.35;
+      return `
+      <rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c.fill(isOn)}" stroke="${c.active}" stroke-width="2"/>
+      ${text(x + w / 2, titleY, title, { size: titleSize, font: c.display, color: "#141414" })}
+      ${subtitle ? text(x + w / 2, y + h / 2 + titleSize * 0.85, subtitle, { size: titleSize * 0.6, weight: 400, color: c.muted }) : ""}`;
+    };
 
-    this.innerHTML = `
-      <svg viewBox="0 0 720 220" role="img" aria-label="Agent, browser and page relationship diagram" style="width:100%; height:auto;">
-        <defs>
-          <marker id="arrow-active" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-            <path d="M0,0 L8,3 L0,6 Z" fill="${active}" />
-          </marker>
-          <marker id="arrow-idle" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-            <path d="M0,0 L8,3 L0,6 Z" fill="${idle}" />
-          </marker>
-        </defs>
+    this.innerHTML = vertical ? this.vertical({ c, on, label, markers, line, text, box }) : this.horizontal({ c, on, label, markers, line, text, box });
+  }
 
-        <!-- Agent -->
-        <rect x="20" y="80" width="180" height="60" rx="10" fill="#fff" stroke="${callOn ? active : idle}" stroke-width="2"/>
-        <text x="110" y="115" text-anchor="middle" font-size="18" font-family="sans-serif">${t("AI Agent", "Agente de IA")}</text>
+  horizontal({ c, on, label, markers, line, text, box }) {
+    return `
+      <svg viewBox="0 0 720 220" role="img" aria-label="${label.aria}" style="width:100%; height:auto;">
+        ${markers}
+        ${box(20, 80, 180, 60, on.call, label.agent, "", 18)}
+        ${box(270, 80, 180, 60, on.call || on.register, label.browser, "(WebMCP)", 18)}
+        ${box(520, 80, 180, 60, on.call || on.register, label.page, label.tools, 18)}
 
-        <!-- Browser -->
-        <rect x="270" y="80" width="180" height="60" rx="10" fill="#fff" stroke="${callOn || registerOn ? active : idle}" stroke-width="2"/>
-        <text x="360" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">${t("Browser", "Navegador")}</text>
-        <text x="360" y="128" text-anchor="middle" font-size="12" fill="#6c757d" font-family="sans-serif">(WebMCP)</text>
+        ${line(200, 100, 266, 100, on.call)}
+        ${line(266, 122, 200, 122, on.call)}
+        ${line(454, 100, 516, 100, on.call)}
+        ${line(516, 122, 454, 122, on.call || on.register)}
 
-        <!-- Page -->
-        <rect x="520" y="80" width="180" height="60" rx="10" fill="#fff" stroke="${callOn || registerOn ? active : idle}" stroke-width="2"/>
-        <text x="610" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">${t("Web Page", "Página Web")}</text>
-        <text x="610" y="128" text-anchor="middle" font-size="12" fill="#6c757d" font-family="sans-serif">${t("(registered tools)", "(ferramentas registradas)")}</text>
+        ${on.call ? text(233, 65, label.call) + text(485, 65, "execute(input)") + text(360, 168, label.result) : ""}
+        ${on.register ? text(485, 158, "registerTool()", { size: 13 }) : ""}
+      </svg>`;
+  }
 
-        <!-- Agent <-> Browser -->
-        <line x1="200" y1="100" x2="266" y2="100" stroke="${callOn ? active : idle}" stroke-width="2" marker-end="url(#${callOn ? "arrow-active" : "arrow-idle"})"/>
-        <line x1="266" y1="122" x2="200" y2="122" stroke="${callOn ? active : idle}" stroke-width="2" marker-end="url(#${callOn ? "arrow-active" : "arrow-idle"})"/>
+  vertical({ c, on, label, markers, line, text, box }) {
+    // Boxes stacked top to bottom; arrows run down (call) and up (result,
+    // registration), with their labels to the right of the connector.
+    return `
+      <svg viewBox="0 0 340 440" role="img" aria-label="${label.aria}" style="width:100%; height:auto; max-height:58vh;">
+        ${markers}
+        ${box(10, 10, 320, 84, on.call, label.agent, "", 26)}
+        ${box(10, 178, 320, 84, on.call || on.register, label.browser, "(WebMCP)", 26)}
+        ${box(10, 346, 320, 84, on.call || on.register, label.page, label.tools, 26)}
 
-        <!-- Browser <-> Page -->
-        <line x1="454" y1="100" x2="516" y2="100" stroke="${callOn ? active : idle}" stroke-width="2" marker-end="url(#${callOn ? "arrow-active" : "arrow-idle"})"/>
-        <line x1="516" y1="122" x2="454" y2="122" stroke="${callOn || registerOn ? active : idle}" stroke-width="2" marker-end="url(#${callOn || registerOn ? "arrow-active" : "arrow-idle"})"/>
+        ${line(155, 94, 155, 174, on.call)}
+        ${line(185, 174, 185, 98, on.call)}
+        ${line(155, 262, 155, 342, on.call)}
+        ${line(185, 342, 185, 266, on.call || on.register)}
 
-        ${
-          callOn
-            ? `<text x="233" y="65" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">executeTool()</text>
-               <text x="485" y="65" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">executeTool()</text>
-               <text x="360" y="150" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">${t("result", "resultado")}</text>`
-            : ""
-        }
-        ${
-          registerOn
-            ? `<text x="485" y="150" text-anchor="middle" font-size="13" fill="${active}" font-family="sans-serif">registerTool()</text>`
-            : ""
-        }
+        ${on.call ? text(198, 139, label.call, { anchor: "start", size: 15 }) + text(198, 307, "execute(input)", { anchor: "start", size: 15 }) : ""}
+        ${on.register ? text(198, 309, "registerTool()", { anchor: "start", size: 17 }) : ""}
       </svg>`;
   }
 }
