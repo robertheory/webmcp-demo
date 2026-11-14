@@ -4,8 +4,8 @@
 //
 //   idle     — just the three boxes, nothing highlighted (introduces the shape).
 //   register — highlights Page -> Browser, labeled registerTool().
-//   call     — highlights the full round trip: Agent -> Browser -> Page
-//              (executeTool()) and Page -> Browser -> Agent (result).
+//   call     — highlights the full round trip: Agent -> Browser (tool call),
+//              Browser -> Page (runs execute()) and back (JSON result).
 //
 // Renders into light DOM on purpose (see tool-card.js for why) and re-draws
 // whenever the `state` attribute changes, so the same element can be reused
@@ -17,10 +17,16 @@ class FlowDiagram extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.onLangChange = () => this.render();
+    document.addEventListener("langchange", this.onLangChange);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("langchange", this.onLangChange);
   }
 
   attributeChangedCallback() {
-    this.render();
+    if (this.isConnected) this.render();
   }
 
   render() {
@@ -30,9 +36,18 @@ class FlowDiagram extends HTMLElement {
 
     const registerOn = state === "register";
     const callOn = state === "call";
+    const label = {
+      agent: tr("Agente de IA", "AI Agent"),
+      browser: tr("Navegador", "Browser"),
+      page: tr("Página web", "Web Page"),
+      tools: tr("(ferramentas registradas)", "(registered tools)"),
+      call: tr("chamada", "tool call"),
+      result: tr("resultado (JSON)", "result (JSON)"),
+      aria: tr("Diagrama da relação entre agente, navegador e página", "Agent, browser and page relationship diagram"),
+    };
 
     this.innerHTML = `
-      <svg viewBox="0 0 720 220" role="img" aria-label="Agent, browser and page relationship diagram" style="width:100%; height:auto;">
+      <svg viewBox="0 0 720 220" role="img" aria-label="${label.aria}" style="width:100%; height:auto;">
         <defs>
           <marker id="arrow-active" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
             <path d="M0,0 L8,3 L0,6 Z" fill="${active}" />
@@ -44,17 +59,17 @@ class FlowDiagram extends HTMLElement {
 
         <!-- Agent -->
         <rect x="20" y="80" width="180" height="60" rx="10" fill="#fff" stroke="${callOn ? active : idle}" stroke-width="2"/>
-        <text x="110" y="115" text-anchor="middle" font-size="18" font-family="sans-serif">AI Agent</text>
+        <text x="110" y="115" text-anchor="middle" font-size="18" font-family="sans-serif">${label.agent}</text>
 
         <!-- Browser -->
         <rect x="270" y="80" width="180" height="60" rx="10" fill="#fff" stroke="${callOn || registerOn ? active : idle}" stroke-width="2"/>
-        <text x="360" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">Browser</text>
+        <text x="360" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">${label.browser}</text>
         <text x="360" y="128" text-anchor="middle" font-size="12" fill="#6c757d" font-family="sans-serif">(WebMCP)</text>
 
         <!-- Page -->
         <rect x="520" y="80" width="180" height="60" rx="10" fill="#fff" stroke="${callOn || registerOn ? active : idle}" stroke-width="2"/>
-        <text x="610" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">Web Page</text>
-        <text x="610" y="128" text-anchor="middle" font-size="12" fill="#6c757d" font-family="sans-serif">(registered tools)</text>
+        <text x="610" y="110" text-anchor="middle" font-size="18" font-family="sans-serif">${label.page}</text>
+        <text x="610" y="128" text-anchor="middle" font-size="12" fill="#6c757d" font-family="sans-serif">${label.tools}</text>
 
         <!-- Agent <-> Browser -->
         <line x1="200" y1="100" x2="266" y2="100" stroke="${callOn ? active : idle}" stroke-width="2" marker-end="url(#${callOn ? "arrow-active" : "arrow-idle"})"/>
@@ -66,9 +81,9 @@ class FlowDiagram extends HTMLElement {
 
         ${
           callOn
-            ? `<text x="233" y="65" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">executeTool()</text>
-               <text x="485" y="65" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">executeTool()</text>
-               <text x="360" y="150" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">result</text>`
+            ? `<text x="233" y="65" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">${label.call}</text>
+               <text x="485" y="65" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">execute(input)</text>
+               <text x="360" y="160" text-anchor="middle" font-size="12" fill="${active}" font-family="sans-serif">${label.result}</text>`
             : ""
         }
         ${
